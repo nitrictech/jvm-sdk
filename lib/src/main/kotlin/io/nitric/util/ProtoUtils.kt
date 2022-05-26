@@ -18,7 +18,7 @@ object ProtoUtils {
      */
     fun toMap(struct: Struct): Map<String?, Any?>? {
         return struct
-            .getFieldsMap()
+            .fieldsMap
             .entries
             .stream()
             .collect(
@@ -87,24 +87,20 @@ object ProtoUtils {
     }
 
     fun value(value: Any?): Value? {
-        return if (value is Map<*, *>) {
-            Value.newBuilder().setStructValue(toStructNullFriendly(value as Map<String?, Any?>)).build()
-        } else if (value is Value) {
-            value as Value?
-        } else if (value is String) {
-            Value.newBuilder().setStringValue(value).build()
-        } else if (value is Boolean) {
-            Value.newBuilder().setBoolValue(value).build()
-        } else if (value is Number) {
-            Value.newBuilder().setNumberValue(value.toDouble()).build()
-        } else if (value is Iterable<*>) {
-            listValue(value)
-        } else if (value is Struct) {
-            Value.newBuilder().setStructValue(value).build()
-        } else if (value == null) {
-            Value.newBuilder().setNullValue(NullValue.NULL_VALUE).build()
-        } else {
-            throw IllegalArgumentException("Cannot convert $value to a protobuf `Value`")
+        return when(value) {
+            is Map<*, *> -> Value.newBuilder().setStructValue(toStructNullFriendly(value as Map<String?, Any?>)).build()
+            is Value -> value
+            is String -> Value.newBuilder().setStringValue(value).build()
+            is Boolean -> Value.newBuilder().setBoolValue(value).build()
+            is Number ->  Value.newBuilder().setNumberValue(value.toDouble()).build()
+            is Struct ->  Value.newBuilder().setStructValue(value).build()
+            else -> {
+                if(value == null) {
+                    return Value.newBuilder().setNullValue(NullValue.NULL_VALUE).build()
+                } else {
+                    throw IllegalArgumentException("Cannot convert $value to a protobuf `Value`")
+                }
+            }
         }
     }
 
@@ -123,10 +119,10 @@ object ProtoUtils {
         val none = Any() as U
         return Collectors.collectingAndThen(
             Collectors.toMap(keyMapper,
-                valueMapper.andThen { v -> if (v == null) none else v }),
-            Function<MutableMap<K, U?>, Map<K, U?>> { map: MutableMap<K, U?> ->
-                map.replaceAll { k: K, v: U? -> if (v === none) null else v }
-                map
-            })
+                valueMapper.andThen { v -> v ?: none })
+        ) { map: MutableMap<K, U?> ->
+            map.replaceAll { k: K, v: U? -> if (v === none) null else v }
+            map
+        }
     }
 }
