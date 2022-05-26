@@ -16,7 +16,7 @@ object ProtoUtils {
      * @param struct the protobuf Struct object
      * @return a Map object.
      */
-    fun toMap(struct: Struct): Map<String?, Any?>? {
+    fun toMap(struct: Struct): Map<String, Any?> {
         return struct
             .fieldsMap
             .entries
@@ -41,14 +41,14 @@ object ProtoUtils {
      * @param map the map object (required)
      * @return a new protobuf Struct object
      */
-    fun toStruct(map: Map<String?, Any?>): Struct? {
+    fun toStruct(map: Map<String, Any?>): Struct? {
         return mapToStructBuilder(map).build()
     }
 
     // Package Private Methods ------------------------------------------------
 
     // Package Private Methods ------------------------------------------------
-    fun toStructNullFriendly(map: Map<String?, Any?>): Struct? {
+    fun toStructNullFriendly(map: Map<String, Any?>): Struct? {
         return mapToStructBuilder(map).build()
     }
 
@@ -77,7 +77,7 @@ object ProtoUtils {
             .collect(Collectors.toList())
     }
 
-    fun mapToStructBuilder(map: Map<String?, Any?>): Struct.Builder {
+    fun mapToStructBuilder(map: Map<String, Any?>): Struct.Builder {
         val builder: Struct.Builder = Struct.newBuilder()
         for ((key, value) in map) {
             val structValue: Value? = value(value)
@@ -88,7 +88,7 @@ object ProtoUtils {
 
     fun value(value: Any?): Value? {
         return when(value) {
-            is Map<*, *> -> Value.newBuilder().setStructValue(toStructNullFriendly(value as Map<String?, Any?>)).build()
+            is Map<*, *> -> Value.newBuilder().setStructValue(toStructNullFriendly(value as Map<String, Any?>)).build()
             is Value -> value
             is String -> Value.newBuilder().setStringValue(value).build()
             is Boolean -> Value.newBuilder().setBoolValue(value).build()
