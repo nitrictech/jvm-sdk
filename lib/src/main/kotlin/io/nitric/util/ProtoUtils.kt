@@ -53,17 +53,15 @@ object ProtoUtils {
     }
 
     fun getScalarValue(value: Value): Any? {
-        when (value.kindCase) {
-            Value.KindCase.STRUCT_VALUE, Value.KindCase.LIST_VALUE -> throw AssertionError("value should be scalar")
-            Value.KindCase.BOOL_VALUE -> return value.boolValue
-            Value.KindCase.NUMBER_VALUE ->                 // Note: this assumes all numbers are doubles. Downstream code that have access to the
-                // schema can convert this number to the correct number type.
-                return value.numberValue
-            Value.KindCase.STRING_VALUE -> return value.stringValue
-            Value.KindCase.NULL_VALUE -> return null
-            else -> {}
+        return when (value.kindCase) {
+            Value.KindCase.STRUCT_VALUE, Value.KindCase.LIST_VALUE ->
+                throw AssertionError("value should be scalar")
+            Value.KindCase.BOOL_VALUE -> value.boolValue
+            Value.KindCase.NUMBER_VALUE -> value.numberValue
+            Value.KindCase.STRING_VALUE -> value.stringValue
+            Value.KindCase.NULL_VALUE -> null
+            else -> throw AssertionError("value should be scalar")
         }
-        return value
     }
 
     fun toList(listValue: ListValue): List<Any?>? {
@@ -94,13 +92,8 @@ object ProtoUtils {
             is Boolean -> Value.newBuilder().setBoolValue(value).build()
             is Number ->  Value.newBuilder().setNumberValue(value.toDouble()).build()
             is Struct ->  Value.newBuilder().setStructValue(value).build()
-            else -> {
-                if(value == null) {
-                    return Value.newBuilder().setNullValue(NullValue.NULL_VALUE).build()
-                } else {
-                    throw IllegalArgumentException("Cannot convert $value to a protobuf `Value`")
-                }
-            }
+            null -> Value.newBuilder().setNullValue(NullValue.NULL_VALUE).build()
+            else -> throw IllegalArgumentException("Cannot convert $value to a protobuf `Value`")
         }
     }
 
