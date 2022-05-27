@@ -9,8 +9,6 @@ import io.nitric.proto.resource.v1.ResourceServiceGrpc
 import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.GrpcChannelProvider
 
-val cache: MutableMap<String, MutableMap<String, Resource>> = mutableMapOf()
-
 abstract class Resource(val name: String) {
     val client: ResourceServiceGrpc.ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
@@ -40,12 +38,5 @@ abstract class SecureResource<P: Enum<P>>(name: String) : Resource(name) {
                 .setResource(policyResource)
                 .build()
         )
-    }
-}
-
-fun <T: Resource, R>T.make(resource: T): (name: String) -> R {
-    val typeName = resource.name
-    return fun(name: String): R {
-        R(name)
     }
 }
