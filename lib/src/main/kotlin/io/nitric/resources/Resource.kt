@@ -14,7 +14,7 @@ val cache: MutableMap<String, MutableMap<String, Resource>> = mutableMapOf()
 abstract class Resource(val name: String) {
     val client: ResourceServiceGrpc.ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
-    protected abstract fun register(): ProtoResource
+    internal abstract fun register(): ProtoResource
 }
 
 abstract class SecureResource<P: Enum<P>>(name: String) : Resource(name) {
