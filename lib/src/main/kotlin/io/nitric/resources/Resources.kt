@@ -8,6 +8,10 @@ object Resources {
 //        // create the resource type
 //        Collection(name, type)
 //    }
+
+    fun bucket(name: String): BucketResource = registrar("bucket", name) {
+        BucketResource(name)
+    }
 }
 
 // create a registrar utility resource
