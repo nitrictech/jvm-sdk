@@ -1,45 +1,44 @@
 package io.nitric.resources
 
-import io.nitric.api.storage.v0.Bucket
-import io.nitric.api.storage.v0.Storage
-import io.nitric.faas.v0.Faas
+import io.nitric.api.events.v0.Eventing
+import io.nitric.api.events.v0.Topic
 import io.nitric.proto.resource.v1.Action
 import io.nitric.proto.resource.v1.Resource
+import io.nitric.proto.resource.v1.ResourceDeclareRequest
+import io.nitric.proto.resource.v1.ResourceType
+import io.nitric.util.fluently
 
 enum class TopicPermission {
-    read, write, delete
+    Publishing
 }
 
-class SubscriptionWorkerOptions(val topic: String)
-
-class Subscription(val name: String) {
-    init {
-        val faas = Faas(SubscriptionWorkerOptions(name))
-        faas.event()
-    }
-}
-
-class TopicResource(name: String) : SecureResource<BucketPermission>(name) {
-    protected override fun register(): Resource {
-        TODO("Not yet implemented")
+class TopicResource(name: String) : SecureResource<TopicPermission>(name) {
+    override fun register() = fluently {
+        this.client.declare(ResourceDeclareRequest.newBuilder()
+            .setResource(Resource.newBuilder().setName(this.name).setType(ResourceType.Topic).build())
+            .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
+            .build()
+        )
     }
 
-    override fun permissionsToActions(permissions: List<BucketPermission>): List<Action> {
+    override fun permissionsToActions(permissions: List<TopicPermission>): List<Action> {
         return permissions.fold(mutableListOf()) { arr, perm ->
-            val actions: List<Action> = when (perm.name) {
-                "read" -> listOf(Action.BucketFileGet, Action.BucketFileList)
-                "write" -> listOf(Action.BucketFilePut)
-                "delete" -> listOf(Action.BucketFileDelete)
-                else -> { throw Error("Unknown bucket permission")}
+            val actions: List<Action> = when (perm) {
+                TopicPermission.Publishing -> listOf(Action.TopicEventPublish, Action.TopicList, Action.TopicDetail)
+                else -> { throw Error("Unknown topic permission")}
             }
             arr.addAll(actions)
             arr
         }
     }
 
-    fun with(vararg permissions: BucketPermission): Bucket {
+    fun subscribe() {
+        // TODO IMPLEMENTATION
+    }
+
+    fun with(vararg permissions: TopicPermission): Topic {
         this.registerPolicy(permissions.asList())
-        return Storage.bucket(this.name)
+        return Eventing.topic(this.name)
     }
 }
 

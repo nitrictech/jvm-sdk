@@ -8,6 +8,10 @@ object Resources {
 //        // create the resource type
 //        Collection(name, type)
 //    }
+
+    fun topic(name: String): TopicResource = registrar("topic", name) {
+        TopicResource(name)
+    }
 }
 
 // create a registrar utility resource
