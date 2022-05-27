@@ -43,6 +43,8 @@ dependencies {
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 }
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
