@@ -25,7 +25,6 @@ class TopicResource(name: String) : SecureResource<TopicPermission>(name) {
         return permissions.fold(mutableListOf()) { arr, perm ->
             val actions: List<Action> = when (perm) {
                 TopicPermission.Publishing -> listOf(Action.TopicEventPublish, Action.TopicList, Action.TopicDetail)
-                else -> { throw Error("Unknown topic permission")}
             }
             arr.addAll(actions)
             arr
