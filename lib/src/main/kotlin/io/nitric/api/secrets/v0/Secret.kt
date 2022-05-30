@@ -2,11 +2,12 @@ package io.nitric.api.secrets.v0
 
 import com.google.protobuf.ByteString
 import io.nitric.proto.secret.v1.SecretPutRequest
+import io.nitric.proto.secret.v1.SecretServiceGrpc.SecretServiceBlockingStub
 import io.nitric.proto.secret.v1.Secret as ProtoSecret
 
-class Secret(val secrets: Secrets, val name: String) {
+class Secret(internal val client: SecretServiceBlockingStub, val name: String) {
     fun put(secret: String) {
-        this.secrets.client.put(
+        this.client.put(
             SecretPutRequest.newBuilder()
                 .setSecret(this.toWire())
                 .setValue(ByteString.copyFromUtf8(secret))

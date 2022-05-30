@@ -4,11 +4,11 @@ import io.nitric.proto.secret.v1.SecretServiceGrpc
 import io.nitric.proto.secret.v1.SecretServiceGrpc.SecretServiceBlockingStub
 import io.nitric.util.GrpcChannelProvider
 
-object Secrets {
-    val client: SecretServiceBlockingStub = SecretServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
+internal object Secrets {
+    internal val client: SecretServiceBlockingStub = SecretServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
-    fun bucket(name: String): Secret {
-        return Secret(this, name)
+    fun secret(name: String): Secret {
+        return Secret(this.client, name)
     }
 }
 

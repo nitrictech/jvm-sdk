@@ -5,7 +5,7 @@ import io.nitric.proto.secret.v1.SecretVersion as ProtoSecretVersion
 
 class SecretVersion(val secret: Secret, val version: String) {
     fun access(): SecretValue {
-        val resp = this.secret.secrets.client.access(
+        val resp = this.secret.client.access(
             SecretAccessRequest.newBuilder()
                 .setSecretVersion(this.toWire())
                 .build()
