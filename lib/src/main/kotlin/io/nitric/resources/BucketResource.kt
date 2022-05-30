@@ -9,7 +9,7 @@ import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.fluently
 
 enum class BucketPermission {
-    read, write, delete
+    Read, Write, Delete
 }
 
 
@@ -24,10 +24,9 @@ class BucketResource internal constructor(name: String) : SecureResource<BucketP
     override fun permissionsToActions(permissions: List<BucketPermission>): List<Action> {
         return permissions.fold(mutableListOf()) { arr, perm ->
             val actions: List<Action> = when (perm) {
-                BucketPermission.read -> listOf(Action.BucketFileGet, Action.BucketFileList)
-                BucketPermission.write -> listOf(Action.BucketFilePut)
-                BucketPermission.delete -> listOf(Action.BucketFileDelete)
-                else -> { throw Error("Unknown bucket permission")}
+                BucketPermission.Read -> listOf(Action.BucketFileGet, Action.BucketFileList)
+                BucketPermission.Write -> listOf(Action.BucketFilePut)
+                BucketPermission.Delete -> listOf(Action.BucketFileDelete)
             }
             arr.addAll(actions)
             arr
