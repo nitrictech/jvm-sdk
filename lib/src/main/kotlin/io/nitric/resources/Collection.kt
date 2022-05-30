@@ -5,15 +5,23 @@ import io.nitric.proto.resource.v1.*
 import io.nitric.proto.resource.v1.Resource
 import io.nitric.util.fluently
 
-enum class CollectionPermision {
-    read,
-    write,
-    delete
+enum class CollectionPermission {
+    Read,
+    Write,
+    Delete
 }
 
-class Collection<T> internal constructor(name: String, private val type: Class<T>): SecureResource<CollectionPermision>(name) {
-    override fun permissionsToActions(permissions: List<CollectionPermision>): List<Action> {
-        TODO("Not yet implemented")
+class Collection<T> internal constructor(name: String, private val type: Class<T>): SecureResource<CollectionPermission>(name) {
+    override fun permissionsToActions(permissions: List<CollectionPermission>): List<Action> {
+        return permissions.fold(mutableListOf()) { arr, perm ->
+            val actions: List<Action> = when (perm) {
+                CollectionPermission.Read -> listOf(Action.CollectionDocumentRead)
+                CollectionPermission.Write -> listOf(Action.CollectionDocumentWrite)
+                CollectionPermission.Delete -> listOf(Action.CollectionDocumentDelete)
+            }
+            arr.addAll(actions)
+            arr
+        }
     }
 
     override fun register() = fluently {
@@ -23,7 +31,7 @@ class Collection<T> internal constructor(name: String, private val type: Class<T
         )
     }
 
-    fun with(vararg permissions: CollectionPermision): io.nitric.api.documents.v0.Collection<T> {
+    fun with(vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
         this.registerPolicy(permissions.asList())
         return Documents.collection(this.name, this.type)
     }
