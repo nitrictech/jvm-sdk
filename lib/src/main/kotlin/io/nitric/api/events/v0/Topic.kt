@@ -6,7 +6,7 @@ import io.nitric.proto.event.v1.EventPublishRequest
 import io.nitric.util.ProtoUtils
 import io.nitric.proto.event.v1.NitricEvent as ProtoEvent
 
-class NitricEvent(val id: String, val payloadType: String = "none", val payload: Map<String?, Any?>) {
+class NitricEvent(val id: String, val payloadType: String = "none", val payload: Map<String, Any?>) {
     fun toWire(): ProtoEvent {
         return ProtoEvent.newBuilder()
             .setId(this.id)
