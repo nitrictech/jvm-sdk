@@ -8,6 +8,10 @@ object Resources {
 //        // create the resource type
 //        Collection(name, type)
 //    }
+
+    fun queue(name: String) = registrar("queue", name) {
+        QueueResource(name)
+    }
 }
 
 // create a registrar utility resource
