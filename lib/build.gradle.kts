@@ -15,6 +15,60 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     kotlin("jvm") version "1.6.21"
+
+    // Apply the maven-publish plugin for publishing the final artifact
+    `maven-publish`
+}
+
+group = "io.nitric"
+version = "0.0.1"
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    repositories {
+        maven {
+
+        }
+    }
+
+    publications {
+        create<MavenPublication>("mavenJava"){
+            groupId = "io.nitric"
+            artifactId = "jvm-sdk"
+            from(components["java"])
+//            versionMapping{
+//                usage("java-api") {
+//                    fromResolutionOf("runtimeClassPath")
+//                }
+//                usage("java-runtime") {
+//                    fromResolutionResult()
+//                }
+//            }
+            pom {
+                name.set("Nitric JVM SDK")
+                description.set("")
+                url.set("")
+
+                licenses {
+                    license {
+                        name.set("")
+                        url.set("")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("nitric")
+                        name.set("nitric")
+                        email.set("maintainers@nitric.io")
+                    }
+                }
+            }
+        }
+    }
 }
 
 repositories {
