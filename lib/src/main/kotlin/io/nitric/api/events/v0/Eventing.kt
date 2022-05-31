@@ -8,23 +8,23 @@ import io.nitric.proto.event.v1.TopicServiceGrpc
 import io.nitric.proto.event.v1.TopicServiceGrpc.TopicServiceBlockingStub
 import io.nitric.util.GrpcChannelProvider
 
-class EventingClients(val event: EventServiceBlockingStub, val topic: TopicServiceBlockingStub)
+internal class EventingClients internal constructor(val event: EventServiceBlockingStub, val topic: TopicServiceBlockingStub)
 
-object Eventing {
+internal object Eventing {
     val client: EventingClients = EventingClients(
         EventServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel()),
         TopicServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
     )
 
     fun topic(name: String): Topic {
-        return Topic(this, name)
+        return Topic(this.client, name)
     }
 
-    fun topics(): List<Topic> {
-        val resp = this.client.topic.list(
-            TopicListRequest.newBuilder().build()
-        )
-        return resp.topicsList.map { Topic(this, it.name) }
-    }
+//    fun topics(): List<Topic> {
+//        val resp = this.client.topic.list(
+//            TopicListRequest.newBuilder().build()
+//        )
+//        return resp.topicsList.map { Topic(this.client, it.name) }
+//    }
 }
 

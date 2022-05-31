@@ -11,7 +11,7 @@ enum class FileMode {
     Read, Write
 }
 
-class File(val storage: Storage, val bucket: Bucket, val name: String) {
+class File internal constructor(private val client: StorageServiceBlockingStub, val bucket: Bucket, val name: String) {
     fun getDownloadUrl(expiry: Int = 600): String  {
         return this.signUrl(FileMode.Read, expiry)
     }
@@ -21,7 +21,7 @@ class File(val storage: Storage, val bucket: Bucket, val name: String) {
     }
 
     private fun signUrl(mode: FileMode, expiry: Int = 600): String {
-        val resp = this.storage.client.preSignUrl(
+        val resp = this.client.preSignUrl(
             StoragePreSignUrlRequest.newBuilder()
                 .setBucketName(this.bucket.name)
                 .setKey(this.name)
@@ -33,7 +33,7 @@ class File(val storage: Storage, val bucket: Bucket, val name: String) {
     }
 
     fun write(body: String) {
-        val resp = this.storage.client.write(
+        val resp = this.client.write(
             StorageWriteRequest.newBuilder()
                 .setBucketName(this.bucket.name)
                 .setKey(this.name)
@@ -44,7 +44,7 @@ class File(val storage: Storage, val bucket: Bucket, val name: String) {
     }
 
     fun write(body: ByteArray) {
-        val resp = this.storage.client.write(
+        val resp = this.client.write(
             StorageWriteRequest.newBuilder()
                 .setBucketName(this.bucket.name)
                 .setKey(this.name)
@@ -55,7 +55,7 @@ class File(val storage: Storage, val bucket: Bucket, val name: String) {
     }
 
     fun read(): ByteArray {
-        val resp = this.storage.client.read(
+        val resp = this.client.read(
             StorageReadRequest.newBuilder()
                 .setBucketName(this.bucket.name)
                 .setKey(this.name)

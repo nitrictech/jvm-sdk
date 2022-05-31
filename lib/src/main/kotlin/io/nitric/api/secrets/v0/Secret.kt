@@ -5,7 +5,7 @@ import io.nitric.proto.secret.v1.SecretPutRequest
 import io.nitric.proto.secret.v1.SecretServiceGrpc.SecretServiceBlockingStub
 import io.nitric.proto.secret.v1.Secret as ProtoSecret
 
-class Secret(internal val client: SecretServiceBlockingStub, val name: String) {
+class Secret internal constructor (internal val client: SecretServiceBlockingStub, val name: String) {
     fun put(secret: String) {
         this.client.put(
             SecretPutRequest.newBuilder()

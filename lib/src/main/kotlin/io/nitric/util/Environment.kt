@@ -1,6 +1,6 @@
 package io.nitric.util
 
-object Environment {
+internal object Environment {
     val NITRIC_SERVICE_HOST_DEFAULT = "localhost"
     val NITRIC_SERVICE_PORT_DEFAULT = "50051"
     val NITRIC_SERVICE_HOST_ENV_VAR_NAME = "NITRIC_SERVICE_HOST"

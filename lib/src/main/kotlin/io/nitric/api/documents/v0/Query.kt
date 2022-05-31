@@ -7,7 +7,6 @@ import io.nitric.proto.document.v1.ExpressionValue
 import io.nitric.util.ProtoUtils
 import io.nitric.util.fluently
 
-
 enum class Operator(val value: String) {
     LT("<"),
     LTE("<="),
@@ -18,7 +17,7 @@ enum class Operator(val value: String) {
     STARTS_WITH("startsWith"),
 }
 
-class Query<T>(private val client: DocumentServiceBlockingStub, private val collection: Collection<T>, private val type: Class<T>) {
+class Query<T> internal constructor(private val client: DocumentServiceBlockingStub, private val collection: Collection<T>, private val type: Class<T>) {
 
     private var expressions: ArrayList<Expression> = ArrayList()
     private var pagingToken: Map<String, String>? = null
@@ -69,10 +68,11 @@ class Query<T>(private val client: DocumentServiceBlockingStub, private val coll
         }
     }
 
-//    fun stream() {
-//
-//        throw
-//    }
+    // TODO: Implement document streaming
+    //    fun stream() {
+    //
+    //        throw
+    //    }
 
     private fun whereObj(field: String, operator: Operator, value: Any): Expression {
         val expressionValue: ExpressionValue = when(value) {

@@ -9,7 +9,7 @@ import io.nitric.util.ProtoUtils
 
 
 
-class DocumentReference<T>(private val client: DocumentServiceBlockingStub, val parent: Collection<T>, private val type: Class<T>, val id: String) {
+class DocumentReference<T> internal constructor(private val client: DocumentServiceBlockingStub, val parent: Collection<T>, private val type: Class<T>, val id: String) {
     fun get(): T? {
         val response = this.client.get(
             DocumentGetRequest.newBuilder().setKey(this.toWire()).build()

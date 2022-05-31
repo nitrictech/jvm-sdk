@@ -22,17 +22,17 @@ enum class HttpMethod {
     OPTIONS,
 }
 
-interface FaasOptions {}
+internal interface FaasOptions {}
 
-class ApiWorkerOptions(val api: String, val route: String, val method: Set<HttpMethod>): FaasOptions {}
+internal class ApiWorkerOptions(val api: String, val route: String, val method: Set<HttpMethod>): FaasOptions {}
 
-class SubscriptionWorkerOptions(val topic: String): FaasOptions {}
+internal class SubscriptionWorkerOptions(val topic: String): FaasOptions {}
 
 enum class Frequency {
     Days, Hours, Minutes
 }
 
-class ScheduleWorkerOptions(val description: String, val rate: Number, val frequency: Frequency): FaasOptions {}
+internal class ScheduleWorkerOptions(val description: String, val rate: Number, val frequency: Frequency): FaasOptions {}
 
 internal class Faas constructor(val opts: FaasOptions) {
     val logger = Logger.getLogger(Faas::javaClass.name)

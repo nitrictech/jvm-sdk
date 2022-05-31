@@ -50,13 +50,13 @@ publishing {
 //            }
             pom {
                 name.set("Nitric JVM SDK")
-                description.set("")
-                url.set("")
+                description.set("Nitric JVM language SDK")
+                url.set("https://github.com/nitrictech/jvm-sdk")
 
                 licenses {
                     license {
-                        name.set("")
-                        url.set("")
+                        name.set("Apache-2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
                     }
                 }
                 developers {

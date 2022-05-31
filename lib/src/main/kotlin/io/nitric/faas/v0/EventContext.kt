@@ -4,7 +4,7 @@ import io.nitric.proto.faas.v1.TopicResponseContext
 import io.nitric.proto.faas.v1.TriggerRequest
 import io.nitric.proto.faas.v1.TriggerResponse
 
-data class EventContext(override val req: EventRequest, override val resp: EventResponse): TriggerContext<EventRequest, EventResponse>() {
+data class EventContext internal constructor(override val req: EventRequest, override val resp: EventResponse): TriggerContext<EventRequest, EventResponse>() {
     companion object {
         internal fun fromGrpcTriggerRequest(req: TriggerRequest): EventContext {
             val event = req.topic
@@ -26,6 +26,6 @@ data class EventContext(override val req: EventRequest, override val resp: Event
     }
 }
 
-class EventRequest(data: ByteArray, val topic: String): AbstractRequest(data) {}
+class EventRequest internal constructor(data: ByteArray, val topic: String): AbstractRequest(data) {}
 
-data class EventResponse(val success: Boolean)
+data class EventResponse internal constructor(val success: Boolean)

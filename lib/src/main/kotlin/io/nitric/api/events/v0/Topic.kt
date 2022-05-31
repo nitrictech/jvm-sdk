@@ -1,7 +1,5 @@
 package io.nitric.api.events.v0
 
-import com.google.protobuf.Struct
-import com.google.protobuf.Value
 import io.nitric.proto.event.v1.EventPublishRequest
 import io.nitric.util.ProtoUtils
 import io.nitric.proto.event.v1.NitricEvent as ProtoEvent
@@ -16,9 +14,9 @@ class NitricEvent(val id: String, val payloadType: String = "none", val payload:
     }
 }
 
-class Topic(val eventing: Eventing, val name: String) {
+class Topic internal constructor(private val client: EventingClients, val name: String) {
     fun publish(event: NitricEvent): NitricEvent {
-        val resp = this.eventing.client.event.publish(
+        val resp = this.client.event.publish(
             EventPublishRequest.newBuilder()
                 .setEvent(event.toWire())
                 .build()

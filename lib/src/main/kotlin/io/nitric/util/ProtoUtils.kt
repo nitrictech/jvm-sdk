@@ -8,7 +8,7 @@ import java.util.function.Function
 import java.util.stream.Collector
 import java.util.stream.Collectors
 
-object ProtoUtils {
+internal object ProtoUtils {
 
     /**
      * Return a new Map built from the given struct.

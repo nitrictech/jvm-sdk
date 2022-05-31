@@ -7,7 +7,7 @@ import io.nitric.proto.faas.v1.TriggerRequest
 import io.nitric.proto.faas.v1.TriggerResponse
 import java.nio.charset.Charset
 
-class HttpRequest(
+class HttpRequest internal constructor(
     data: ByteArray,
     val method: String,
     val path: String,
@@ -18,13 +18,13 @@ class HttpRequest(
 
 }
 
-class HttpResponse(var status: Int, var body: ByteArray, var headers: Map<String, Collection<String>>) {
+class HttpResponse internal constructor(var status: Int, var body: ByteArray, var headers: Map<String, Collection<String>>) {
     fun json() {
         // TODO: Implement...
     }
 }
 
-class HttpContext(override val req: HttpRequest, override val resp: HttpResponse) : TriggerContext<HttpRequest, HttpResponse>() {
+class HttpContext internal constructor(override val req: HttpRequest, override val resp: HttpResponse) : TriggerContext<HttpRequest, HttpResponse>() {
     companion object {
         internal fun fromGrpcTriggerRequest(req: TriggerRequest): HttpContext {
             val http = req.http

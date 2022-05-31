@@ -5,7 +5,7 @@ import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingSt
 /**
  *
  */
-class CollectionGroup<T: Any>(
+class CollectionGroup<T: Any> internal constructor(
     private val client: DocumentServiceBlockingStub,
     private val name: String,
     private val type: Class<T>,

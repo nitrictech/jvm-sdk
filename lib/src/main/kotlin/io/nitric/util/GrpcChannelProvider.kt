@@ -6,7 +6,7 @@ import io.grpc.ManagedChannelBuilder
 /**
  *
  */
-object GrpcChannelProvider {
+internal object GrpcChannelProvider {
     private var chan: ManagedChannel? = null
      @Synchronized fun getChannel(): ManagedChannel {
         if (this.chan != null && !this.chan?.isShutdown!! && !this.chan?.isTerminated!!) {

@@ -11,7 +11,6 @@ import io.nitric.util.GrpcChannelProvider
 
 abstract class Resource(val name: String) {
     internal val client: ResourceServiceGrpc.ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
-
     internal abstract fun register(): Resource
 }
 

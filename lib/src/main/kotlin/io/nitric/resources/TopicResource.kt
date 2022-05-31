@@ -15,7 +15,7 @@ enum class TopicPermission {
     Publishing
 }
 
-class TopicResource(name: String) : SecureResource<TopicPermission>(name) {
+class TopicResource internal constructor(name: String) : SecureResource<TopicPermission>(name) {
     override fun register() = fluently {
         this.client.declare(ResourceDeclareRequest.newBuilder()
             .setResource(Resource.newBuilder().setName(this.name).setType(ResourceType.Topic).build())

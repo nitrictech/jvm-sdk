@@ -3,7 +3,7 @@ package io.nitric.api.secrets.v0
 import io.nitric.proto.secret.v1.SecretAccessRequest
 import io.nitric.proto.secret.v1.SecretVersion as ProtoSecretVersion
 
-class SecretVersion(val secret: Secret, val version: String) {
+class SecretVersion internal constructor(val secret: Secret, val version: String) {
     fun access(): SecretValue {
         val resp = this.secret.client.access(
             SecretAccessRequest.newBuilder()
