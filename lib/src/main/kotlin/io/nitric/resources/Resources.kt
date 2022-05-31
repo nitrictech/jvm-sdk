@@ -25,6 +25,10 @@ object Resources {
         // create the resource type
         Secret(name)
     }
+    fun <T>collection(name: String, type: Class<T>): Collection<T> = registrar("collection", name) {
+        // create the resource type
+        Collection(name, type)
+    }
 }
 
 // create a registrar utility resource
