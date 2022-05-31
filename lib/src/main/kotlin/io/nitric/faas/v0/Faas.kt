@@ -110,7 +110,7 @@ internal class Faas constructor(val opts: FaasOptions) {
                 }
 
                 override fun onCompleted() {
-                    TODO("Not yet implemented")
+                    latch.countDown()
                 }
             }
         )
