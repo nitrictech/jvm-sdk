@@ -3,10 +3,21 @@
  */
 package io.nitric
 
-import io.nitric.resources.Resources
+import io.nitric.resources.BucketPermission
+
 
 class Library {
-    fun someLibraryMethod(): Boolean {
-        return true
+    fun main() {
+
+        val bucket = Nitric.bucket("test").with(BucketPermission.Read)
+        val api = Nitric.api("test")
+
+        api.get("/test/:name") {
+            bucket.file("test").write("test")
+            it
+        }
+
+        Nitric.run()
+
     }
 }

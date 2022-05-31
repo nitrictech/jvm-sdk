@@ -17,7 +17,7 @@ abstract class TriggerContext<Req : AbstractRequest, Resp> {
     abstract val resp: Resp
 
     companion object {
-        internal fun <T: TriggerContext<AbstractRequest, Any>>fromGrpcTriggerRequest(trigger: TriggerRequest): T {
+        internal fun <T: TriggerContext<*, *>>fromGrpcTriggerRequest(trigger: TriggerRequest): T {
             if (trigger.hasHttp()) {
                 return HttpContext.fromGrpcTriggerRequest(trigger) as T;
             } else if (trigger.hasTopic()) {

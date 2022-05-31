@@ -32,6 +32,9 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation("com.google.guava:guava:30.1.1-jre")
 
+    // Kotlin co-routines lib
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0")
+
     // Nitric base clients
     implementation("io.nitric:api:0.16.0")
 

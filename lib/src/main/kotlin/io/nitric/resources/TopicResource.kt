@@ -1,7 +1,10 @@
 package io.nitric.resources
 
+import io.nitric.Nitric
 import io.nitric.api.events.v0.Eventing
 import io.nitric.api.events.v0.Topic
+import io.nitric.faas.v0.*
+import io.nitric.faas.v0.Faas
 import io.nitric.proto.resource.v1.Action
 import io.nitric.proto.resource.v1.Resource
 import io.nitric.proto.resource.v1.ResourceDeclareRequest
@@ -31,8 +34,10 @@ class TopicResource(name: String) : SecureResource<TopicPermission>(name) {
         }
     }
 
-    fun subscribe() {
-        // TODO IMPLEMENTATION
+    fun subscribe(mw: Middleware<EventContext>) {
+        val faas = Faas(SubscriptionWorkerOptions(this.name))
+        faas.event(mw)
+        Nitric.registerWorker(faas)
     }
 
     fun with(vararg permissions: TopicPermission): Topic {
