@@ -20,6 +20,11 @@ object Resources {
     fun bucket(name: String): BucketResource = registrar("bucket", name) {
         BucketResource(name)
     }
+
+    fun <T>secret(name: String, type: Class<T>) = registrar("secret", name) {
+        // create the resource type
+        Secret(name)
+    }
 }
 
 // create a registrar utility resource
