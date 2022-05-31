@@ -1,13 +1,9 @@
-package io.nitric.resources
+package io.nitric
 
-// Singleton for managing resource registration and caching
-object Resources {
+import io.nitric.resources.*
+
+object Nitric {
     internal var cache: HashMap<String, HashMap<String, Resource>> = HashMap()
-
-//    fun <T>collection(name: String, type: Class<T>): Collection<T> = registrar("collection", name) {
-//        // create the resource type
-//        Collection(name, type)
-//    }
 
     fun queue(name: String) = registrar("queue", name) {
         QueueResource(name)
@@ -23,16 +19,15 @@ object Resources {
 
     fun <T>secret(name: String, type: Class<T>) = registrar("secret", name) {
         // create the resource type
-        Secret(name)
+        SecretResource(name)
     }
-    fun <T>collection(name: String, type: Class<T>): Collection<T> = registrar("collection", name) {
+    fun <T>collection(name: String, type: Class<T>)= registrar("collection", name) {
         // create the resource type
-        Collection(name, type)
+        CollectionResource(name, type)
     }
 }
 
-// create a registrar utility resource
-fun <T: Resource>Resources.registrar(type: String, name: String, creator: ()->T): T {
+fun <T: Resource> Nitric.registrar(type: String, name: String, creator: ()->T): T {
     // create cache if one doesn't exist
     if (this.cache[type] == null) {
         this.cache[type] = HashMap()

@@ -3,6 +3,8 @@
  */
 package io.nitric
 
+import io.nitric.resources.Resources
+
 class Library {
     fun someLibraryMethod(): Boolean {
         return true

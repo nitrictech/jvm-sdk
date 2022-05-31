@@ -4,7 +4,6 @@ import io.nitric.api.secrets.v0.Secrets
 import io.nitric.proto.resource.v1.Action
 import io.nitric.proto.resource.v1.ResourceDeclareRequest
 import io.nitric.proto.resource.v1.ResourceType
-import io.nitric.proto.resource.v1.SecretResource
 import io.nitric.util.fluently
 
 enum class SecretPermission {
@@ -12,7 +11,7 @@ enum class SecretPermission {
     Access
 }
 
-class Secret internal constructor(name: String): SecureResource<SecretPermission>(name) {
+class SecretResource internal constructor(name: String): SecureResource<SecretPermission>(name) {
     override fun permissionsToActions(permissions: List<SecretPermission>): List<Action> {
         return permissions.fold(mutableListOf()) { arr, perm ->
             val actions: List<Action> = when (perm) {
@@ -27,7 +26,7 @@ class Secret internal constructor(name: String): SecureResource<SecretPermission
     override fun register() = fluently {
         this.client.declare(ResourceDeclareRequest.newBuilder()
             .setResource(io.nitric.proto.resource.v1.Resource.newBuilder().setName(this.name).setType(ResourceType.Secret).build())
-            .setSecret(SecretResource.newBuilder().build())
+            .setSecret(io.nitric.proto.resource.v1.SecretResource.newBuilder().build())
             .build()
         )
     }

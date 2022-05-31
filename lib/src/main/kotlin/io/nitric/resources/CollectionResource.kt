@@ -11,7 +11,7 @@ enum class CollectionPermission {
     Delete
 }
 
-class Collection<T> internal constructor(name: String, private val type: Class<T>): SecureResource<CollectionPermission>(name) {
+class CollectionResource<T> internal constructor(name: String, private val type: Class<T>): SecureResource<CollectionPermission>(name) {
     override fun permissionsToActions(permissions: List<CollectionPermission>): List<Action> {
         return permissions.fold(mutableListOf()) { arr, perm ->
             val actions: List<Action> = when (perm) {
@@ -27,7 +27,7 @@ class Collection<T> internal constructor(name: String, private val type: Class<T
     override fun register() = fluently {
         this.client.declare(ResourceDeclareRequest.newBuilder()
             .setResource(Resource.newBuilder().setName(this.name).setType(ResourceType.Collection).build())
-            .setCollection(CollectionResource.newBuilder().build()).build()
+            .setCollection(io.nitric.proto.resource.v1.CollectionResource.newBuilder().build()).build()
         )
     }
 
