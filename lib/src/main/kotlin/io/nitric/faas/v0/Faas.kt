@@ -101,7 +101,7 @@ internal class Faas constructor(val opts: FaasOptions) {
                         if (t.getStatus().getCode().equals(Code.UNAVAILABLE)) {
                             logger.error(
                                 t,
-                                "error occurred connecting to Nitric membrane",
+                                "error occurred connecting to Nitric membrane: ${GrpcChannelProvider.getChannel().authority()}",
                             )
                             return
                         }

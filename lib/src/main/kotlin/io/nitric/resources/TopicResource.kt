@@ -34,7 +34,7 @@ class TopicResource(name: String) : SecureResource<TopicPermission>(name) {
         }
     }
 
-    fun subscribe(mw: Middleware<EventContext>) {
+    fun subscribe(mw: Handler<EventContext>) {
         val faas = Faas(SubscriptionWorkerOptions(this.name))
         faas.event(mw)
         Nitric.registerWorker(faas)

@@ -13,7 +13,7 @@ object GrpcChannelProvider {
             return this.chan!!
         }
 
-        this.chan = ManagedChannelBuilder.forTarget("${Environment.getNitricServiceHost()}:${Environment.getNitricPort()}").build()
+        this.chan = ManagedChannelBuilder.forAddress(Environment.getNitricServiceHost(), Environment.getNitricPort().toInt()).usePlaintext().build()
 
         return this.chan!!
     }
