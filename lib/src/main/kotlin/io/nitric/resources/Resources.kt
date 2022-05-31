@@ -12,6 +12,10 @@ object Resources {
     fun queue(name: String) = registrar("queue", name) {
         QueueResource(name)
     }
+
+    fun topic(name: String): TopicResource = registrar("topic", name) {
+        TopicResource(name)
+    }
 }
 
 // create a registrar utility resource
