@@ -16,6 +16,10 @@ object Resources {
     fun topic(name: String): TopicResource = registrar("topic", name) {
         TopicResource(name)
     }
+
+    fun bucket(name: String): BucketResource = registrar("bucket", name) {
+        BucketResource(name)
+    }
 }
 
 // create a registrar utility resource
