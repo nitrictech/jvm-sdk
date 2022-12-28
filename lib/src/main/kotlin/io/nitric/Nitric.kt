@@ -4,6 +4,7 @@ import io.nitric.faas.v0.Faas
 import io.nitric.resources.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.reflect.KClass
 
 /**
  * Nitric resource manager
@@ -83,7 +84,7 @@ object Nitric {
      * @param name The name of the secret
      * @return [SecretResource]
      */
-    fun <T>secret(name: String) = registrar("secret", name) {
+    fun secret(name: String) = registrar("secret", name) {
         // create the resource type
         SecretResource(name)
     }

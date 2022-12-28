@@ -5,9 +5,11 @@ import io.nitric.faas.v0.*
 import io.nitric.faas.v0.Faas
 
 class ScheduleResource internal constructor(private val description: String) {
-    fun every(rate: Int, frequency: Frequency, middleware: Handler<EventContext>) {
+    fun every(rate: Int, frequency: Frequency, vararg middleware: Handler<EventContext>) {
         val faas = Faas(ScheduleWorkerOptions(description, rate, frequency))
-        faas.event(middleware)
+        middleware.forEach {
+            faas.event(it)
+        }
         Nitric.registerWorker(faas)
     }
 }

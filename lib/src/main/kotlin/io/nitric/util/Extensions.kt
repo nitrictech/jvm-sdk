@@ -1,5 +1,7 @@
 package io.nitric.util
 
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import java.util.logging.Logger
 
 /**

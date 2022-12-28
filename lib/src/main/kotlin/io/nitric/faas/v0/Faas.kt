@@ -1,3 +1,17 @@
+// Copyright 2021, Nitric Technologies Pty Ltd.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 package io.nitric.faas.v0
 
 import io.grpc.Status.Code
@@ -13,6 +27,9 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.CountDownLatch
 import java.util.logging.Logger
 
+/**
+ * Supported HTTP request methods.
+ */
 enum class HttpMethod {
     GET,
     POST,
@@ -22,36 +39,60 @@ enum class HttpMethod {
     OPTIONS,
 }
 
+/**
+ * Common Function as a Service worker options.
+ */
 internal interface FaasOptions {}
 
+/**
+ * Options for API request handling workers.
+ * With the name of the [api], the [route] for the worker handler, and the HTTP [method] this worker can respond to.
+ */
 internal class ApiWorkerOptions(val api: String, val route: String, val method: Set<HttpMethod>): FaasOptions {}
 
+/**
+ * Options for subscription trigger handling workers for the [topic].
+ */
 internal class SubscriptionWorkerOptions(val topic: String): FaasOptions {}
 
+/**
+ * Represents schedule frequency value.
+ */
 enum class Frequency {
     Days, Hours, Minutes
 }
 
+/**
+ * Options for schedule trigger handling workers. Has a [description], [rate], and [frequency].
+ */
 internal class ScheduleWorkerOptions(val description: String, val rate: Number, val frequency: Frequency): FaasOptions {}
 
+/**
+ * Function as a Service server with [opts].
+ *
+ * Registers itself with a Nitric Server then routes incoming requests to the appropriate workers.
+ */
 internal class Faas constructor(val opts: FaasOptions) {
     val logger = Logger.getLogger(Faas::javaClass.name)
 
-    var httpHandler: Handler<HttpContext>? = null
-    var eventHandler: Handler<EventContext>? = null
+    var httpHandlers: MutableList<Handler<HttpContext>> = mutableListOf()
+    var eventHandlers: MutableList<Handler<EventContext>> = mutableListOf()
     val client: FaasServiceStub = FaasServiceGrpc.newStub(GrpcChannelProvider.getChannel())
     var stream: StreamObserver<ClientMessage>? = null
 
     fun event(middleware: Handler<EventContext>) = fluently {
-        this.eventHandler = middleware
+        this.eventHandlers.add(middleware)
     }
 
     fun http(middleware: Handler<HttpContext>) = fluently {
-        this.httpHandler = middleware
+        this.httpHandlers.add(middleware)
     }
 
+    /**
+     * Start the FaaS service to start receiving requests from the nitric Server
+     */
     internal suspend fun start() {
-        if (this.eventHandler == null && this.httpHandler == null) {
+        if (this.eventHandlers.size == 0 && this.httpHandlers.size == 0) {
             throw Error("A handler function must be provided")
         }
 
@@ -66,20 +107,22 @@ internal class Faas constructor(val opts: FaasOptions) {
                         -> {
                             val retCtx: TriggerContext<*,*> = when (value.triggerRequest?.contextCase) {
                                 TriggerRequest.ContextCase.HTTP -> {
-                                    if(httpHandler == null) {
+                                    if(httpHandlers.size == 0) {
                                         throw IllegalArgumentException("Cannot handle HTTP request")
                                     }
 
                                     val ctx: HttpContext = TriggerContext.fromGrpcTriggerRequest(value.triggerRequest)
-                                    httpHandler!!(ctx)
+                                    httpHandlers.forEach() { handler -> handler(ctx) }
+                                    ctx
                                 }
                                 TriggerRequest.ContextCase.TOPIC -> {
-                                    if(eventHandler == null) {
+                                    if(eventHandlers.size == 0) {
                                         throw IllegalArgumentException("Cannot handle event request")
                                     }
 
                                     val ctx: EventContext = TriggerContext.fromGrpcTriggerRequest(value.triggerRequest)
-                                    eventHandler!!(ctx)
+                                    eventHandlers.forEach() { handler -> handler(ctx) }
+                                    ctx
                                 }
                                 else -> throw IllegalArgumentException("Invalid trigger request")
                             }

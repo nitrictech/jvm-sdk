@@ -4,6 +4,8 @@ import io.nitric.api.documents.v0.Documents
 import io.nitric.proto.resource.v1.*
 import io.nitric.proto.resource.v1.Resource
 import io.nitric.util.fluently
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 enum class CollectionPermission {
     Read,
@@ -25,13 +27,17 @@ class CollectionResource<T> internal constructor(name: String, private val type:
     }
 
     override fun register() = fluently {
-        this.client.declare(ResourceDeclareRequest.newBuilder()
-            .setResource(Resource.newBuilder().setName(this.name).setType(ResourceType.Collection).build())
+        registerResource(this)
+    }
+
+    private fun registerResource(resource: CollectionResource<T>) = runBlocking {
+        resource.client.declare(ResourceDeclareRequest.newBuilder()
+            .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Collection).build())
             .setCollection(io.nitric.proto.resource.v1.CollectionResource.newBuilder().build()).build()
         )
     }
 
-    fun with(vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
+    suspend fun with(vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
         this.registerPolicy(permissions.asList())
         return Documents.collection(this.name, this.type)
     }

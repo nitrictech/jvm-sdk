@@ -10,6 +10,8 @@ import io.nitric.proto.resource.v1.Resource
 import io.nitric.proto.resource.v1.ResourceDeclareRequest
 import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.fluently
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 enum class TopicPermission {
     Publishing
@@ -17,11 +19,18 @@ enum class TopicPermission {
 
 class TopicResource internal constructor(name: String) : SecureResource<TopicPermission>(name) {
     override fun register() = fluently {
-        this.client.declare(ResourceDeclareRequest.newBuilder()
-            .setResource(Resource.newBuilder().setName(this.name).setType(ResourceType.Topic).build())
-            .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
-            .build()
-        )
+        registerResource(this)
+    }
+
+    private fun registerResource(resource: TopicResource) = runBlocking {
+        async {
+            resource.client.declare(
+                ResourceDeclareRequest.newBuilder()
+                    .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Topic).build())
+                    .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
+                    .build()
+            )
+        }.await()
     }
 
     override fun permissionsToActions(permissions: List<TopicPermission>): List<Action> {
@@ -34,13 +43,15 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         }
     }
 
-    fun subscribe(mw: Handler<EventContext>) {
+    fun subscribe(vararg middleware: Handler<EventContext>) {
         val faas = Faas(SubscriptionWorkerOptions(this.name))
-        faas.event(mw)
+        middleware.forEach {
+            faas.event(it)
+        }
         Nitric.registerWorker(faas)
     }
 
-    fun with(vararg permissions: TopicPermission): Topic {
+    suspend fun with(vararg permissions: TopicPermission): Topic {
         this.registerPolicy(permissions.asList())
         return Eventing.topic(this.name)
     }

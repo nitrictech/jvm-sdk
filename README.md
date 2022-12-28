@@ -12,7 +12,7 @@ For more information, see the main [Nitric repo](https://github.com/nitrictech/n
 
 ## Status
 
-**Experimental** - this SDK is currently in experimental status, features are missing and interfaces may change without warning.
+**Preview** - this SDK is currently in preview status, features are missing and interfaces may change without warning.
 
 > Feedback and contributions are welcome. You can use one of the methods below to get in touch.
 

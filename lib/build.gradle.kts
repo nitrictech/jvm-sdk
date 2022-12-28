@@ -1,3 +1,4 @@
+import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /*
@@ -14,7 +15,11 @@ plugins {
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.20"
+
+    id("com.google.protobuf") version "0.9.1"
+
+    kotlin("plugin.serialization") version "1.7.20"
 
     // Apply the maven-publish plugin for publishing the final artifact
     `maven-publish`
@@ -26,6 +31,17 @@ version = "0.0.1"
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.google.protobuf:protobuf-gradle-plugin:0.9.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20")
+    }
 }
 
 publishing {
@@ -86,23 +102,56 @@ dependencies {
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation("com.google.guava:guava:30.1.1-jre")
 
+    implementation("com.google.code.gson:gson:2.10")
+
     // Kotlin co-routines lib
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
-    // Nitric base clients
-    implementation("io.nitric:api:0.16.0")
-
-    // Use the Kotlin test library.
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-
-    // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    // Kotlin serialization lib
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    // Protocol Buffers dependencies
+    implementation("io.grpc:grpc-stub:1.46.0")
+    implementation("io.grpc:grpc-kotlin-stub:1.3.0")
+    implementation("io.grpc:grpc-protobuf:1.50.2")
+    implementation("com.google.protobuf:protobuf-kotlin:3.21.8")
+    implementation("com.google.protobuf:protobuf-java:3.21.8")
+    implementation("io.grpc:grpc-netty:1.50.2")
+
+    testImplementation(kotlin("test"))
+    testImplementation("io.mockk:mockk:1.12.4")
+
 }
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.21.8"
+    }
+    plugins {
+        id("grpc") {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.50.2"
+        }
+        id("grpckt") {
+            artifact = "io.grpc:protoc-gen-grpc-kotlin:1.3.0:jdk8@jar"
+        }
+    }
+    generateProtoTasks {
+        all().forEach {
+            it.plugins {
+                id("grpckt")
+                id("grpc")
+            }
+            it.builtins {
+                id("kotlin")
+            }
+        }
+        generatedFilesBaseDir = "${projectDir}/src/main/kotlin/io/nitric/proto"
+    }
+}
+
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "1.8"
@@ -110,4 +159,8 @@ compileKotlin.kotlinOptions {
 val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "1.8"
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

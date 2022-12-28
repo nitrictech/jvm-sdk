@@ -4,8 +4,12 @@ import io.nitric.api.queues.v0.Queue
 import io.nitric.api.queues.v0.Queueing
 import io.nitric.proto.resource.v1.Action
 import io.nitric.proto.resource.v1.ResourceDeclareRequest
+import io.nitric.proto.resource.v1.ResourceDeclareResponse
 import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.fluently
+import kotlinx.coroutines.*
+import kotlin.coroutines.suspendCoroutine
+import kotlinx.coroutines.async
 
 enum class QueuePermission {
     Send, Receive
@@ -13,11 +17,20 @@ enum class QueuePermission {
 
 class QueueResource internal constructor(name: String): SecureResource<QueuePermission>(name) {
     override fun register() = fluently {
-        this.client.declare(
-            ResourceDeclareRequest.newBuilder()
-            .setResource(io.nitric.proto.resource.v1.Resource.newBuilder().setName(this.name).setType(ResourceType.Queue).build())
-            .setQueue(io.nitric.proto.resource.v1.QueueResource.newBuilder().build()).build()
-        )
+        registerResource(this)
+    }
+
+    private fun registerResource(resource: QueueResource) = runBlocking {
+        async {
+            resource.client.declare(
+                ResourceDeclareRequest.newBuilder()
+                    .setResource(
+                        io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name).setType(ResourceType.Queue)
+                            .build()
+                    )
+                    .setQueue(io.nitric.proto.resource.v1.QueueResource.newBuilder().build()).build()
+            )
+        }.await()
     }
 
     override fun permissionsToActions(permissions: List<QueuePermission>): List<Action> {
@@ -37,7 +50,7 @@ class QueueResource internal constructor(name: String): SecureResource<QueuePerm
         }
     }
 
-    fun with(vararg permissions: QueuePermission): Queue {
+    suspend fun with(vararg permissions: QueuePermission): Queue {
         this.registerPolicy(permissions.asList())
         return Queueing.queue(this.name)
     }

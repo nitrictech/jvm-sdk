@@ -1,0 +1,24 @@
+name: Build and Test
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Run the Gradle package task
+        uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
+      - name: Test
+        run: ./gradlew test
+
