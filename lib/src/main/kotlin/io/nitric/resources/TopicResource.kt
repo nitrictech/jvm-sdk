@@ -43,7 +43,16 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         }
     }
 
-    fun subscribe(vararg middleware: Handler<EventContext>) {
+    fun subscribe(middleware: Handler<EventContext>) {
+        val faas = Faas(SubscriptionWorkerOptions(this.name))
+        faas.event { ctx, next ->
+            val context = middleware(ctx)
+            next(context)
+        }
+        Nitric.registerWorker(faas)
+    }
+
+    fun subscribe(vararg middleware: Middleware<EventContext>) {
         val faas = Faas(SubscriptionWorkerOptions(this.name))
         middleware.forEach {
             faas.event(it)

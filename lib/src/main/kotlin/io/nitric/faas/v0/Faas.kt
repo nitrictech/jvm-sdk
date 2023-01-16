@@ -19,6 +19,8 @@ import io.grpc.StatusRuntimeException
 import io.grpc.stub.StreamObserver
 import io.nitric.proto.faas.v1.*
 import io.nitric.proto.faas.v1.FaasServiceGrpc.FaasServiceStub
+import io.nitric.proto.faas.v1.ApiWorkerOptions as ProtoApiWorkerOptions
+import io.nitric.resources.SecurityDefinition
 import io.nitric.util.GrpcChannelProvider
 import io.nitric.util.error
 import io.nitric.util.fluently
@@ -48,7 +50,9 @@ internal interface FaasOptions {}
  * Options for API request handling workers.
  * With the name of the [api], the [route] for the worker handler, and the HTTP [method] this worker can respond to.
  */
-internal class ApiWorkerOptions(val api: String, val route: String, val method: Set<HttpMethod>): FaasOptions {}
+internal class ApiWorkerOptions(val api: String, val route: String, val method: Set<HttpMethod>, val options: MethodOptions): FaasOptions {}
+
+internal class MethodOptions(val security: Map<String, List<String>>, val securityDefinitions: Map<String, SecurityDefinition>)
 
 /**
  * Options for subscription trigger handling workers for the [topic].
@@ -75,16 +79,16 @@ internal class ScheduleWorkerOptions(val description: String, val rate: Number, 
 internal class Faas constructor(val opts: FaasOptions) {
     val logger = Logger.getLogger(Faas::javaClass.name)
 
-    var httpHandlers: MutableList<Handler<HttpContext>> = mutableListOf()
-    var eventHandlers: MutableList<Handler<EventContext>> = mutableListOf()
+    var httpHandlers: MutableList<Middleware<HttpContext>> = mutableListOf()
+    var eventHandlers: MutableList<Middleware<EventContext>> = mutableListOf()
     val client: FaasServiceStub = FaasServiceGrpc.newStub(GrpcChannelProvider.getChannel())
     var stream: StreamObserver<ClientMessage>? = null
 
-    fun event(middleware: Handler<EventContext>) = fluently {
+    fun event(middleware: Middleware<EventContext>) = fluently {
         this.eventHandlers.add(middleware)
     }
 
-    fun http(middleware: Handler<HttpContext>) = fluently {
+    fun http(middleware: Middleware<HttpContext>) = fluently {
         this.httpHandlers.add(middleware)
     }
 
@@ -112,8 +116,18 @@ internal class Faas constructor(val opts: FaasOptions) {
                                     }
 
                                     val ctx: HttpContext = TriggerContext.fromGrpcTriggerRequest(value.triggerRequest)
-                                    httpHandlers.forEach() { handler -> handler(ctx) }
-                                    ctx
+
+                                    val lastCall = {
+                                            context: HttpContext -> context
+                                    }
+
+                                    val composedHandler = httpHandlers.foldRight(lastCall) { handler, next ->
+                                        { context: HttpContext ->
+                                            handler(context, next)
+                                        }
+                                    }
+
+                                    composedHandler(ctx)
                                 }
                                 TriggerRequest.ContextCase.TOPIC -> {
                                     if(eventHandlers.size == 0) {
@@ -121,8 +135,18 @@ internal class Faas constructor(val opts: FaasOptions) {
                                     }
 
                                     val ctx: EventContext = TriggerContext.fromGrpcTriggerRequest(value.triggerRequest)
-                                    eventHandlers.forEach() { handler -> handler(ctx) }
-                                    ctx
+
+                                    val lastCall = {
+                                        context: EventContext -> context
+                                    }
+
+                                    val composedHandler = eventHandlers.foldRight(lastCall) { handler, next ->
+                                        { context ->
+                                            handler(context, next)
+                                        }
+                                    }
+
+                                    composedHandler(ctx)
                                 }
                                 else -> throw IllegalArgumentException("Invalid trigger request")
                             }
@@ -159,13 +183,31 @@ internal class Faas constructor(val opts: FaasOptions) {
         )
 
         val initReq: InitRequest = when(this.opts) {
-            is ApiWorkerOptions -> InitRequest.newBuilder().setApi(
-                ApiWorker.newBuilder()
-                    .setApi(this.opts.api)
-                    .setPath(this.opts.route)
-                    .addAllMethods(this.opts.method.map { it.name })
-                    .build()
-                ).build()
+            is ApiWorkerOptions -> {
+                val workerOptions = ProtoApiWorkerOptions.newBuilder()
+
+                if (this.opts.options.security.isEmpty()) {
+                    workerOptions.securityDisabled = false
+                } else {
+                    this.opts.options.security.forEach {
+                        val scopes = ApiWorkerScopes.newBuilder().addAllScopes(it.value).build()
+
+                        workerOptions.putSecurity(it.key, scopes)
+                    }
+                }
+
+                val init = InitRequest.newBuilder()
+                    .setApi(
+                        ApiWorker.newBuilder()
+                            .setApi(this.opts.api)
+                            .setPath(this.opts.route)
+                            .setOptions(workerOptions)
+                            .addAllMethods(this.opts.method.map { it.name })
+                            .build()
+                    ).build()
+
+                init
+            }
 
             is ScheduleWorkerOptions -> InitRequest.newBuilder().setSchedule(
                 ScheduleWorker.newBuilder()

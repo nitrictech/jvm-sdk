@@ -34,8 +34,8 @@ object Nitric {
      * @param name the name of the API resource
      * @return [ApiResource]
      */
-    fun api(name: String): ApiResource {
-        return ApiResource(name)
+    fun api(name: String, options: ApiOptions = ApiOptions()): ApiResource {
+        return ApiResource(name, options)
     }
 
     /**
