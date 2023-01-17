@@ -14,7 +14,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class DocumentReferenceTest {
-    private val clientMock: DocumentServiceGrpcKt.DocumentServiceCoroutineStub = mockk(relaxed = true)
+    private val clientMock: DocumentServiceGrpc.DocumentServiceBlockingStub = mockk(relaxed = true)
     private val collection = Collection(clientMock, "test-collection", User::class.java, null)
 
     private val requestKey = Key.newBuilder().setCollection(collection.toWire()).setId("document-1234").build()
@@ -57,7 +57,7 @@ class DocumentReferenceTest {
             clientMock.get(
                 DocumentGetRequest.newBuilder()
                     .setKey(requestKey)
-                    .build(), any()
+                    .build()
             )
         }
 
@@ -78,7 +78,7 @@ class DocumentReferenceTest {
             clientMock.set(DocumentSetRequest.newBuilder()
                 .setKey(requestKey)
                 .setContent(userStruct)
-                .build(), any()
+                .build()
             )
         }
     }
@@ -94,7 +94,7 @@ class DocumentReferenceTest {
         coVerify(exactly = 1) {
             clientMock.delete(DocumentDeleteRequest.newBuilder()
                 .setKey(requestKey)
-                .build(), any()
+                .build()
             )
         }
     }

@@ -1,13 +1,10 @@
 package io.nitric.api.documents
 
 import io.mockk.mockk
-import io.nitric.Nitric
-import io.nitric.api.documents.v0.Documents
 import io.nitric.api.documents.v0.Collection
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt
+import io.nitric.proto.document.v1.DocumentServiceGrpc
 import io.nitric.proto.document.v1.parentOrNull
 import kotlin.test.Test
-import kotlin.reflect.typeOf
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -15,7 +12,7 @@ import kotlin.test.assertNull
 data class User(val name: String, val age: Int)
 
 class CollectionTest {
-    private val clientMock: DocumentServiceGrpcKt.DocumentServiceCoroutineStub = mockk(relaxed = true)
+    private val clientMock: DocumentServiceGrpc.DocumentServiceBlockingStub = mockk(relaxed = true)
 
     @Test
     fun testBuild() {

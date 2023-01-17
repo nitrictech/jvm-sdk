@@ -7,9 +7,9 @@ import io.nitric.api.queues.v0.Queue
 import io.nitric.api.queues.v0.ReceivedTask
 import io.nitric.api.queues.v0.Task
 import io.nitric.proto.queue.v1.NitricTask
+import io.nitric.proto.queue.v1.QueueServiceGrpc
 import io.nitric.proto.queue.v1.QueueServiceGrpcKt
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.TestInstance
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -55,7 +55,7 @@ class FailedTaskTest {
 }
 
 class ReceivedTaskTest {
-    private val clientMock: QueueServiceGrpcKt.QueueServiceCoroutineStub = mockk(relaxed = true)
+    private val clientMock: QueueServiceGrpc.QueueServiceBlockingStub = mockk(relaxed = true)
     private val queue = Queue(clientMock, "test-queue")
 
     @Test

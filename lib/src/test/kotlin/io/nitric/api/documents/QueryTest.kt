@@ -5,19 +5,18 @@ import io.mockk.mockk
 import io.nitric.api.documents.v0.Collection
 import io.nitric.api.documents.v0.Operator
 import io.nitric.proto.document.v1.DocumentQueryRequest
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutineStub
+import io.nitric.proto.document.v1.DocumentServiceGrpc
 import io.nitric.proto.document.v1.Expression
 import io.nitric.proto.document.v1.ExpressionValue
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import org.junit.jupiter.api.TestInstance
-import kotlin.reflect.typeOf
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 class QueryTest() {
-    private val clientMock: DocumentServiceCoroutineStub = mockk(relaxed = true)
+    private val clientMock: DocumentServiceGrpc.DocumentServiceBlockingStub = mockk(relaxed = true)
     private val collection = Collection(clientMock, "test-collection", User::class.java, null)
 
     @Test
@@ -40,7 +39,7 @@ class QueryTest() {
                 DocumentQueryRequest.newBuilder()
                     .setCollection(collection.toWire())
                     .setLimit(0)
-                    .build(), any()
+                    .build()
             )
         }
 
@@ -63,7 +62,7 @@ class QueryTest() {
         request.putAllPagingToken(mapOf("token" to "1234"))
 
         coVerify(exactly = 1) {
-            clientMock.query(request.build(), any())
+            clientMock.query(request.build())
         }
 
         assertNotNull(response)
@@ -126,7 +125,7 @@ class QueryTest() {
                         .setOperand("employed")
                         .setOperator("!=")
                     )
-                    .build(), any()
+                    .build()
             )
         }
 
@@ -147,7 +146,7 @@ class QueryTest() {
                 DocumentQueryRequest.newBuilder()
                     .setCollection(collection.toWire())
                     .setLimit(100)
-                    .build(), any()
+                    .build()
             )
         }
 
@@ -168,7 +167,7 @@ class QueryTest() {
                 DocumentQueryRequest.newBuilder()
                     .setCollection(collection.toWire())
                     .setLimit(1)
-                    .build(), any()
+                    .build()
             )
         }
 
@@ -189,7 +188,7 @@ class QueryTest() {
                 DocumentQueryRequest.newBuilder()
                     .setCollection(collection.toWire())
                     .setLimit(0)
-                    .build(), any()
+                    .build()
             )
         }
 

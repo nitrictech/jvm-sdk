@@ -3,17 +3,16 @@ import io.mockk.mockk
 import io.nitric.api.events.v0.EventingClients
 import io.nitric.api.events.v0.NitricEvent
 import io.nitric.api.events.v0.Topic
-import io.nitric.proto.event.v1.EventPublishResponse
-import io.nitric.proto.event.v1.EventServiceGrpcKt
-import io.nitric.proto.event.v1.TopicServiceGrpcKt
+import io.nitric.proto.event.v1.*
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.TestInstance
 import kotlin.test.*
+import kotlin.test.Test
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 class TopicTest {
-    private val eventsClient: EventServiceGrpcKt.EventServiceCoroutineStub = mockk()
-    private val topicsClient: TopicServiceGrpcKt.TopicServiceCoroutineStub = mockk()
+    private val eventsClient: EventServiceGrpc.EventServiceBlockingStub = mockk()
+    private val topicsClient: TopicServiceGrpc.TopicServiceBlockingStub = mockk()
     private val client = EventingClients(eventsClient, topicsClient)
 
     @Test

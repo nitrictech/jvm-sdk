@@ -3,9 +3,11 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import io.nitric.api.events.v0.Eventing
 import io.nitric.api.events.v0.EventingClients
+import io.nitric.proto.event.v1.EventServiceGrpc
 import io.nitric.proto.event.v1.EventServiceGrpcKt.EventServiceCoroutineStub
 import io.nitric.proto.event.v1.NitricTopic
 import io.nitric.proto.event.v1.TopicListResponse
+import io.nitric.proto.event.v1.TopicServiceGrpc
 import io.nitric.proto.event.v1.TopicServiceGrpcKt.TopicServiceCoroutineStub
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.TestInstance
@@ -16,8 +18,8 @@ import kotlin.test.assertNotNull
 class EventingClientsTest {
     @Test
     fun testBuild() {
-        val eventsClient: EventServiceCoroutineStub = mockk(relaxed = true)
-        val topicsClient: TopicServiceCoroutineStub = mockk(relaxed = true)
+        val eventsClient: EventServiceGrpc.EventServiceBlockingStub = mockk(relaxed = true)
+        val topicsClient: TopicServiceGrpc.TopicServiceBlockingStub = mockk(relaxed = true)
         val clients = EventingClients(eventsClient, topicsClient)
 
         assertNotNull(clients)
@@ -28,8 +30,8 @@ class EventingClientsTest {
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 class EventingTest {
-    private val eventsClient: EventServiceCoroutineStub = mockk()
-    private val topicsClient: TopicServiceCoroutineStub = mockk()
+    private val eventsClient: EventServiceGrpc.EventServiceBlockingStub = mockk()
+    private val topicsClient: TopicServiceGrpc.TopicServiceBlockingStub = mockk()
     private val client = EventingClients(eventsClient, topicsClient)
 
     @Test

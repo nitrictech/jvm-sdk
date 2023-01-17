@@ -2,6 +2,7 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import io.nitric.api.secrets.v0.Secret
 import io.nitric.proto.secret.v1.SecretPutResponse
+import io.nitric.proto.secret.v1.SecretServiceGrpc
 import io.nitric.proto.secret.v1.SecretServiceGrpcKt.SecretServiceCoroutineStub
 import kotlinx.coroutines.runBlocking
 import io.nitric.proto.secret.v1.SecretVersion as ProtoSecretVersion
@@ -13,7 +14,7 @@ import kotlin.test.assertNotNull
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 class SecretTest {
-    val client: SecretServiceCoroutineStub = mockk(relaxed = true)
+    val client: SecretServiceGrpc.SecretServiceBlockingStub = mockk(relaxed = true)
 
     @Test
     fun testBuild() {

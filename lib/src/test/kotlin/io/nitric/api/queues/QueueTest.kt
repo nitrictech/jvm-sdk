@@ -1,21 +1,19 @@
-import com.google.protobuf.Struct
-import com.google.protobuf.Value
 import io.grpc.Status
 import io.grpc.StatusRuntimeException
 import io.mockk.*
 import io.nitric.api.queues.v0.*
-import io.nitric.proto.queue.v1.NitricTask
 import io.nitric.proto.queue.v1.QueueReceiveResponse
 import io.nitric.proto.queue.v1.QueueSendBatchResponse
-import io.nitric.proto.queue.v1.QueueServiceGrpcKt.QueueServiceCoroutineStub
+import io.nitric.proto.queue.v1.QueueServiceGrpc
 import kotlinx.coroutines.*
 import org.junit.jupiter.api.TestInstance
 import kotlin.test.*
+import kotlin.test.Test
 import io.nitric.proto.queue.v1.FailedTask as ProtoFailedTask
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 class QueueTest() {
-    private val clientMock: QueueServiceCoroutineStub = mockk(relaxed = true)
+    private val clientMock: QueueServiceGrpc.QueueServiceBlockingStub = mockk(relaxed = true)
     private val queue = Queue(clientMock, "test-queue")
 
     private val task = Task(payload=mapOf("test" to "payload"), leaseId="1234", id="5678", payloadType="test-payload")
@@ -56,7 +54,7 @@ class QueueTest() {
     @Test
     fun testSendBatch() {
         val failedTasks = runBlocking {
-            queue.send(listOf(task, task, task, task))
+            queue.send(task, task, task, task)
         }
 
         coVerify(exactly=1){
@@ -77,7 +75,7 @@ class QueueTest() {
                 .build()
 
         val failedTasks = runBlocking {
-            queue.send(listOf(task, task, task, task))
+            queue.send(task, task, task, task)
         }
 
         coVerify(exactly=1){

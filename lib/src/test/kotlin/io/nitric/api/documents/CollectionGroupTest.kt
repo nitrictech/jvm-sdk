@@ -2,14 +2,14 @@ package io.nitric.api.documents
 
 import io.mockk.mockk
 import io.nitric.api.documents.v0.CollectionGroup
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt
+import io.nitric.proto.document.v1.DocumentServiceGrpc
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class CollectionGroupTest {
-    private val clientMock: DocumentServiceGrpcKt.DocumentServiceCoroutineStub = mockk(relaxed = true)
+    private val clientMock: DocumentServiceGrpc.DocumentServiceBlockingStub = mockk(relaxed = true)
 
     @Test
     fun testBuild() {

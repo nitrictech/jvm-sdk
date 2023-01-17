@@ -5,12 +5,13 @@ import io.nitric.proto.document.v1.DocumentServiceGrpcKt
 import io.nitric.api.documents.v0.Collection
 import io.nitric.api.documents.v0.DocumentReference
 import io.nitric.api.documents.v0.DocumentSnapshot
+import io.nitric.proto.document.v1.DocumentServiceGrpc
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class DocumentSnapshotTest {
-    private val clientMock: DocumentServiceGrpcKt.DocumentServiceCoroutineStub = mockk(relaxed = true)
+    private val clientMock: DocumentServiceGrpc.DocumentServiceBlockingStub = mockk(relaxed = true)
     private val collection = Collection(clientMock, "test-collection", User::class.java, null)
     private val docRef = DocumentReference(clientMock, collection, User::class.java, "document-1234")
 
