@@ -16,14 +16,14 @@
 package io.nitric.api.secrets.v0
 
 import io.nitric.proto.secret.v1.SecretServiceGrpc
-import io.nitric.proto.secret.v1.SecretServiceGrpcKt.SecretServiceCoroutineStub
+import io.nitric.proto.secret.v1.SecretServiceGrpc.SecretServiceBlockingStub
 import io.nitric.util.GrpcChannelProvider
 
 /**
  * The secrets service client.
  */
 internal object Secrets {
-    internal val client: SecretServiceCoroutineStub = SecretServiceCoroutineStub(GrpcChannelProvider.getChannel())
+    internal val client: SecretServiceBlockingStub = SecretServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
     /**
      * Create a reference to a specific [Secret] in the secret store by its [name].

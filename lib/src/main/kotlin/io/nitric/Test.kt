@@ -1,6 +1,10 @@
 package io.nitric
 
 import io.nitric.api.queues.v0.Task
+import io.nitric.faas.v0.Frequency
+import io.nitric.faas.v0.HttpContext
+import io.nitric.faas.v0.Middleware
+import io.nitric.resources.ApiOptions
 import io.nitric.resources.BucketPermission
 import io.nitric.resources.CollectionPermission
 import io.nitric.resources.QueuePermission
@@ -11,11 +15,11 @@ class User(val name: String)
 fun main() {
     val api = Nitric.api("main")
 
-    api.get("/hello/:name", { ctx ->
-        val name = ctx.req.params["name"]
-        ctx.resp.text("Hello $name")
-        ctx
-    })
+    val bucket = Nitric.bucket("bucket").with()
+
+    bucket.file("cat.png").write("")
+
+    bucket.files()
 
     Nitric.run()
 }

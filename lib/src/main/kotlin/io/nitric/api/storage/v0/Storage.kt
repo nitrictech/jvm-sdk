@@ -14,15 +14,15 @@
 
 package io.nitric.api.storage.v0
 
-import io.nitric.proto.storage.v1.StorageServiceGrpcKt
-import io.nitric.proto.storage.v1.StorageServiceGrpcKt.StorageServiceCoroutineStub
+import io.nitric.proto.storage.v1.StorageServiceGrpc
+import io.nitric.proto.storage.v1.StorageServiceGrpc.StorageServiceBlockingStub
 import io.nitric.util.GrpcChannelProvider
 
 /**
  * Represents a storage in the storage service.
  */
 internal object Storage {
-  val client = StorageServiceCoroutineStub(GrpcChannelProvider.getChannel())
+  val client: StorageServiceBlockingStub = StorageServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
   /**
    * Create a reference to a bucket in the storage service by its [name].

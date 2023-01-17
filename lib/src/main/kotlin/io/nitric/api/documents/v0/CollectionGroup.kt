@@ -14,7 +14,7 @@
 
 package io.nitric.api.documents.v0
 
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutineStub
+import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingStub
 
 /**
  * Represents a group of collections, used to search for documents across multiple collections.
@@ -26,7 +26,7 @@ import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutin
  * Is only created via [Documents.collection] and is passed a [name] and the [type] of documents stored in the collection.
  */
 class CollectionGroup<T: Any> internal constructor(
-    private val client: DocumentServiceCoroutineStub,
+    private val client: DocumentServiceBlockingStub,
     val name: String,
     val type: Class<T>,
     val parent: CollectionGroup<Any>?

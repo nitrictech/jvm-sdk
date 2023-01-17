@@ -30,14 +30,14 @@ class CollectionResource<T> internal constructor(name: String, private val type:
         registerResource(this)
     }
 
-    private fun registerResource(resource: CollectionResource<T>) = runBlocking {
+    private fun registerResource(resource: CollectionResource<T>) {
         resource.client.declare(ResourceDeclareRequest.newBuilder()
             .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Collection).build())
             .setCollection(io.nitric.proto.resource.v1.CollectionResource.newBuilder().build()).build()
         )
     }
 
-    suspend fun with(vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
+    fun with(vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
         this.registerPolicy(permissions.asList())
         return Documents.collection(this.name, this.type)
     }

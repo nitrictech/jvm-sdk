@@ -34,8 +34,13 @@ object Nitric {
      * @param name the name of the API resource
      * @return [ApiResource]
      */
-    fun api(name: String, options: ApiOptions = ApiOptions()): ApiResource {
+    fun api(name: String, options: ApiOptions): ApiResource {
         return ApiResource(name, options)
+    }
+
+    // Using overloading instead of default parameter so that java dev experience is better
+    fun api(name: String): ApiResource {
+        return ApiResource(name, ApiOptions())
     }
 
     /**
@@ -96,7 +101,7 @@ object Nitric {
      * @param type The type of data to store in the collections documents
      * @return [CollectionResource]
      */
-    fun <T>collection(name: String, type: Class<T>)= registrar("collection", name) {
+    fun <T>collection(name: String, type: Class<T>) = registrar("collection", name) {
         // create the resource type
         CollectionResource(name, type)
     }

@@ -35,21 +35,21 @@ class File internal constructor(val bucket: Bucket, val name: String) {
     /**
      * Get a signed URL for downloading from the bucket. Optional [expiry] seconds can be added, defaults to 600 seconds.
      */
-    suspend fun getDownloadUrl(expiry: Int = 600): String  {
+    fun getDownloadUrl(expiry: Int = 600): String  {
         return this.signUrl(FileMode.Read, expiry)
     }
 
     /**
      * Get a signed URL for uploading to the bucket. Optional [expiry] seconds can be added, defaults to 600 seconds.
      */
-    suspend fun getUploadUrl(expiry: Int = 600): String {
+    fun getUploadUrl(expiry: Int = 600): String {
         return this.signUrl(FileMode.Write, expiry)
     }
 
     /**
      * Sign the URL with a particular [mode] and [expiry].
      */
-    private suspend fun signUrl(mode: FileMode, expiry: Int = 600): String {
+    private fun signUrl(mode: FileMode, expiry: Int = 600): String {
         val resp = this.bucket.client.preSignUrl(
             StoragePreSignUrlRequest.newBuilder()
                 .setBucketName(this.bucket.name)
@@ -64,7 +64,7 @@ class File internal constructor(val bucket: Bucket, val name: String) {
     /**
      * Create or update the [body] of the [File].
      */
-    suspend fun write(body: String) {
+    fun write(body: String) {
         val resp = this.bucket.client.write(
             StorageWriteRequest.newBuilder()
                 .setBucketName(this.bucket.name)
@@ -78,7 +78,7 @@ class File internal constructor(val bucket: Bucket, val name: String) {
     /**
      * Create or update the [body] of the [File].
      */
-    suspend fun write(body: ByteArray) {
+    fun write(body: ByteArray) {
         this.bucket.client.write(
             StorageWriteRequest.newBuilder()
                 .setBucketName(this.bucket.name)
@@ -91,7 +91,7 @@ class File internal constructor(val bucket: Bucket, val name: String) {
     /**
      * Retrieve the contents of the [File] as bytes.
      */
-    suspend fun read(): ByteArray {
+    fun read(): ByteArray {
         val resp = this.bucket.client.read(
             StorageReadRequest.newBuilder()
                 .setBucketName(this.bucket.name)
@@ -105,7 +105,7 @@ class File internal constructor(val bucket: Bucket, val name: String) {
     /**
      * Delete the [File].
      */
-    suspend fun delete() {
+    fun delete() {
         this.bucket.client.delete(
                 StorageDeleteRequest.newBuilder()
                         .setBucketName(this.bucket.name)

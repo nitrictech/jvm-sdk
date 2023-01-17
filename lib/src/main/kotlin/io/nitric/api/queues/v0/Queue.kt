@@ -17,6 +17,7 @@ package io.nitric.api.queues.v0
 import io.nitric.proto.queue.v1.QueueReceiveRequest
 import io.nitric.proto.queue.v1.QueueSendBatchRequest
 import io.nitric.proto.queue.v1.QueueSendRequest
+import io.nitric.proto.queue.v1.QueueServiceGrpc.QueueServiceBlockingStub
 import io.nitric.proto.queue.v1.QueueServiceGrpcKt.QueueServiceCoroutineStub
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -31,11 +32,11 @@ class FailedTask internal constructor(val task: Task, val message: String )
 /**
  * A reference to a queue in the queues service.
  */
-class Queue internal constructor(internal val client: QueueServiceCoroutineStub, var name: String) {
+class Queue internal constructor(internal val client: QueueServiceBlockingStub, var name: String) {
     /**
      * Send a list of [tasks] to this [Queue].
      */
-    suspend fun send(tasks: List<Task>): List<FailedTask> {
+    fun send(vararg tasks: Task): List<FailedTask> {
         val resp = this.client.sendBatch(
             QueueSendBatchRequest.newBuilder()
                 .setQueue(this.name)
@@ -55,7 +56,7 @@ class Queue internal constructor(internal val client: QueueServiceCoroutineStub,
     /**
      * Send a [task] to this Queue.
      */
-    suspend fun send(task: Task): FailedTask? {
+    fun send(task: Task): FailedTask? {
         return try {
             this.client.send(
                 QueueSendRequest.newBuilder()
@@ -74,7 +75,7 @@ class Queue internal constructor(internal val client: QueueServiceCoroutineStub,
      *
      * The number of [ReceivedTask]s returned will be the less than or equal to the requested [depth], based on the number of [Task]s on the [Queue].
      */
-    suspend fun receive(depth: Int = 1): List<ReceivedTask> {
+    fun receive(depth: Int = 1): List<ReceivedTask> {
         val resp = this.client.receive(
             QueueReceiveRequest.newBuilder()
                 .setQueue(this.name)

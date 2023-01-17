@@ -29,21 +29,19 @@ class SecretResource internal constructor(name: String): SecureResource<SecretPe
         registerResource(this)
     }
 
-    private fun registerResource(resource: SecretResource) = runBlocking {
-        async {
-            resource.client.declare(
-                ResourceDeclareRequest.newBuilder()
-                    .setResource(
-                        io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name)
-                            .setType(ResourceType.Secret).build()
-                    )
-                    .setSecret(io.nitric.proto.resource.v1.SecretResource.newBuilder().build())
-                    .build()
-            )
-        }.await()
+    private fun registerResource(resource: SecretResource) {
+        resource.client.declare(
+            ResourceDeclareRequest.newBuilder()
+                .setResource(
+                    io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name)
+                        .setType(ResourceType.Secret).build()
+                )
+                .setSecret(io.nitric.proto.resource.v1.SecretResource.newBuilder().build())
+                .build()
+        )
     }
 
-    suspend fun with(vararg permissions: SecretPermission): io.nitric.api.secrets.v0.Secret {
+    fun with(vararg permissions: SecretPermission): io.nitric.api.secrets.v0.Secret {
         this.registerPolicy(permissions.asList())
         return Secrets.secret(this.name)
     }

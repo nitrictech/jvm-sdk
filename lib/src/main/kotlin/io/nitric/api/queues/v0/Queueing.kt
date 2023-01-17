@@ -14,14 +14,15 @@
 
 package io.nitric.api.queues.v0
 
-import io.nitric.proto.queue.v1.QueueServiceGrpcKt.QueueServiceCoroutineStub
+import io.nitric.proto.queue.v1.QueueServiceGrpc.QueueServiceBlockingStub
+import io.nitric.proto.queue.v1.QueueServiceGrpc
 import io.nitric.util.GrpcChannelProvider
 
 /**
  * A queues service client.
  */
 internal object Queueing {
-    val client: QueueServiceCoroutineStub = QueueServiceCoroutineStub(GrpcChannelProvider.getChannel())
+    val client: QueueServiceBlockingStub = QueueServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
     /**
      * Create a reference to a [Queue] in the queues service by its [name].

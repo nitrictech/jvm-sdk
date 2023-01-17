@@ -17,13 +17,12 @@ package io.nitric.api.secrets.v0
 import com.google.protobuf.ByteString
 import io.nitric.proto.secret.v1.SecretPutRequest
 import io.nitric.proto.secret.v1.SecretServiceGrpc.SecretServiceBlockingStub
-import io.nitric.proto.secret.v1.SecretServiceGrpcKt.SecretServiceCoroutineStub
 import io.nitric.proto.secret.v1.Secret as ProtoSecret
 
 /**
  * Represents a secret in the secrets service.
  */
-class Secret internal constructor (internal val client: SecretServiceCoroutineStub, val name: String) {
+class Secret internal constructor (internal val client: SecretServiceBlockingStub, val name: String) {
     suspend fun put(secret: String): SecretVersion {
         val newSecret = this.client.put(
             SecretPutRequest.newBuilder()

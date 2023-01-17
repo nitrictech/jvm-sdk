@@ -43,7 +43,7 @@ class Topic internal constructor(private val client: EventingClients, val name: 
     /**
      * Publish a new [event] to this [Topic].
      */
-    suspend fun publish(event: NitricEvent): NitricEvent {
+    fun publish(event: NitricEvent): NitricEvent {
         val resp = this.client.event.publish(
             EventPublishRequest.newBuilder()
                 .setTopic(this.name)

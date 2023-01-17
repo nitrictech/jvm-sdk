@@ -18,7 +18,6 @@ import com.google.protobuf.Value
 import com.google.protobuf.Struct
 import io.nitric.proto.queue.v1.NitricTask
 import io.nitric.proto.queue.v1.QueueCompleteRequest
-import io.nitric.proto.queue.v1.QueueServiceGrpcKt.QueueServiceCoroutineStub
 import io.nitric.util.ProtoUtils
 import java.util.*
 import kotlin.collections.Map
@@ -77,7 +76,7 @@ class ReceivedTask internal constructor(
     /**
      * Complete this [ReceivedTask] and remove it from the source [Queue].
      */
-    suspend fun complete() {
+    fun complete() {
         this.queue.client.complete(
             QueueCompleteRequest.newBuilder()
                 .setQueue(this.queue.name)

@@ -40,7 +40,7 @@ class BucketResource internal constructor(name: String) : SecureResource<BucketP
         }
     }
 
-    suspend fun with(vararg permissions: BucketPermission): Bucket {
+    fun with(vararg permissions: BucketPermission): Bucket {
         this.registerPolicy(permissions.asList())
         return Storage.bucket(this.name)
     }

@@ -16,7 +16,7 @@ package io.nitric.api.documents.v0
 
 import io.grpc.StatusRuntimeException
 import io.nitric.proto.document.v1.*
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutineStub
+import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingStub
 import io.nitric.util.ProtoUtils
 import kotlin.reflect.typeOf
 
@@ -24,7 +24,7 @@ import kotlin.reflect.typeOf
 /**
  * A reference to a specific document in a [Collection]. Created using [Collection.doc].
  */
-class DocumentReference<T> internal constructor(private val client: DocumentServiceCoroutineStub, val parent: Collection<T>, private val type: Class<T>, val id: String) {
+class DocumentReference<T> internal constructor(private val client: DocumentServiceBlockingStub, val parent: Collection<T>, private val type: Class<T>, val id: String) {
     /**
      * Retrieve the contents of this document.
      */

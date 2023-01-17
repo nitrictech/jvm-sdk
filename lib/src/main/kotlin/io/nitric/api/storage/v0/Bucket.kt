@@ -16,16 +16,15 @@ package io.nitric.api.storage.v0
 
 import io.nitric.proto.storage.v1.StorageListFilesRequest
 import io.nitric.proto.storage.v1.StorageServiceGrpc.StorageServiceBlockingStub
-import io.nitric.proto.storage.v1.StorageServiceGrpcKt
 
 /**
  * A reference to a bucket in the storage service by its [name].
  */
-class Bucket internal constructor(internal val client: StorageServiceGrpcKt.StorageServiceCoroutineStub, val name: String) {
+class Bucket internal constructor(internal val client: StorageServiceBlockingStub, val name: String) {
     /**
      * List all the [File]s in the [Bucket].
      */
-    suspend fun files(): List<File> {
+    fun files(): List<File> {
           val resp = this.client.listFiles(
             StorageListFilesRequest.newBuilder()
                 .setBucketName(this.name)

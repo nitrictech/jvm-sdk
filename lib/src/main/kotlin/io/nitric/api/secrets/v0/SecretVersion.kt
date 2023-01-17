@@ -24,7 +24,7 @@ class SecretVersion internal constructor(val secret: Secret, val version: String
     /**
      * Retrieve the value stored in this version.
      */
-    suspend fun access(): SecretValue {
+    fun access(): SecretValue {
         val resp = this.secret.client.access(
             SecretAccessRequest.newBuilder()
                 .setSecretVersion(this.toWire())

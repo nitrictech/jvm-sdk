@@ -66,11 +66,18 @@ enum class Frequency {
     Days, Hours, Minutes
 }
 
+
+internal abstract class ScheduleWorkerOptions(val description: String) : FaasOptions {}
+
 /**
  * Options for schedule trigger handling workers. Has a [description], [rate], and [frequency].
  */
-internal class ScheduleWorkerOptions(val description: String, val rate: Number, val frequency: Frequency): FaasOptions {}
+internal class ScheduleWorkerRateOptions(description: String, val rate: Number, val frequency: Frequency): ScheduleWorkerOptions(description) {}
 
+/**
+ * Options for schedule trigger with [cron] expressions
+ */
+internal class ScheduleWorkerCronOptions(description: String, val cron: String): ScheduleWorkerOptions(description) {}
 /**
  * Function as a Service server with [opts].
  *
@@ -100,7 +107,7 @@ internal class Faas constructor(val opts: FaasOptions) {
             throw Error("A handler function must be provided")
         }
 
-        val latch: CountDownLatch = CountDownLatch(1);
+        val latch = CountDownLatch(1);
 
         this.stream = this.client.triggerStream(
             object : StreamObserver<ServerMessage> {
@@ -209,11 +216,18 @@ internal class Faas constructor(val opts: FaasOptions) {
                 init
             }
 
-            is ScheduleWorkerOptions -> InitRequest.newBuilder().setSchedule(
+            is ScheduleWorkerRateOptions -> InitRequest.newBuilder().setSchedule(
                 ScheduleWorker.newBuilder()
                     .setRate(ScheduleRate.newBuilder().setRate("${this.opts.rate} ${this.opts.frequency.toString().lowercase()}"))
                     .setKey(this.opts.description)
                     .build()
+            ).build()
+            is ScheduleWorkerCronOptions -> InitRequest.newBuilder().setSchedule(
+                ScheduleWorker.newBuilder()
+                    .setCron(ScheduleCron.newBuilder()
+                        .setCron(this.opts.cron)
+                        .build()
+                    ).build()
             ).build()
             is SubscriptionWorkerOptions -> InitRequest.newBuilder().setSubscription(
                     SubscriptionWorker.newBuilder()

@@ -14,13 +14,13 @@
 
 package io.nitric.api.documents.v0
 
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutineStub
+import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingStub
 
 /**
 * A reference to a collection in the underlying document database.
 * Is created via [CollectionGroup.collection] or [DocumentReference.collection] and is passed a [name] and the [type] of documents stored in the collection.
 */
-class Collection<T> internal constructor(private val client: DocumentServiceCoroutineStub, val name: String, val type: Class<T>, val parent: DocumentReference<Any>?) {
+class Collection<T> internal constructor(private val client: DocumentServiceBlockingStub, val name: String, val type: Class<T>, val parent: DocumentReference<Any>?) {
     /**
      * Get a reference to a [DocumentReference] by its [id].
      */

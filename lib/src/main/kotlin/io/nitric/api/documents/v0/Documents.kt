@@ -14,13 +14,14 @@
 
 package io.nitric.api.documents.v0
 
+import io.nitric.proto.document.v1.DocumentServiceGrpc
 import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutineStub
 import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceStub
 import io.nitric.util.GrpcChannelProvider
 
 internal object Documents {
     // The document gRPC client
-    private val client = DocumentServiceCoroutineStub(GrpcChannelProvider.getChannel())
+    private val client = DocumentServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
     /**
      * Create a [Collection] with a [name] and the [type] of documents in the collection.

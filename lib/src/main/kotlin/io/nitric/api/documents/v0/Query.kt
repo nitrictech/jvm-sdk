@@ -15,7 +15,7 @@
 package io.nitric.api.documents.v0
 
 import io.nitric.proto.document.v1.DocumentQueryRequest
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutineStub
+import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingStub
 import io.nitric.proto.document.v1.Expression
 import io.nitric.proto.document.v1.ExpressionValue
 import io.nitric.util.ProtoUtils
@@ -37,7 +37,7 @@ enum class Operator(val value: String) {
 /**
  * A [Query] object used to construct [DocumentReference] queries. The expected [type] of the document is provided.
  */
-class Query<T> internal constructor(private val client: DocumentServiceCoroutineStub, private val collection: Collection<T>, private val type: Class<T>) {
+class Query<T> internal constructor(private val client: DocumentServiceBlockingStub, private val collection: Collection<T>, private val type: Class<T>) {
     private var expressions: ArrayList<Expression> = ArrayList()
     private var pagingToken: Map<String, String>? = null
     private var fetchLimit: UInt = UInt.MIN_VALUE
@@ -92,7 +92,7 @@ class Query<T> internal constructor(private val client: DocumentServiceCoroutine
     /**
      * Retrieve all found results as a list of [DocumentSnapshot]s.
      */
-    suspend fun fetch(): List<DocumentSnapshot<T>> {
+    fun fetch(): List<DocumentSnapshot<T>> {
         val request = DocumentQueryRequest
             .newBuilder()
             .setCollection(this.collection.toWire())

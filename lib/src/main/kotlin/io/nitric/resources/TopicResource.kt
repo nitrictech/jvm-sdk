@@ -22,15 +22,13 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         registerResource(this)
     }
 
-    private fun registerResource(resource: TopicResource) = runBlocking {
-        async {
-            resource.client.declare(
-                ResourceDeclareRequest.newBuilder()
-                    .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Topic).build())
-                    .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
-                    .build()
-            )
-        }.await()
+    private fun registerResource(resource: TopicResource) {
+        resource.client.declare(
+            ResourceDeclareRequest.newBuilder()
+                .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Topic).build())
+                .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
+                .build()
+        )
     }
 
     override fun permissionsToActions(permissions: List<TopicPermission>): List<Action> {
@@ -43,6 +41,9 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         }
     }
 
+    /**
+     * Subscribe to a topic, running [middleware] on each publish.
+     */
     fun subscribe(middleware: Handler<EventContext>) {
         val faas = Faas(SubscriptionWorkerOptions(this.name))
         faas.event { ctx, next ->
@@ -52,7 +53,11 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         Nitric.registerWorker(faas)
     }
 
-    fun subscribe(vararg middleware: Middleware<EventContext>) {
+
+    /**
+     * Subscribe to a topic, running [middleware] on each publish.
+     */
+    fun subscribe(middleware: List<Middleware<EventContext>>) {
         val faas = Faas(SubscriptionWorkerOptions(this.name))
         middleware.forEach {
             faas.event(it)
@@ -60,7 +65,7 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         Nitric.registerWorker(faas)
     }
 
-    suspend fun with(vararg permissions: TopicPermission): Topic {
+    fun with(vararg permissions: TopicPermission): Topic {
         this.registerPolicy(permissions.asList())
         return Eventing.topic(this.name)
     }

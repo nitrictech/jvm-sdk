@@ -20,17 +20,15 @@ class QueueResource internal constructor(name: String): SecureResource<QueuePerm
         registerResource(this)
     }
 
-    private fun registerResource(resource: QueueResource) = runBlocking {
-        async {
-            resource.client.declare(
-                ResourceDeclareRequest.newBuilder()
-                    .setResource(
-                        io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name).setType(ResourceType.Queue)
-                            .build()
-                    )
-                    .setQueue(io.nitric.proto.resource.v1.QueueResource.newBuilder().build()).build()
-            )
-        }.await()
+    private fun registerResource(resource: QueueResource) {
+        resource.client.declare(
+            ResourceDeclareRequest.newBuilder()
+                .setResource(
+                    io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name).setType(ResourceType.Queue)
+                        .build()
+                )
+                .setQueue(io.nitric.proto.resource.v1.QueueResource.newBuilder().build()).build()
+        )
     }
 
     override fun permissionsToActions(permissions: List<QueuePermission>): List<Action> {
@@ -50,7 +48,7 @@ class QueueResource internal constructor(name: String): SecureResource<QueuePerm
         }
     }
 
-    suspend fun with(vararg permissions: QueuePermission): Queue {
+    fun with(vararg permissions: QueuePermission): Queue {
         this.registerPolicy(permissions.asList())
         return Queueing.queue(this.name)
     }

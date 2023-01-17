@@ -14,21 +14,24 @@
 
 package io.nitric.api.events.v0
 
-import io.nitric.proto.event.v1.EventServiceGrpcKt.EventServiceCoroutineStub
-import io.nitric.proto.event.v1.TopicServiceGrpcKt.TopicServiceCoroutineStub
+import io.grpc.stub.AbstractBlockingStub
+import io.nitric.proto.event.v1.EventServiceGrpc
+import io.nitric.proto.event.v1.EventServiceGrpc.EventServiceBlockingStub
+import io.nitric.proto.event.v1.TopicServiceGrpc.TopicServiceBlockingStub
 import io.nitric.proto.event.v1.TopicListRequest
+import io.nitric.proto.event.v1.TopicServiceGrpc
 
 import io.nitric.util.GrpcChannelProvider
 
 /**
  * Event service client.
  */
-internal class EventingClients internal constructor(val event: EventServiceCoroutineStub, val topic: TopicServiceCoroutineStub)
+internal class EventingClients internal constructor(val event: EventServiceBlockingStub, val topic: TopicServiceBlockingStub)
 
 internal object Eventing {
     val client: EventingClients = EventingClients(
-        EventServiceCoroutineStub(GrpcChannelProvider.getChannel()),
-        TopicServiceCoroutineStub(GrpcChannelProvider.getChannel())
+        EventServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel()),
+        TopicServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
     )
 
     /**
@@ -41,14 +44,14 @@ internal object Eventing {
     /**
      * Return a list of all accessible [Topic]s.
      */
-    suspend fun topics(): List<Topic> {
+    fun topics(): List<Topic> {
         val resp = this.client.topic.list(
                 TopicListRequest.newBuilder().build()
         )
         return resp.topicsList.map { Topic(this.client, it.name) }
     }
 
-    internal suspend fun topics(client: EventingClients): List<Topic> {
+    internal fun topics(client: EventingClients): List<Topic> {
         val resp = client.topic.list(
             TopicListRequest.newBuilder().build()
         )
