@@ -1,7 +1,6 @@
 import io.mockk.mockk
 import io.nitric.api.secrets.v0.SecretValue
 import io.nitric.api.secrets.v0.SecretVersion
-import io.nitric.proto.secret.v1.SecretServiceGrpcKt.SecretServiceCoroutineStub
 import org.junit.jupiter.api.TestInstance
 import kotlin.test.Test
 import kotlin.test.assertContentEquals

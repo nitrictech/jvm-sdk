@@ -8,7 +8,6 @@ import io.nitric.api.queues.v0.ReceivedTask
 import io.nitric.api.queues.v0.Task
 import io.nitric.proto.queue.v1.NitricTask
 import io.nitric.proto.queue.v1.QueueServiceGrpc
-import io.nitric.proto.queue.v1.QueueServiceGrpcKt
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals

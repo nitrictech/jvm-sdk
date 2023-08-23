@@ -9,7 +9,6 @@ import io.nitric.proto.storage.v1.StorageDeleteRequest
 import io.nitric.proto.storage.v1.StoragePreSignUrlRequest
 import io.nitric.proto.storage.v1.StorageReadRequest
 import io.nitric.proto.storage.v1.StorageServiceGrpc
-import io.nitric.proto.storage.v1.StorageServiceGrpcKt
 import io.nitric.proto.storage.v1.StorageWriteRequest
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test

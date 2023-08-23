@@ -3,7 +3,6 @@ package io.nitric.api.documents
 import io.mockk.mockk
 import io.nitric.api.documents.v0.Collection
 import io.nitric.proto.document.v1.DocumentServiceGrpc
-import io.nitric.proto.document.v1.parentOrNull
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -52,6 +51,6 @@ class CollectionTest {
 
         assertNotNull(wiredCollection)
         assertEquals("test-collection", wiredCollection.name)
-        assertNull(wiredCollection.parentOrNull)
+        assertNull(wiredCollection.parent)
     }
 }

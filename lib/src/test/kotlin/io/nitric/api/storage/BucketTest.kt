@@ -3,7 +3,6 @@
 import io.mockk.*
 import io.nitric.api.storage.v0.*
 import io.nitric.proto.storage.v1.StorageServiceGrpc
-import io.nitric.proto.storage.v1.StorageServiceGrpcKt.StorageServiceCoroutineStub
 import org.junit.jupiter.api.TestInstance
 import kotlin.test.Test
 import kotlin.test.assertNotNull

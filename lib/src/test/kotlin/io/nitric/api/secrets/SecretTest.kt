@@ -3,7 +3,6 @@ import io.mockk.mockk
 import io.nitric.api.secrets.v0.Secret
 import io.nitric.proto.secret.v1.SecretPutResponse
 import io.nitric.proto.secret.v1.SecretServiceGrpc
-import io.nitric.proto.secret.v1.SecretServiceGrpcKt.SecretServiceCoroutineStub
 import kotlinx.coroutines.runBlocking
 import io.nitric.proto.secret.v1.SecretVersion as ProtoSecretVersion
 import io.nitric.proto.secret.v1.Secret as ProtoSecret

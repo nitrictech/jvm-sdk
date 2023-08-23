@@ -4,11 +4,9 @@ import io.mockk.mockk
 import io.nitric.api.events.v0.Eventing
 import io.nitric.api.events.v0.EventingClients
 import io.nitric.proto.event.v1.EventServiceGrpc
-import io.nitric.proto.event.v1.EventServiceGrpcKt.EventServiceCoroutineStub
 import io.nitric.proto.event.v1.NitricTopic
 import io.nitric.proto.event.v1.TopicListResponse
 import io.nitric.proto.event.v1.TopicServiceGrpc
-import io.nitric.proto.event.v1.TopicServiceGrpcKt.TopicServiceCoroutineStub
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.TestInstance
 import kotlin.test.Test

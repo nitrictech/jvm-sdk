@@ -18,7 +18,6 @@ import com.google.protobuf.ByteString
 import io.nitric.proto.storage.v1.StorageDeleteRequest
 import io.nitric.proto.storage.v1.StoragePreSignUrlRequest
 import io.nitric.proto.storage.v1.StorageReadRequest
-import io.nitric.proto.storage.v1.StorageServiceGrpcKt.StorageServiceCoroutineStub
 import io.nitric.proto.storage.v1.StorageWriteRequest
 
 /**

@@ -18,11 +18,6 @@ import io.nitric.proto.queue.v1.QueueReceiveRequest
 import io.nitric.proto.queue.v1.QueueSendBatchRequest
 import io.nitric.proto.queue.v1.QueueSendRequest
 import io.nitric.proto.queue.v1.QueueServiceGrpc.QueueServiceBlockingStub
-import io.nitric.proto.queue.v1.QueueServiceGrpcKt.QueueServiceCoroutineStub
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * Represents a [Task] that was unable to be sent to a queue. Contains the [task] that failed to be sent and the error [message].

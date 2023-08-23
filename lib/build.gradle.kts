@@ -141,9 +141,6 @@ protobuf {
         id("grpc") {
             artifact = "io.grpc:protoc-gen-grpc-java:1.50.2"
         }
-        id("grpckt") {
-            artifact = "io.grpc:protoc-gen-grpc-kotlin:1.3.0:jdk8@jar"
-        }
         id("javapgv") {
             artifact = "build.buf.protoc-gen-validate:protoc-gen-validate:1.0.2"
         }
@@ -152,11 +149,7 @@ protobuf {
     generateProtoTasks {
         all().forEach {
             it.plugins {
-                id("grpckt")
                 id("grpc")
-            }
-            it.builtins {
-                id("kotlin")
             }
             it.dependsOn("unpackProto")
         }
