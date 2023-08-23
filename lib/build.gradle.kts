@@ -14,14 +14,16 @@ tasks.register<DefaultTask>("downloadProto") {
 
 tasks.register<Copy>("unpackProto") {
     dependsOn("downloadProto")
-    from(tarTree("proto.tgz")) {
-        include("contracts/**")
-        eachFile {
-            relativePath = RelativePath(true, *relativePath.segments.drop(1).toTypedArray())
+    if (!File("src/main/proto").exists()) {
+        from(tarTree("proto.tgz")) {
+            include("contracts/**")
+            eachFile {
+                relativePath = RelativePath(true, *relativePath.segments.drop(1).toTypedArray())
+            }
+            includeEmptyDirs = false
         }
-        includeEmptyDirs = false
+        into("src/main/proto")
     }
-    into("src/main/proto")
 }
 
 plugins {

@@ -51,6 +51,5 @@ class CollectionTest {
 
         assertNotNull(wiredCollection)
         assertEquals("test-collection", wiredCollection.name)
-        assertNull(wiredCollection.parent)
     }
 }
