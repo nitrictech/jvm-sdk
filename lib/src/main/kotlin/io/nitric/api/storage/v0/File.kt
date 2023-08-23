@@ -40,10 +40,24 @@ class File internal constructor(val bucket: Bucket, val name: String) {
     }
 
     /**
+     * Get a signed URL for downloading from the bucket. Expires after 10 minutes.
+     */
+    fun getDownloadUrl(): String {
+        return this.signUrl(FileMode.Read, 600)
+    }
+
+    /**
      * Get a signed URL for uploading to the bucket. Optional [expiry] seconds can be added, defaults to 600 seconds.
      */
     fun getUploadUrl(expiry: Int = 600): String {
         return this.signUrl(FileMode.Write, expiry)
+    }
+
+    /**
+     * Get a signed URL for uploading to the bucket. Expires after 10 minutes.
+     */
+    fun getUploadUrl(): String {
+        return this.signUrl(FileMode.Write, 600)
     }
 
     /**

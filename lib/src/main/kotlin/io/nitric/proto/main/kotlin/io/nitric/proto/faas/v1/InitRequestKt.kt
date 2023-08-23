@@ -93,6 +93,78 @@ object InitRequestKt {
     fun hasSchedule(): kotlin.Boolean {
       return _builder.hasSchedule()
     }
+
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    var bucketNotification: io.nitric.proto.faas.v1.BucketNotificationWorker
+      @JvmName("getBucketNotification")
+      get() = _builder.getBucketNotification()
+      @JvmName("setBucketNotification")
+      set(value) {
+        _builder.setBucketNotification(value)
+      }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    fun clearBucketNotification() {
+      _builder.clearBucketNotification()
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     * @return Whether the bucketNotification field is set.
+     */
+    fun hasBucketNotification(): kotlin.Boolean {
+      return _builder.hasBucketNotification()
+    }
+
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    var websocket: io.nitric.proto.faas.v1.WebsocketWorker
+      @JvmName("getWebsocket")
+      get() = _builder.getWebsocket()
+      @JvmName("setWebsocket")
+      set(value) {
+        _builder.setWebsocket(value)
+      }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    fun clearWebsocket() {
+      _builder.clearWebsocket()
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     * @return Whether the websocket field is set.
+     */
+    fun hasWebsocket(): kotlin.Boolean {
+      return _builder.hasWebsocket()
+    }
+
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    var httpWorker: io.nitric.proto.faas.v1.HttpWorker
+      @JvmName("getHttpWorker")
+      get() = _builder.getHttpWorker()
+      @JvmName("setHttpWorker")
+      set(value) {
+        _builder.setHttpWorker(value)
+      }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    fun clearHttpWorker() {
+      _builder.clearHttpWorker()
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     * @return Whether the httpWorker field is set.
+     */
+    fun hasHttpWorker(): kotlin.Boolean {
+      return _builder.hasHttpWorker()
+    }
     val workerCase: io.nitric.proto.faas.v1.InitRequest.WorkerCase
       @JvmName("getWorkerCase")
       get() = _builder.getWorkerCase()
@@ -114,4 +186,13 @@ val io.nitric.proto.faas.v1.InitRequestOrBuilder.subscriptionOrNull: io.nitric.p
 
 val io.nitric.proto.faas.v1.InitRequestOrBuilder.scheduleOrNull: io.nitric.proto.faas.v1.ScheduleWorker?
   get() = if (hasSchedule()) getSchedule() else null
+
+val io.nitric.proto.faas.v1.InitRequestOrBuilder.bucketNotificationOrNull: io.nitric.proto.faas.v1.BucketNotificationWorker?
+  get() = if (hasBucketNotification()) getBucketNotification() else null
+
+val io.nitric.proto.faas.v1.InitRequestOrBuilder.websocketOrNull: io.nitric.proto.faas.v1.WebsocketWorker?
+  get() = if (hasWebsocket()) getWebsocket() else null
+
+val io.nitric.proto.faas.v1.InitRequestOrBuilder.httpWorkerOrNull: io.nitric.proto.faas.v1.HttpWorker?
+  get() = if (hasHttpWorker()) getHttpWorker() else null
 

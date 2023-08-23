@@ -56,6 +56,8 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     HTTP(3),
     TOPIC(4),
+    NOTIFICATION(5),
+    WEBSOCKET(6),
     CONTEXT_NOT_SET(0);
     private final int value;
     private ContextCase(int value) {
@@ -75,6 +77,8 @@ private static final long serialVersionUID = 0L;
       switch (value) {
         case 3: return HTTP;
         case 4: return TOPIC;
+        case 5: return NOTIFICATION;
+        case 6: return WEBSOCKET;
         case 0: return CONTEXT_NOT_SET;
         default: return null;
       }
@@ -153,6 +157,53 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int TRACE_CONTEXT_FIELD_NUMBER = 10;
+  private io.nitric.proto.faas.v1.TraceContext traceContext_;
+  /**
+   * <pre>
+   * TraceInformation from the membrane
+   * Allows tying traces from external triggers (e.g. HttpRequests)
+   * into each event request/response pair of the Bidirectional stream.
+   * which cannot be facilitated by OOTB stream interceptors from OTEL.
+   * </pre>
+   *
+   * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+   * @return Whether the traceContext field is set.
+   */
+  @java.lang.Override
+  public boolean hasTraceContext() {
+    return traceContext_ != null;
+  }
+  /**
+   * <pre>
+   * TraceInformation from the membrane
+   * Allows tying traces from external triggers (e.g. HttpRequests)
+   * into each event request/response pair of the Bidirectional stream.
+   * which cannot be facilitated by OOTB stream interceptors from OTEL.
+   * </pre>
+   *
+   * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+   * @return The traceContext.
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.TraceContext getTraceContext() {
+    return traceContext_ == null ? io.nitric.proto.faas.v1.TraceContext.getDefaultInstance() : traceContext_;
+  }
+  /**
+   * <pre>
+   * TraceInformation from the membrane
+   * Allows tying traces from external triggers (e.g. HttpRequests)
+   * into each event request/response pair of the Bidirectional stream.
+   * which cannot be facilitated by OOTB stream interceptors from OTEL.
+   * </pre>
+   *
+   * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.TraceContextOrBuilder getTraceContextOrBuilder() {
+    return getTraceContext();
+  }
+
   public static final int HTTP_FIELD_NUMBER = 3;
   /**
    * <code>.nitric.faas.v1.HttpTriggerContext http = 3;</code>
@@ -215,6 +266,68 @@ private static final long serialVersionUID = 0L;
     return io.nitric.proto.faas.v1.TopicTriggerContext.getDefaultInstance();
   }
 
+  public static final int NOTIFICATION_FIELD_NUMBER = 5;
+  /**
+   * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+   * @return Whether the notification field is set.
+   */
+  @java.lang.Override
+  public boolean hasNotification() {
+    return contextCase_ == 5;
+  }
+  /**
+   * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+   * @return The notification.
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.NotificationTriggerContext getNotification() {
+    if (contextCase_ == 5) {
+       return (io.nitric.proto.faas.v1.NotificationTriggerContext) context_;
+    }
+    return io.nitric.proto.faas.v1.NotificationTriggerContext.getDefaultInstance();
+  }
+  /**
+   * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.NotificationTriggerContextOrBuilder getNotificationOrBuilder() {
+    if (contextCase_ == 5) {
+       return (io.nitric.proto.faas.v1.NotificationTriggerContext) context_;
+    }
+    return io.nitric.proto.faas.v1.NotificationTriggerContext.getDefaultInstance();
+  }
+
+  public static final int WEBSOCKET_FIELD_NUMBER = 6;
+  /**
+   * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+   * @return Whether the websocket field is set.
+   */
+  @java.lang.Override
+  public boolean hasWebsocket() {
+    return contextCase_ == 6;
+  }
+  /**
+   * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+   * @return The websocket.
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.WebsocketTriggerContext getWebsocket() {
+    if (contextCase_ == 6) {
+       return (io.nitric.proto.faas.v1.WebsocketTriggerContext) context_;
+    }
+    return io.nitric.proto.faas.v1.WebsocketTriggerContext.getDefaultInstance();
+  }
+  /**
+   * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.WebsocketTriggerContextOrBuilder getWebsocketOrBuilder() {
+    if (contextCase_ == 6) {
+       return (io.nitric.proto.faas.v1.WebsocketTriggerContext) context_;
+    }
+    return io.nitric.proto.faas.v1.WebsocketTriggerContext.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -241,6 +354,15 @@ private static final long serialVersionUID = 0L;
     if (contextCase_ == 4) {
       output.writeMessage(4, (io.nitric.proto.faas.v1.TopicTriggerContext) context_);
     }
+    if (contextCase_ == 5) {
+      output.writeMessage(5, (io.nitric.proto.faas.v1.NotificationTriggerContext) context_);
+    }
+    if (contextCase_ == 6) {
+      output.writeMessage(6, (io.nitric.proto.faas.v1.WebsocketTriggerContext) context_);
+    }
+    if (traceContext_ != null) {
+      output.writeMessage(10, getTraceContext());
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -265,6 +387,18 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(4, (io.nitric.proto.faas.v1.TopicTriggerContext) context_);
     }
+    if (contextCase_ == 5) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(5, (io.nitric.proto.faas.v1.NotificationTriggerContext) context_);
+    }
+    if (contextCase_ == 6) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(6, (io.nitric.proto.faas.v1.WebsocketTriggerContext) context_);
+    }
+    if (traceContext_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(10, getTraceContext());
+    }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
     return size;
@@ -284,6 +418,11 @@ private static final long serialVersionUID = 0L;
         .equals(other.getData())) return false;
     if (!getMimeType()
         .equals(other.getMimeType())) return false;
+    if (hasTraceContext() != other.hasTraceContext()) return false;
+    if (hasTraceContext()) {
+      if (!getTraceContext()
+          .equals(other.getTraceContext())) return false;
+    }
     if (!getContextCase().equals(other.getContextCase())) return false;
     switch (contextCase_) {
       case 3:
@@ -293,6 +432,14 @@ private static final long serialVersionUID = 0L;
       case 4:
         if (!getTopic()
             .equals(other.getTopic())) return false;
+        break;
+      case 5:
+        if (!getNotification()
+            .equals(other.getNotification())) return false;
+        break;
+      case 6:
+        if (!getWebsocket()
+            .equals(other.getWebsocket())) return false;
         break;
       case 0:
       default:
@@ -312,6 +459,10 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getData().hashCode();
     hash = (37 * hash) + MIME_TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getMimeType().hashCode();
+    if (hasTraceContext()) {
+      hash = (37 * hash) + TRACE_CONTEXT_FIELD_NUMBER;
+      hash = (53 * hash) + getTraceContext().hashCode();
+    }
     switch (contextCase_) {
       case 3:
         hash = (37 * hash) + HTTP_FIELD_NUMBER;
@@ -320,6 +471,14 @@ private static final long serialVersionUID = 0L;
       case 4:
         hash = (37 * hash) + TOPIC_FIELD_NUMBER;
         hash = (53 * hash) + getTopic().hashCode();
+        break;
+      case 5:
+        hash = (37 * hash) + NOTIFICATION_FIELD_NUMBER;
+        hash = (53 * hash) + getNotification().hashCode();
+        break;
+      case 6:
+        hash = (37 * hash) + WEBSOCKET_FIELD_NUMBER;
+        hash = (53 * hash) + getWebsocket().hashCode();
         break;
       case 0:
       default:
@@ -460,11 +619,23 @@ private static final long serialVersionUID = 0L;
 
       mimeType_ = "";
 
+      if (traceContextBuilder_ == null) {
+        traceContext_ = null;
+      } else {
+        traceContext_ = null;
+        traceContextBuilder_ = null;
+      }
       if (httpBuilder_ != null) {
         httpBuilder_.clear();
       }
       if (topicBuilder_ != null) {
         topicBuilder_.clear();
+      }
+      if (notificationBuilder_ != null) {
+        notificationBuilder_.clear();
+      }
+      if (websocketBuilder_ != null) {
+        websocketBuilder_.clear();
       }
       contextCase_ = 0;
       context_ = null;
@@ -496,6 +667,11 @@ private static final long serialVersionUID = 0L;
       io.nitric.proto.faas.v1.TriggerRequest result = new io.nitric.proto.faas.v1.TriggerRequest(this);
       result.data_ = data_;
       result.mimeType_ = mimeType_;
+      if (traceContextBuilder_ == null) {
+        result.traceContext_ = traceContext_;
+      } else {
+        result.traceContext_ = traceContextBuilder_.build();
+      }
       if (contextCase_ == 3) {
         if (httpBuilder_ == null) {
           result.context_ = context_;
@@ -508,6 +684,20 @@ private static final long serialVersionUID = 0L;
           result.context_ = context_;
         } else {
           result.context_ = topicBuilder_.build();
+        }
+      }
+      if (contextCase_ == 5) {
+        if (notificationBuilder_ == null) {
+          result.context_ = context_;
+        } else {
+          result.context_ = notificationBuilder_.build();
+        }
+      }
+      if (contextCase_ == 6) {
+        if (websocketBuilder_ == null) {
+          result.context_ = context_;
+        } else {
+          result.context_ = websocketBuilder_.build();
         }
       }
       result.contextCase_ = contextCase_;
@@ -566,6 +756,9 @@ private static final long serialVersionUID = 0L;
         mimeType_ = other.mimeType_;
         onChanged();
       }
+      if (other.hasTraceContext()) {
+        mergeTraceContext(other.getTraceContext());
+      }
       switch (other.getContextCase()) {
         case HTTP: {
           mergeHttp(other.getHttp());
@@ -573,6 +766,14 @@ private static final long serialVersionUID = 0L;
         }
         case TOPIC: {
           mergeTopic(other.getTopic());
+          break;
+        }
+        case NOTIFICATION: {
+          mergeNotification(other.getNotification());
+          break;
+        }
+        case WEBSOCKET: {
+          mergeWebsocket(other.getWebsocket());
           break;
         }
         case CONTEXT_NOT_SET: {
@@ -629,6 +830,27 @@ private static final long serialVersionUID = 0L;
               contextCase_ = 4;
               break;
             } // case 34
+            case 42: {
+              input.readMessage(
+                  getNotificationFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              contextCase_ = 5;
+              break;
+            } // case 42
+            case 50: {
+              input.readMessage(
+                  getWebsocketFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              contextCase_ = 6;
+              break;
+            } // case 50
+            case 82: {
+              input.readMessage(
+                  getTraceContextFieldBuilder().getBuilder(),
+                  extensionRegistry);
+
+              break;
+            } // case 82
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -805,6 +1027,188 @@ private static final long serialVersionUID = 0L;
       mimeType_ = value;
       onChanged();
       return this;
+    }
+
+    private io.nitric.proto.faas.v1.TraceContext traceContext_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.TraceContext, io.nitric.proto.faas.v1.TraceContext.Builder, io.nitric.proto.faas.v1.TraceContextOrBuilder> traceContextBuilder_;
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     * @return Whether the traceContext field is set.
+     */
+    public boolean hasTraceContext() {
+      return traceContextBuilder_ != null || traceContext_ != null;
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     * @return The traceContext.
+     */
+    public io.nitric.proto.faas.v1.TraceContext getTraceContext() {
+      if (traceContextBuilder_ == null) {
+        return traceContext_ == null ? io.nitric.proto.faas.v1.TraceContext.getDefaultInstance() : traceContext_;
+      } else {
+        return traceContextBuilder_.getMessage();
+      }
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    public Builder setTraceContext(io.nitric.proto.faas.v1.TraceContext value) {
+      if (traceContextBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        traceContext_ = value;
+        onChanged();
+      } else {
+        traceContextBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    public Builder setTraceContext(
+        io.nitric.proto.faas.v1.TraceContext.Builder builderForValue) {
+      if (traceContextBuilder_ == null) {
+        traceContext_ = builderForValue.build();
+        onChanged();
+      } else {
+        traceContextBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    public Builder mergeTraceContext(io.nitric.proto.faas.v1.TraceContext value) {
+      if (traceContextBuilder_ == null) {
+        if (traceContext_ != null) {
+          traceContext_ =
+            io.nitric.proto.faas.v1.TraceContext.newBuilder(traceContext_).mergeFrom(value).buildPartial();
+        } else {
+          traceContext_ = value;
+        }
+        onChanged();
+      } else {
+        traceContextBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    public Builder clearTraceContext() {
+      if (traceContextBuilder_ == null) {
+        traceContext_ = null;
+        onChanged();
+      } else {
+        traceContext_ = null;
+        traceContextBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    public io.nitric.proto.faas.v1.TraceContext.Builder getTraceContextBuilder() {
+      
+      onChanged();
+      return getTraceContextFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    public io.nitric.proto.faas.v1.TraceContextOrBuilder getTraceContextOrBuilder() {
+      if (traceContextBuilder_ != null) {
+        return traceContextBuilder_.getMessageOrBuilder();
+      } else {
+        return traceContext_ == null ?
+            io.nitric.proto.faas.v1.TraceContext.getDefaultInstance() : traceContext_;
+      }
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.TraceContext, io.nitric.proto.faas.v1.TraceContext.Builder, io.nitric.proto.faas.v1.TraceContextOrBuilder> 
+        getTraceContextFieldBuilder() {
+      if (traceContextBuilder_ == null) {
+        traceContextBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.nitric.proto.faas.v1.TraceContext, io.nitric.proto.faas.v1.TraceContext.Builder, io.nitric.proto.faas.v1.TraceContextOrBuilder>(
+                getTraceContext(),
+                getParentForChildren(),
+                isClean());
+        traceContext_ = null;
+      }
+      return traceContextBuilder_;
     }
 
     private com.google.protobuf.SingleFieldBuilderV3<
@@ -1089,6 +1493,290 @@ private static final long serialVersionUID = 0L;
       contextCase_ = 4;
       onChanged();;
       return topicBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.NotificationTriggerContext, io.nitric.proto.faas.v1.NotificationTriggerContext.Builder, io.nitric.proto.faas.v1.NotificationTriggerContextOrBuilder> notificationBuilder_;
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     * @return Whether the notification field is set.
+     */
+    @java.lang.Override
+    public boolean hasNotification() {
+      return contextCase_ == 5;
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     * @return The notification.
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.NotificationTriggerContext getNotification() {
+      if (notificationBuilder_ == null) {
+        if (contextCase_ == 5) {
+          return (io.nitric.proto.faas.v1.NotificationTriggerContext) context_;
+        }
+        return io.nitric.proto.faas.v1.NotificationTriggerContext.getDefaultInstance();
+      } else {
+        if (contextCase_ == 5) {
+          return notificationBuilder_.getMessage();
+        }
+        return io.nitric.proto.faas.v1.NotificationTriggerContext.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    public Builder setNotification(io.nitric.proto.faas.v1.NotificationTriggerContext value) {
+      if (notificationBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        context_ = value;
+        onChanged();
+      } else {
+        notificationBuilder_.setMessage(value);
+      }
+      contextCase_ = 5;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    public Builder setNotification(
+        io.nitric.proto.faas.v1.NotificationTriggerContext.Builder builderForValue) {
+      if (notificationBuilder_ == null) {
+        context_ = builderForValue.build();
+        onChanged();
+      } else {
+        notificationBuilder_.setMessage(builderForValue.build());
+      }
+      contextCase_ = 5;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    public Builder mergeNotification(io.nitric.proto.faas.v1.NotificationTriggerContext value) {
+      if (notificationBuilder_ == null) {
+        if (contextCase_ == 5 &&
+            context_ != io.nitric.proto.faas.v1.NotificationTriggerContext.getDefaultInstance()) {
+          context_ = io.nitric.proto.faas.v1.NotificationTriggerContext.newBuilder((io.nitric.proto.faas.v1.NotificationTriggerContext) context_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          context_ = value;
+        }
+        onChanged();
+      } else {
+        if (contextCase_ == 5) {
+          notificationBuilder_.mergeFrom(value);
+        } else {
+          notificationBuilder_.setMessage(value);
+        }
+      }
+      contextCase_ = 5;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    public Builder clearNotification() {
+      if (notificationBuilder_ == null) {
+        if (contextCase_ == 5) {
+          contextCase_ = 0;
+          context_ = null;
+          onChanged();
+        }
+      } else {
+        if (contextCase_ == 5) {
+          contextCase_ = 0;
+          context_ = null;
+        }
+        notificationBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    public io.nitric.proto.faas.v1.NotificationTriggerContext.Builder getNotificationBuilder() {
+      return getNotificationFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.NotificationTriggerContextOrBuilder getNotificationOrBuilder() {
+      if ((contextCase_ == 5) && (notificationBuilder_ != null)) {
+        return notificationBuilder_.getMessageOrBuilder();
+      } else {
+        if (contextCase_ == 5) {
+          return (io.nitric.proto.faas.v1.NotificationTriggerContext) context_;
+        }
+        return io.nitric.proto.faas.v1.NotificationTriggerContext.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.NotificationTriggerContext, io.nitric.proto.faas.v1.NotificationTriggerContext.Builder, io.nitric.proto.faas.v1.NotificationTriggerContextOrBuilder> 
+        getNotificationFieldBuilder() {
+      if (notificationBuilder_ == null) {
+        if (!(contextCase_ == 5)) {
+          context_ = io.nitric.proto.faas.v1.NotificationTriggerContext.getDefaultInstance();
+        }
+        notificationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.nitric.proto.faas.v1.NotificationTriggerContext, io.nitric.proto.faas.v1.NotificationTriggerContext.Builder, io.nitric.proto.faas.v1.NotificationTriggerContextOrBuilder>(
+                (io.nitric.proto.faas.v1.NotificationTriggerContext) context_,
+                getParentForChildren(),
+                isClean());
+        context_ = null;
+      }
+      contextCase_ = 5;
+      onChanged();;
+      return notificationBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.WebsocketTriggerContext, io.nitric.proto.faas.v1.WebsocketTriggerContext.Builder, io.nitric.proto.faas.v1.WebsocketTriggerContextOrBuilder> websocketBuilder_;
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     * @return Whether the websocket field is set.
+     */
+    @java.lang.Override
+    public boolean hasWebsocket() {
+      return contextCase_ == 6;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     * @return The websocket.
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.WebsocketTriggerContext getWebsocket() {
+      if (websocketBuilder_ == null) {
+        if (contextCase_ == 6) {
+          return (io.nitric.proto.faas.v1.WebsocketTriggerContext) context_;
+        }
+        return io.nitric.proto.faas.v1.WebsocketTriggerContext.getDefaultInstance();
+      } else {
+        if (contextCase_ == 6) {
+          return websocketBuilder_.getMessage();
+        }
+        return io.nitric.proto.faas.v1.WebsocketTriggerContext.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    public Builder setWebsocket(io.nitric.proto.faas.v1.WebsocketTriggerContext value) {
+      if (websocketBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        context_ = value;
+        onChanged();
+      } else {
+        websocketBuilder_.setMessage(value);
+      }
+      contextCase_ = 6;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    public Builder setWebsocket(
+        io.nitric.proto.faas.v1.WebsocketTriggerContext.Builder builderForValue) {
+      if (websocketBuilder_ == null) {
+        context_ = builderForValue.build();
+        onChanged();
+      } else {
+        websocketBuilder_.setMessage(builderForValue.build());
+      }
+      contextCase_ = 6;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    public Builder mergeWebsocket(io.nitric.proto.faas.v1.WebsocketTriggerContext value) {
+      if (websocketBuilder_ == null) {
+        if (contextCase_ == 6 &&
+            context_ != io.nitric.proto.faas.v1.WebsocketTriggerContext.getDefaultInstance()) {
+          context_ = io.nitric.proto.faas.v1.WebsocketTriggerContext.newBuilder((io.nitric.proto.faas.v1.WebsocketTriggerContext) context_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          context_ = value;
+        }
+        onChanged();
+      } else {
+        if (contextCase_ == 6) {
+          websocketBuilder_.mergeFrom(value);
+        } else {
+          websocketBuilder_.setMessage(value);
+        }
+      }
+      contextCase_ = 6;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    public Builder clearWebsocket() {
+      if (websocketBuilder_ == null) {
+        if (contextCase_ == 6) {
+          contextCase_ = 0;
+          context_ = null;
+          onChanged();
+        }
+      } else {
+        if (contextCase_ == 6) {
+          contextCase_ = 0;
+          context_ = null;
+        }
+        websocketBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    public io.nitric.proto.faas.v1.WebsocketTriggerContext.Builder getWebsocketBuilder() {
+      return getWebsocketFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.WebsocketTriggerContextOrBuilder getWebsocketOrBuilder() {
+      if ((contextCase_ == 6) && (websocketBuilder_ != null)) {
+        return websocketBuilder_.getMessageOrBuilder();
+      } else {
+        if (contextCase_ == 6) {
+          return (io.nitric.proto.faas.v1.WebsocketTriggerContext) context_;
+        }
+        return io.nitric.proto.faas.v1.WebsocketTriggerContext.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.WebsocketTriggerContext, io.nitric.proto.faas.v1.WebsocketTriggerContext.Builder, io.nitric.proto.faas.v1.WebsocketTriggerContextOrBuilder> 
+        getWebsocketFieldBuilder() {
+      if (websocketBuilder_ == null) {
+        if (!(contextCase_ == 6)) {
+          context_ = io.nitric.proto.faas.v1.WebsocketTriggerContext.getDefaultInstance();
+        }
+        websocketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.nitric.proto.faas.v1.WebsocketTriggerContext, io.nitric.proto.faas.v1.WebsocketTriggerContext.Builder, io.nitric.proto.faas.v1.WebsocketTriggerContextOrBuilder>(
+                (io.nitric.proto.faas.v1.WebsocketTriggerContext) context_,
+                getParentForChildren(),
+                isClean());
+        context_ = null;
+      }
+      contextCase_ = 6;
+      onChanged();;
+      return websocketBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

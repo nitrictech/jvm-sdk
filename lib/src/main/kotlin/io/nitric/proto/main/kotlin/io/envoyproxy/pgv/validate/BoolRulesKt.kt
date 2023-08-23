@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializeboolRules")
-inline fun boolRules(block: io.envoyproxy.pgv.validate.BoolRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.BoolRules =
-  io.envoyproxy.pgv.validate.BoolRulesKt.Dsl._create(io.envoyproxy.pgv.validate.BoolRules.newBuilder()).apply { block() }._build()
+inline fun boolRules(block: io.envoyproxy.pgv.validate.BoolRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.BoolRules =
+  io.envoyproxy.pgv.validate.BoolRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.BoolRules.newBuilder()).apply { block() }._build()
 object BoolRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.BoolRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.BoolRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.BoolRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.BoolRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.BoolRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.BoolRules = _builder.build()
 
     /**
      * <pre>
@@ -60,6 +60,6 @@ object BoolRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.BoolRules.copy(block: io.envoyproxy.pgv.validate.BoolRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.BoolRules =
+inline fun io.envoyproxy.pgv.validate.Validate.BoolRules.copy(block: io.envoyproxy.pgv.validate.BoolRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.BoolRules =
   io.envoyproxy.pgv.validate.BoolRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

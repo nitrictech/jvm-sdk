@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializebytesRules")
-inline fun bytesRules(block: io.envoyproxy.pgv.validate.BytesRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.BytesRules =
-  io.envoyproxy.pgv.validate.BytesRulesKt.Dsl._create(io.envoyproxy.pgv.validate.BytesRules.newBuilder()).apply { block() }._build()
+inline fun bytesRules(block: io.envoyproxy.pgv.validate.BytesRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.BytesRules =
+  io.envoyproxy.pgv.validate.BytesRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.BytesRules.newBuilder()).apply { block() }._build()
 object BytesRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.BytesRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.BytesRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.BytesRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.BytesRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.BytesRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.BytesRules = _builder.build()
 
     /**
      * <pre>
@@ -686,7 +686,7 @@ object BytesRulesKt {
     fun hasIgnoreEmpty(): kotlin.Boolean {
       return _builder.hasIgnoreEmpty()
     }
-    val wellKnownCase: io.envoyproxy.pgv.validate.BytesRules.WellKnownCase
+    val wellKnownCase: io.envoyproxy.pgv.validate.Validate.BytesRules.WellKnownCase
       @JvmName("getWellKnownCase")
       get() = _builder.getWellKnownCase()
 
@@ -696,6 +696,6 @@ object BytesRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.BytesRules.copy(block: io.envoyproxy.pgv.validate.BytesRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.BytesRules =
+inline fun io.envoyproxy.pgv.validate.Validate.BytesRules.copy(block: io.envoyproxy.pgv.validate.BytesRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.BytesRules =
   io.envoyproxy.pgv.validate.BytesRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

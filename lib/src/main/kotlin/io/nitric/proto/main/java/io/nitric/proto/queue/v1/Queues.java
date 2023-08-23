@@ -78,36 +78,34 @@ public final class Queues {
       "idate/validate.proto\"r\n\020QueueSendRequest" +
       "\022)\n\005queue\030\001 \001(\tB\032\372B\027r\025(\200\0022\020^\\w+([.\\-]\\w+" +
       ")*$\0223\n\004task\030\002 \001(\0132\033.nitric.queue.v1.Nitr" +
-      "icTaskB\010\372B\005\212\001\002\020\001\"\023\n\021QueueSendResponse\"x\n" +
-      "\025QueueSendBatchRequest\022)\n\005queue\030\001 \001(\tB\032\372" +
-      "B\027r\025(\200\0022\020^\\w+([.\\-]\\w+)*$\0224\n\005tasks\030\002 \003(\013" +
-      "2\033.nitric.queue.v1.NitricTaskB\010\372B\005\222\001\002\010\001\"" +
-      "J\n\026QueueSendBatchResponse\0220\n\013failedTasks" +
-      "\030\001 \003(\0132\033.nitric.queue.v1.FailedTask\"O\n\023Q" +
-      "ueueReceiveRequest\022)\n\005queue\030\001 \001(\tB\032\372B\027r\025" +
-      "(\200\0022\020^\\w+([.\\-]\\w+)*$\022\r\n\005depth\030\002 \001(\005\"B\n\024" +
-      "QueueReceiveResponse\022*\n\005tasks\030\001 \003(\0132\033.ni" +
-      "tric.queue.v1.NitricTask\"\\\n\024QueueComplet" +
-      "eRequest\022)\n\005queue\030\001 \001(\tB\032\372B\027r\025(\200\0022\020^\\w+(" +
-      "[.\\-]\\w+)*$\022\031\n\010lease_id\030\002 \001(\tB\007\372B\004r\002\020\001\"\027" +
-      "\n\025QueueCompleteResponse\"H\n\nFailedTask\022)\n" +
-      "\004task\030\001 \001(\0132\033.nitric.queue.v1.NitricTask" +
-      "\022\017\n\007message\030\002 \001(\t\"j\n\nNitricTask\022\n\n\002id\030\001 " +
-      "\001(\t\022\020\n\010lease_id\030\002 \001(\t\022\024\n\014payload_type\030\003 " +
-      "\001(\t\022(\n\007payload\030\004 \001(\0132\027.google.protobuf.S" +
-      "truct2\356\002\n\014QueueService\022M\n\004Send\022!.nitric." +
-      "queue.v1.QueueSendRequest\032\".nitric.queue" +
-      ".v1.QueueSendResponse\022\\\n\tSendBatch\022&.nit" +
-      "ric.queue.v1.QueueSendBatchRequest\032\'.nit" +
-      "ric.queue.v1.QueueSendBatchResponse\022V\n\007R" +
-      "eceive\022$.nitric.queue.v1.QueueReceiveReq" +
-      "uest\032%.nitric.queue.v1.QueueReceiveRespo" +
-      "nse\022Y\n\010Complete\022%.nitric.queue.v1.QueueC" +
-      "ompleteRequest\032&.nitric.queue.v1.QueueCo" +
-      "mpleteResponseBb\n\030io.nitric.proto.queue." +
-      "v1B\006QueuesP\001Z\014nitric/v1;v1\252\002\025Nitric.Prot" +
-      "o.Queue.v1\312\002\025Nitric\\Proto\\Queue\\V1b\006prot" +
-      "o3"
+      "icTaskB\010\372B\005\212\001\002\020\001\"\023\n\021QueueSendResponse\"\\\n" +
+      "\025QueueSendBatchRequest\022\r\n\005queue\030\001 \001(\t\0224\n" +
+      "\005tasks\030\002 \003(\0132\033.nitric.queue.v1.NitricTas" +
+      "kB\010\372B\005\222\001\002\010\001\"J\n\026QueueSendBatchResponse\0220\n" +
+      "\013failedTasks\030\001 \003(\0132\033.nitric.queue.v1.Fai" +
+      "ledTask\"3\n\023QueueReceiveRequest\022\r\n\005queue\030" +
+      "\001 \001(\t\022\r\n\005depth\030\002 \001(\005\"B\n\024QueueReceiveResp" +
+      "onse\022*\n\005tasks\030\001 \003(\0132\033.nitric.queue.v1.Ni" +
+      "tricTask\"@\n\024QueueCompleteRequest\022\r\n\005queu" +
+      "e\030\001 \001(\t\022\031\n\010lease_id\030\002 \001(\tB\007\372B\004r\002\020\001\"\027\n\025Qu" +
+      "eueCompleteResponse\"H\n\nFailedTask\022)\n\004tas" +
+      "k\030\001 \001(\0132\033.nitric.queue.v1.NitricTask\022\017\n\007" +
+      "message\030\002 \001(\t\"j\n\nNitricTask\022\n\n\002id\030\001 \001(\t\022" +
+      "\020\n\010lease_id\030\002 \001(\t\022\024\n\014payload_type\030\003 \001(\t\022" +
+      "(\n\007payload\030\004 \001(\0132\027.google.protobuf.Struc" +
+      "t2\356\002\n\014QueueService\022M\n\004Send\022!.nitric.queu" +
+      "e.v1.QueueSendRequest\032\".nitric.queue.v1." +
+      "QueueSendResponse\022\\\n\tSendBatch\022&.nitric." +
+      "queue.v1.QueueSendBatchRequest\032\'.nitric." +
+      "queue.v1.QueueSendBatchResponse\022V\n\007Recei" +
+      "ve\022$.nitric.queue.v1.QueueReceiveRequest" +
+      "\032%.nitric.queue.v1.QueueReceiveResponse\022" +
+      "Y\n\010Complete\022%.nitric.queue.v1.QueueCompl" +
+      "eteRequest\032&.nitric.queue.v1.QueueComple" +
+      "teResponseB\211\001\n\030io.nitric.proto.queue.v1B" +
+      "\006QueuesP\001Z3github.com/nitrictech/nitric/" +
+      "core/pkg/api/nitric/v1\252\002\025Nitric.Proto.Qu" +
+      "eue.v1\312\002\025Nitric\\Proto\\Queue\\V1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

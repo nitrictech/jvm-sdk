@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private StorageListFilesRequest() {
     bucketName_ = "";
+    prefix_ = "";
   }
 
   @java.lang.Override
@@ -47,7 +48,7 @@ private static final long serialVersionUID = 0L;
   public static final int BUCKET_NAME_FIELD_NUMBER = 1;
   private volatile java.lang.Object bucketName_;
   /**
-   * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string bucket_name = 1;</code>
    * @return The bucketName.
    */
   @java.lang.Override
@@ -64,7 +65,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string bucket_name = 1;</code>
    * @return The bytes for bucketName.
    */
   @java.lang.Override
@@ -76,6 +77,44 @@ private static final long serialVersionUID = 0L;
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
       bucketName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int PREFIX_FIELD_NUMBER = 2;
+  private volatile java.lang.Object prefix_;
+  /**
+   * <code>string prefix = 2;</code>
+   * @return The prefix.
+   */
+  @java.lang.Override
+  public java.lang.String getPrefix() {
+    java.lang.Object ref = prefix_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      prefix_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string prefix = 2;</code>
+   * @return The bytes for prefix.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getPrefixBytes() {
+    java.lang.Object ref = prefix_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      prefix_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -99,6 +138,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bucketName_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bucketName_);
     }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(prefix_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, prefix_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -110,6 +152,9 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(bucketName_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bucketName_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(prefix_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, prefix_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -128,6 +173,8 @@ private static final long serialVersionUID = 0L;
 
     if (!getBucketName()
         .equals(other.getBucketName())) return false;
+    if (!getPrefix()
+        .equals(other.getPrefix())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -141,6 +188,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + BUCKET_NAME_FIELD_NUMBER;
     hash = (53 * hash) + getBucketName().hashCode();
+    hash = (37 * hash) + PREFIX_FIELD_NUMBER;
+    hash = (53 * hash) + getPrefix().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -271,6 +320,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       bucketName_ = "";
 
+      prefix_ = "";
+
       return this;
     }
 
@@ -298,6 +349,7 @@ private static final long serialVersionUID = 0L;
     public io.nitric.proto.storage.v1.StorageListFilesRequest buildPartial() {
       io.nitric.proto.storage.v1.StorageListFilesRequest result = new io.nitric.proto.storage.v1.StorageListFilesRequest(this);
       result.bucketName_ = bucketName_;
+      result.prefix_ = prefix_;
       onBuilt();
       return result;
     }
@@ -350,6 +402,10 @@ private static final long serialVersionUID = 0L;
         bucketName_ = other.bucketName_;
         onChanged();
       }
+      if (!other.getPrefix().isEmpty()) {
+        prefix_ = other.prefix_;
+        onChanged();
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -381,6 +437,11 @@ private static final long serialVersionUID = 0L;
 
               break;
             } // case 10
+            case 18: {
+              prefix_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -399,7 +460,7 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object bucketName_ = "";
     /**
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @return The bucketName.
      */
     public java.lang.String getBucketName() {
@@ -415,7 +476,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @return The bytes for bucketName.
      */
     public com.google.protobuf.ByteString
@@ -432,7 +493,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @param value The bucketName to set.
      * @return This builder for chaining.
      */
@@ -447,7 +508,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearBucketName() {
@@ -457,7 +518,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @param value The bytes for bucketName to set.
      * @return This builder for chaining.
      */
@@ -469,6 +530,82 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       bucketName_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object prefix_ = "";
+    /**
+     * <code>string prefix = 2;</code>
+     * @return The prefix.
+     */
+    public java.lang.String getPrefix() {
+      java.lang.Object ref = prefix_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        prefix_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string prefix = 2;</code>
+     * @return The bytes for prefix.
+     */
+    public com.google.protobuf.ByteString
+        getPrefixBytes() {
+      java.lang.Object ref = prefix_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        prefix_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string prefix = 2;</code>
+     * @param value The prefix to set.
+     * @return This builder for chaining.
+     */
+    public Builder setPrefix(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      prefix_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string prefix = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearPrefix() {
+      
+      prefix_ = getDefaultInstance().getPrefix();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string prefix = 2;</code>
+     * @param value The bytes for prefix to set.
+     * @return This builder for chaining.
+     */
+    public Builder setPrefixBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      prefix_ = value;
       onChanged();
       return this;
     }

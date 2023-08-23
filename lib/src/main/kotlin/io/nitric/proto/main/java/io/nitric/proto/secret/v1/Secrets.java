@@ -64,18 +64,18 @@ public final class Secrets {
       "\372B\005\212\001\002\020\001\"s\n\024SecretAccessResponse\022A\n\016secr" +
       "et_version\030\001 \001(\0132\037.nitric.secret.v1.Secr" +
       "etVersionB\010\372B\005\212\001\002\020\001\022\030\n\005value\030\002 \001(\014B\t\372B\006z" +
-      "\004\030\300\273\001\"2\n\006Secret\022(\n\004name\030\001 \001(\tB\032\372B\027r\025(\200\0022" +
-      "\020^\\w+([.\\-]\\w+)*$\"]\n\rSecretVersion\0222\n\006se" +
-      "cret\030\001 \001(\0132\030.nitric.secret.v1.SecretB\010\372B" +
-      "\005\212\001\002\020\001\022\030\n\007version\030\002 \001(\tB\007\372B\004r\002\020\0012\270\001\n\rSec" +
-      "retService\022N\n\003Put\022\".nitric.secret.v1.Sec" +
-      "retPutRequest\032#.nitric.secret.v1.SecretP" +
-      "utResponse\022W\n\006Access\022%.nitric.secret.v1." +
-      "SecretAccessRequest\032&.nitric.secret.v1.S" +
-      "ecretAccessResponseBf\n\031io.nitric.proto.s" +
-      "ecret.v1B\007SecretsP\001Z\014nitric/v1;v1\252\002\026Nitr" +
-      "ic.Proto.Secret.v1\312\002\026Nitric\\Proto\\Secret" +
-      "\\V1b\006proto3"
+      "\004\030\300\273\001\"\026\n\006Secret\022\014\n\004name\030\001 \001(\t\"]\n\rSecretV" +
+      "ersion\0222\n\006secret\030\001 \001(\0132\030.nitric.secret.v" +
+      "1.SecretB\010\372B\005\212\001\002\020\001\022\030\n\007version\030\002 \001(\tB\007\372B\004" +
+      "r\002\020\0012\270\001\n\rSecretService\022N\n\003Put\022\".nitric.s" +
+      "ecret.v1.SecretPutRequest\032#.nitric.secre" +
+      "t.v1.SecretPutResponse\022W\n\006Access\022%.nitri" +
+      "c.secret.v1.SecretAccessRequest\032&.nitric" +
+      ".secret.v1.SecretAccessResponseB\215\001\n\031io.n" +
+      "itric.proto.secret.v1B\007SecretsP\001Z3github" +
+      ".com/nitrictech/nitric/core/pkg/api/nitr" +
+      "ic/v1\252\002\026Nitric.Proto.Secret.v1\312\002\026Nitric\\" +
+      "Proto\\Secret\\V1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

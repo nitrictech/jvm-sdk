@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializefloatRules")
-inline fun floatRules(block: io.envoyproxy.pgv.validate.FloatRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.FloatRules =
-  io.envoyproxy.pgv.validate.FloatRulesKt.Dsl._create(io.envoyproxy.pgv.validate.FloatRules.newBuilder()).apply { block() }._build()
+inline fun floatRules(block: io.envoyproxy.pgv.validate.FloatRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.FloatRules =
+  io.envoyproxy.pgv.validate.FloatRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.FloatRules.newBuilder()).apply { block() }._build()
 object FloatRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.FloatRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.FloatRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.FloatRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.FloatRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.FloatRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.FloatRules = _builder.build()
 
     /**
      * <pre>
@@ -461,6 +461,6 @@ object FloatRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.FloatRules.copy(block: io.envoyproxy.pgv.validate.FloatRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.FloatRules =
+inline fun io.envoyproxy.pgv.validate.Validate.FloatRules.copy(block: io.envoyproxy.pgv.validate.FloatRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.FloatRules =
   io.envoyproxy.pgv.validate.FloatRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

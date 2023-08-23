@@ -18,14 +18,38 @@ import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingSt
 
 /**
 * A reference to a collection in the underlying document database.
-* Is created via [CollectionGroup.collection] or [DocumentReference.collection] and is passed a [name] and the [type] of documents stored in the collection.
+* Is created via [collection] or [DocumentReference.collection] and is passed a [name] and the [type] of documents stored in the collection.
 */
-class Collection<T> internal constructor(private val client: DocumentServiceBlockingStub, val name: String, val type: Class<T>, val parent: DocumentReference<Any>?) {
+class Collection<T> internal constructor(private val client: DocumentServiceBlockingStub, val name: String, val type: Class<T>, val parent: DocumentReference<*>?) {
     /**
      * Get a reference to a [DocumentReference] by its [id].
      */
     fun doc(id: String): DocumentReference<T> {
+        if (this.depth() >= Constants.MAX_COLLECTION_DEPTH) {
+            throw IllegalAccessException("Maximum collection depth of ${Constants.MAX_COLLECTION_DEPTH} exceeded")
+        }
         return DocumentReference(this.client, this, this.type, id)
+    }
+
+    /**
+     * Get a reference to a sub-collection.
+     */
+    fun <U>collection(name: String, type: Class<U>): CollectionGroup<U> {
+        if (this.depth() >= Constants.MAX_COLLECTION_DEPTH) {
+            throw IllegalAccessException("Maximum collection depth of ${Constants.MAX_COLLECTION_DEPTH} exceeded")
+        }
+        return CollectionGroup(this.client, name, type, this)
+    }
+
+    inline fun <reified U>collection(name: String): CollectionGroup<U> {
+        return this.collection(name, U::class.java)
+    }
+
+    fun depth(): Int {
+        if (this.parent == null) {
+            return 0
+        }
+        return 1
     }
 
     /**

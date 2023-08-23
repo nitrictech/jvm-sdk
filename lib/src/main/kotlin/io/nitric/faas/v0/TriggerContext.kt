@@ -17,7 +17,6 @@ package io.nitric.faas.v0
 import io.nitric.proto.faas.v1.TriggerRequest
 import io.nitric.proto.faas.v1.TriggerResponse
 
-import kotlinx.serialization.Serializable
 import java.nio.charset.Charset
 
 /**
@@ -43,11 +42,19 @@ abstract class TriggerContext<Req : AbstractRequest, Resp> {
         /**
          * Construct the appropriate context object based on the type of the incoming [trigger].
          */
-        internal fun <T: TriggerContext<*, *>>fromGrpcTriggerRequest(trigger: TriggerRequest): T {
+        internal fun <T: TriggerContext<*, *>>fromGrpcTriggerRequest(trigger: TriggerRequest, opts: FaasOptions): T {
             if (trigger.hasHttp()) {
                 return HttpContext.fromGrpcTriggerRequest(trigger) as T;
             } else if (trigger.hasTopic()) {
                 return EventContext.fromGrpcTriggerRequest(trigger) as T;
+            } else if (trigger.hasWebsocket()) {
+                return WebsocketContext.fromGrpcTriggerRequest(trigger) as T;
+            } else if (trigger.hasNotification()) {
+                if (opts is BucketNotificationWorkerOptions) {
+                    return BucketNotificationContext.fromGrpcTriggerRequest(trigger, opts) as T;
+                } else if (opts is FileNotificationWorkerOptions){
+                    return FileNotificationContext.fromGrpcTriggerRequest(trigger, opts) as T;
+                }
             }
             throw Error("Unsupported trigger request type")
         }
@@ -59,6 +66,9 @@ abstract class TriggerContext<Req : AbstractRequest, Resp> {
             return when(ctx) {
                 is HttpContext -> HttpContext.toGrpcTriggerResponse(ctx)
                 is EventContext -> EventContext.toGrpcTriggerResponse(ctx)
+                is WebsocketContext -> WebsocketContext.toGrpcTriggerResponse(ctx)
+                is BucketNotificationContext -> BucketNotificationContext.toGrpcTriggerResponse(ctx)
+                is FileNotificationContext -> FileNotificationContext.toGrpcTriggerResponse(ctx)
                 else -> throw Error("Unsupported trigger context types")
             }
         }

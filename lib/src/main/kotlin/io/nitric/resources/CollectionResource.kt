@@ -13,7 +13,7 @@ enum class CollectionPermission {
     Delete
 }
 
-class CollectionResource<T> internal constructor(name: String, private val type: Class<T>): SecureResource<CollectionPermission>(name) {
+class CollectionResource<T>(name: String, private val type: Class<T>): SecureResource<CollectionPermission>(name) {
     override fun permissionsToActions(permissions: List<CollectionPermission>): List<Action> {
         return permissions.fold(mutableListOf()) { arr, perm ->
             val actions: List<Action> = when (perm) {

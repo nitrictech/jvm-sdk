@@ -8,14 +8,26 @@ public interface StorageListFilesRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string bucket_name = 1;</code>
    * @return The bucketName.
    */
   java.lang.String getBucketName();
   /**
-   * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string bucket_name = 1;</code>
    * @return The bytes for bucketName.
    */
   com.google.protobuf.ByteString
       getBucketNameBytes();
+
+  /**
+   * <code>string prefix = 2;</code>
+   * @return The prefix.
+   */
+  java.lang.String getPrefix();
+  /**
+   * <code>string prefix = 2;</code>
+   * @return The bytes for prefix.
+   */
+  com.google.protobuf.ByteString
+      getPrefixBytes();
 }

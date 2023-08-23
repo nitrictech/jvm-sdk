@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializetimestampRules")
-inline fun timestampRules(block: io.envoyproxy.pgv.validate.TimestampRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.TimestampRules =
-  io.envoyproxy.pgv.validate.TimestampRulesKt.Dsl._create(io.envoyproxy.pgv.validate.TimestampRules.newBuilder()).apply { block() }._build()
+inline fun timestampRules(block: io.envoyproxy.pgv.validate.TimestampRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.TimestampRules =
+  io.envoyproxy.pgv.validate.TimestampRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.TimestampRules.newBuilder()).apply { block() }._build()
 object TimestampRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.TimestampRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.TimestampRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.TimestampRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.TimestampRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.TimestampRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.TimestampRules = _builder.build()
 
     /**
      * <pre>
@@ -384,24 +384,24 @@ object TimestampRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.TimestampRules.copy(block: io.envoyproxy.pgv.validate.TimestampRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.TimestampRules =
+inline fun io.envoyproxy.pgv.validate.Validate.TimestampRules.copy(block: io.envoyproxy.pgv.validate.TimestampRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.TimestampRules =
   io.envoyproxy.pgv.validate.TimestampRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 
-val io.envoyproxy.pgv.validate.TimestampRulesOrBuilder.constOrNull: com.google.protobuf.Timestamp?
+val io.envoyproxy.pgv.validate.Validate.TimestampRulesOrBuilder.constOrNull: com.google.protobuf.Timestamp?
   get() = if (hasConst()) getConst() else null
 
-val io.envoyproxy.pgv.validate.TimestampRulesOrBuilder.ltOrNull: com.google.protobuf.Timestamp?
+val io.envoyproxy.pgv.validate.Validate.TimestampRulesOrBuilder.ltOrNull: com.google.protobuf.Timestamp?
   get() = if (hasLt()) getLt() else null
 
-val io.envoyproxy.pgv.validate.TimestampRulesOrBuilder.lteOrNull: com.google.protobuf.Timestamp?
+val io.envoyproxy.pgv.validate.Validate.TimestampRulesOrBuilder.lteOrNull: com.google.protobuf.Timestamp?
   get() = if (hasLte()) getLte() else null
 
-val io.envoyproxy.pgv.validate.TimestampRulesOrBuilder.gtOrNull: com.google.protobuf.Timestamp?
+val io.envoyproxy.pgv.validate.Validate.TimestampRulesOrBuilder.gtOrNull: com.google.protobuf.Timestamp?
   get() = if (hasGt()) getGt() else null
 
-val io.envoyproxy.pgv.validate.TimestampRulesOrBuilder.gteOrNull: com.google.protobuf.Timestamp?
+val io.envoyproxy.pgv.validate.Validate.TimestampRulesOrBuilder.gteOrNull: com.google.protobuf.Timestamp?
   get() = if (hasGte()) getGte() else null
 
-val io.envoyproxy.pgv.validate.TimestampRulesOrBuilder.withinOrNull: com.google.protobuf.Duration?
+val io.envoyproxy.pgv.validate.Validate.TimestampRulesOrBuilder.withinOrNull: com.google.protobuf.Duration?
   get() = if (hasWithin()) getWithin() else null
 

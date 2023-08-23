@@ -65,6 +65,26 @@ public final class NitricFaas {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_nitric_faas_v1_ScheduleCron_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_HttpWorker_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_HttpWorker_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_BucketNotificationWorker_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_BucketNotificationWorker_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_BucketNotificationConfig_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_BucketNotificationConfig_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_WebsocketWorker_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_WebsocketWorker_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_nitric_faas_v1_InitRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -74,6 +94,16 @@ public final class NitricFaas {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_nitric_faas_v1_InitResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_TraceContext_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_TraceContext_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_TraceContext_ValuesEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_TraceContext_ValuesEntry_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_nitric_faas_v1_TriggerRequest_descriptor;
   static final 
@@ -125,6 +155,26 @@ public final class NitricFaas {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_nitric_faas_v1_TopicTriggerContext_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_BucketNotification_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_BucketNotification_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_NotificationTriggerContext_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_NotificationTriggerContext_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_WebsocketTriggerContext_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_WebsocketTriggerContext_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_WebsocketTriggerContext_QueryParamsEntry_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_WebsocketTriggerContext_QueryParamsEntry_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_nitric_faas_v1_TriggerResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -149,6 +199,16 @@ public final class NitricFaas {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_nitric_faas_v1_TopicResponseContext_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_NotificationResponseContext_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_NotificationResponseContext_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_nitric_faas_v1_WebsocketResponseContext_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_nitric_faas_v1_WebsocketResponseContext_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -181,55 +241,97 @@ public final class NitricFaas {
       "RateH\000\022,\n\004cron\030\013 \001(\0132\034.nitric.faas.v1.Sc" +
       "heduleCronH\000B\t\n\007cadence\"\034\n\014ScheduleRate\022" +
       "\014\n\004rate\030\001 \001(\t\"\034\n\014ScheduleCron\022\014\n\004cron\030\001 " +
-      "\001(\t\"\261\001\n\013InitRequest\022(\n\003api\030\n \001(\0132\031.nitri" +
-      "c.faas.v1.ApiWorkerH\000\022:\n\014subscription\030\013 " +
-      "\001(\0132\".nitric.faas.v1.SubscriptionWorkerH" +
-      "\000\0222\n\010schedule\030\014 \001(\0132\036.nitric.faas.v1.Sch" +
-      "eduleWorkerH\000B\010\n\006Worker\"\016\n\014InitResponse\"" +
-      "\246\001\n\016TriggerRequest\022\014\n\004data\030\001 \001(\014\022\021\n\tmime" +
-      "_type\030\002 \001(\t\0222\n\004http\030\003 \001(\0132\".nitric.faas." +
-      "v1.HttpTriggerContextH\000\0224\n\005topic\030\004 \001(\0132#" +
-      ".nitric.faas.v1.TopicTriggerContextH\000B\t\n" +
-      "\007context\"\034\n\013HeaderValue\022\r\n\005value\030\001 \003(\t\"\033" +
-      "\n\nQueryValue\022\r\n\005value\030\001 \003(\t\"\345\005\n\022HttpTrig" +
-      "gerContext\022\016\n\006method\030\001 \001(\t\022\014\n\004path\030\002 \001(\t" +
-      "\022K\n\013headers_old\030\003 \003(\01322.nitric.faas.v1.H" +
-      "ttpTriggerContext.HeadersOldEntryB\002\030\001\022T\n" +
-      "\020query_params_old\030\004 \003(\01326.nitric.faas.v1" +
-      ".HttpTriggerContext.QueryParamsOldEntryB" +
-      "\002\030\001\022@\n\007headers\030\005 \003(\0132/.nitric.faas.v1.Ht" +
-      "tpTriggerContext.HeadersEntry\022I\n\014query_p" +
-      "arams\030\006 \003(\01323.nitric.faas.v1.HttpTrigger" +
-      "Context.QueryParamsEntry\022G\n\013path_params\030" +
-      "\007 \003(\01322.nitric.faas.v1.HttpTriggerContex" +
-      "t.PathParamsEntry\0321\n\017HeadersOldEntry\022\013\n\003" +
-      "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0325\n\023QueryPar" +
-      "amsOldEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:" +
-      "\0028\001\032K\n\014HeadersEntry\022\013\n\003key\030\001 \001(\t\022*\n\005valu" +
-      "e\030\002 \001(\0132\033.nitric.faas.v1.HeaderValue:\0028\001" +
-      "\032N\n\020QueryParamsEntry\022\013\n\003key\030\001 \001(\t\022)\n\005val" +
-      "ue\030\002 \001(\0132\032.nitric.faas.v1.QueryValue:\0028\001" +
-      "\0321\n\017PathParamsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu" +
-      "e\030\002 \001(\t:\0028\001\"$\n\023TopicTriggerContext\022\r\n\005to" +
-      "pic\030\001 \001(\t\"\226\001\n\017TriggerResponse\022\014\n\004data\030\001 " +
-      "\001(\014\0223\n\004http\030\n \001(\0132#.nitric.faas.v1.HttpR" +
-      "esponseContextH\000\0225\n\005topic\030\013 \001(\0132$.nitric" +
-      ".faas.v1.TopicResponseContextH\000B\t\n\007conte" +
-      "xt\"\266\002\n\023HttpResponseContext\022L\n\013headers_ol" +
-      "d\030\001 \003(\01323.nitric.faas.v1.HttpResponseCon" +
-      "text.HeadersOldEntryB\002\030\001\022\016\n\006status\030\002 \001(\005" +
-      "\022A\n\007headers\030\003 \003(\01320.nitric.faas.v1.HttpR" +
-      "esponseContext.HeadersEntry\0321\n\017HeadersOl" +
-      "dEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032K" +
-      "\n\014HeadersEntry\022\013\n\003key\030\001 \001(\t\022*\n\005value\030\002 \001" +
-      "(\0132\033.nitric.faas.v1.HeaderValue:\0028\001\"\'\n\024T" +
-      "opicResponseContext\022\017\n\007success\030\001 \001(\0102`\n\013" +
-      "FaasService\022Q\n\rTriggerStream\022\035.nitric.fa" +
-      "as.v1.ClientMessage\032\035.nitric.faas.v1.Ser" +
-      "verMessage(\0010\001Bc\n\027io.nitric.proto.faas.v" +
-      "1B\nNitricFaasP\001Z\014nitric/v1;v1\252\002\024Nitric.P" +
-      "roto.Faas.v1\312\002\024Nitric\\Proto\\Faas\\V1b\006pro" +
-      "to3"
+      "\001(\t\"\032\n\nHttpWorker\022\014\n\004port\030\001 \001(\005\"d\n\030Bucke" +
+      "tNotificationWorker\022\016\n\006bucket\030\001 \001(\t\0228\n\006c" +
+      "onfig\030\002 \001(\0132(.nitric.faas.v1.BucketNotif" +
+      "icationConfig\"\201\001\n\030BucketNotificationConf" +
+      "ig\022A\n\021notification_type\030\001 \001(\0162&.nitric.f" +
+      "aas.v1.BucketNotificationType\022\"\n\032notific" +
+      "ation_prefix_filter\030\002 \001(\t\"P\n\017WebsocketWo" +
+      "rker\022\016\n\006socket\030\001 \001(\t\022-\n\005event\030\002 \001(\0162\036.ni" +
+      "tric.faas.v1.WebsocketEvent\"\343\002\n\013InitRequ" +
+      "est\022(\n\003api\030\n \001(\0132\031.nitric.faas.v1.ApiWor" +
+      "kerH\000\022:\n\014subscription\030\013 \001(\0132\".nitric.faa" +
+      "s.v1.SubscriptionWorkerH\000\0222\n\010schedule\030\014 " +
+      "\001(\0132\036.nitric.faas.v1.ScheduleWorkerH\000\022G\n" +
+      "\023bucket_notification\030\r \001(\0132(.nitric.faas" +
+      ".v1.BucketNotificationWorkerH\000\0224\n\twebsoc" +
+      "ket\030\016 \001(\0132\037.nitric.faas.v1.WebsocketWork" +
+      "erH\000\0221\n\013http_worker\030\017 \001(\0132\032.nitric.faas." +
+      "v1.HttpWorkerH\000B\010\n\006Worker\"\016\n\014InitRespons" +
+      "e\"w\n\014TraceContext\0228\n\006values\030\001 \003(\0132(.nitr" +
+      "ic.faas.v1.TraceContext.ValuesEntry\032-\n\013V" +
+      "aluesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\002" +
+      "8\001\"\335\002\n\016TriggerRequest\022\014\n\004data\030\001 \001(\014\022\021\n\tm" +
+      "ime_type\030\002 \001(\t\0223\n\rtrace_context\030\n \001(\0132\034." +
+      "nitric.faas.v1.TraceContext\0222\n\004http\030\003 \001(" +
+      "\0132\".nitric.faas.v1.HttpTriggerContextH\000\022" +
+      "4\n\005topic\030\004 \001(\0132#.nitric.faas.v1.TopicTri" +
+      "ggerContextH\000\022B\n\014notification\030\005 \001(\0132*.ni" +
+      "tric.faas.v1.NotificationTriggerContextH" +
+      "\000\022<\n\twebsocket\030\006 \001(\0132\'.nitric.faas.v1.We" +
+      "bsocketTriggerContextH\000B\t\n\007context\"\034\n\013He" +
+      "aderValue\022\r\n\005value\030\001 \003(\t\"\033\n\nQueryValue\022\r" +
+      "\n\005value\030\001 \003(\t\"\345\005\n\022HttpTriggerContext\022\016\n\006" +
+      "method\030\001 \001(\t\022\014\n\004path\030\002 \001(\t\022K\n\013headers_ol" +
+      "d\030\003 \003(\01322.nitric.faas.v1.HttpTriggerCont" +
+      "ext.HeadersOldEntryB\002\030\001\022T\n\020query_params_" +
+      "old\030\004 \003(\01326.nitric.faas.v1.HttpTriggerCo" +
+      "ntext.QueryParamsOldEntryB\002\030\001\022@\n\007headers" +
+      "\030\005 \003(\0132/.nitric.faas.v1.HttpTriggerConte" +
+      "xt.HeadersEntry\022I\n\014query_params\030\006 \003(\01323." +
+      "nitric.faas.v1.HttpTriggerContext.QueryP" +
+      "aramsEntry\022G\n\013path_params\030\007 \003(\01322.nitric" +
+      ".faas.v1.HttpTriggerContext.PathParamsEn" +
+      "try\0321\n\017HeadersOldEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005v" +
+      "alue\030\002 \001(\t:\0028\001\0325\n\023QueryParamsOldEntry\022\013\n" +
+      "\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032K\n\014Headers" +
+      "Entry\022\013\n\003key\030\001 \001(\t\022*\n\005value\030\002 \001(\0132\033.nitr" +
+      "ic.faas.v1.HeaderValue:\0028\001\032N\n\020QueryParam" +
+      "sEntry\022\013\n\003key\030\001 \001(\t\022)\n\005value\030\002 \001(\0132\032.nit" +
+      "ric.faas.v1.QueryValue:\0028\001\0321\n\017PathParams" +
+      "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"$\n" +
+      "\023TopicTriggerContext\022\r\n\005topic\030\001 \001(\t\"W\n\022B" +
+      "ucketNotification\022\013\n\003key\030\001 \001(\t\0224\n\004type\030\002" +
+      " \001(\0162&.nitric.faas.v1.BucketNotification" +
+      "Type\"r\n\032NotificationTriggerContext\022\016\n\006so" +
+      "urce\030\001 \001(\t\0224\n\006bucket\030\n \001(\0132\".nitric.faas" +
+      ".v1.BucketNotificationH\000B\016\n\014notification" +
+      "\"\216\002\n\027WebsocketTriggerContext\022\016\n\006socket\030\001" +
+      " \001(\t\022-\n\005event\030\002 \001(\0162\036.nitric.faas.v1.Web" +
+      "socketEvent\022\024\n\014connectionId\030\003 \001(\t\022N\n\014que" +
+      "ry_params\030\006 \003(\01328.nitric.faas.v1.Websock" +
+      "etTriggerContext.QueryParamsEntry\032N\n\020Que" +
+      "ryParamsEntry\022\013\n\003key\030\001 \001(\t\022)\n\005value\030\002 \001(" +
+      "\0132\032.nitric.faas.v1.QueryValue:\0028\001\"\232\002\n\017Tr" +
+      "iggerResponse\022\014\n\004data\030\001 \001(\014\0223\n\004http\030\n \001(" +
+      "\0132#.nitric.faas.v1.HttpResponseContextH\000" +
+      "\0225\n\005topic\030\013 \001(\0132$.nitric.faas.v1.TopicRe" +
+      "sponseContextH\000\022C\n\014notification\030\014 \001(\0132+." +
+      "nitric.faas.v1.NotificationResponseConte" +
+      "xtH\000\022=\n\twebsocket\030\r \001(\0132(.nitric.faas.v1" +
+      ".WebsocketResponseContextH\000B\t\n\007context\"\266" +
+      "\002\n\023HttpResponseContext\022L\n\013headers_old\030\001 " +
+      "\003(\01323.nitric.faas.v1.HttpResponseContext" +
+      ".HeadersOldEntryB\002\030\001\022\016\n\006status\030\002 \001(\005\022A\n\007" +
+      "headers\030\003 \003(\01320.nitric.faas.v1.HttpRespo" +
+      "nseContext.HeadersEntry\0321\n\017HeadersOldEnt" +
+      "ry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\032K\n\014He" +
+      "adersEntry\022\013\n\003key\030\001 \001(\t\022*\n\005value\030\002 \001(\0132\033" +
+      ".nitric.faas.v1.HeaderValue:\0028\001\"\'\n\024Topic" +
+      "ResponseContext\022\017\n\007success\030\001 \001(\010\".\n\033Noti" +
+      "ficationResponseContext\022\017\n\007success\030\001 \001(\010" +
+      "\"+\n\030WebsocketResponseContext\022\017\n\007success\030" +
+      "\001 \001(\010*;\n\026BucketNotificationType\022\007\n\003All\020\000" +
+      "\022\013\n\007Created\020\001\022\013\n\007Deleted\020\002*:\n\016WebsocketE" +
+      "vent\022\013\n\007Connect\020\000\022\016\n\nDisconnect\020\001\022\013\n\007Mes" +
+      "sage\020\0022`\n\013FaasService\022Q\n\rTriggerStream\022\035" +
+      ".nitric.faas.v1.ClientMessage\032\035.nitric.f" +
+      "aas.v1.ServerMessage(\0010\001B\212\001\n\027io.nitric.p" +
+      "roto.faas.v1B\nNitricFaasP\001Z3github.com/n" +
+      "itrictech/nitric/core/pkg/api/nitric/v1\252" +
+      "\002\024Nitric.Proto.Faas.v1\312\002\024Nitric\\Proto\\Fa" +
+      "as\\V1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -295,38 +397,74 @@ public final class NitricFaas {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_ScheduleCron_descriptor,
         new java.lang.String[] { "Cron", });
-    internal_static_nitric_faas_v1_InitRequest_descriptor =
+    internal_static_nitric_faas_v1_HttpWorker_descriptor =
       getDescriptor().getMessageTypes().get(9);
+    internal_static_nitric_faas_v1_HttpWorker_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_HttpWorker_descriptor,
+        new java.lang.String[] { "Port", });
+    internal_static_nitric_faas_v1_BucketNotificationWorker_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_nitric_faas_v1_BucketNotificationWorker_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_BucketNotificationWorker_descriptor,
+        new java.lang.String[] { "Bucket", "Config", });
+    internal_static_nitric_faas_v1_BucketNotificationConfig_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_nitric_faas_v1_BucketNotificationConfig_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_BucketNotificationConfig_descriptor,
+        new java.lang.String[] { "NotificationType", "NotificationPrefixFilter", });
+    internal_static_nitric_faas_v1_WebsocketWorker_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_nitric_faas_v1_WebsocketWorker_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_WebsocketWorker_descriptor,
+        new java.lang.String[] { "Socket", "Event", });
+    internal_static_nitric_faas_v1_InitRequest_descriptor =
+      getDescriptor().getMessageTypes().get(13);
     internal_static_nitric_faas_v1_InitRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_InitRequest_descriptor,
-        new java.lang.String[] { "Api", "Subscription", "Schedule", "Worker", });
+        new java.lang.String[] { "Api", "Subscription", "Schedule", "BucketNotification", "Websocket", "HttpWorker", "Worker", });
     internal_static_nitric_faas_v1_InitResponse_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_nitric_faas_v1_InitResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_InitResponse_descriptor,
         new java.lang.String[] { });
+    internal_static_nitric_faas_v1_TraceContext_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_nitric_faas_v1_TraceContext_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_TraceContext_descriptor,
+        new java.lang.String[] { "Values", });
+    internal_static_nitric_faas_v1_TraceContext_ValuesEntry_descriptor =
+      internal_static_nitric_faas_v1_TraceContext_descriptor.getNestedTypes().get(0);
+    internal_static_nitric_faas_v1_TraceContext_ValuesEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_TraceContext_ValuesEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     internal_static_nitric_faas_v1_TriggerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_nitric_faas_v1_TriggerRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_TriggerRequest_descriptor,
-        new java.lang.String[] { "Data", "MimeType", "Http", "Topic", "Context", });
+        new java.lang.String[] { "Data", "MimeType", "TraceContext", "Http", "Topic", "Notification", "Websocket", "Context", });
     internal_static_nitric_faas_v1_HeaderValue_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_nitric_faas_v1_HeaderValue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_HeaderValue_descriptor,
         new java.lang.String[] { "Value", });
     internal_static_nitric_faas_v1_QueryValue_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_nitric_faas_v1_QueryValue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_QueryValue_descriptor,
         new java.lang.String[] { "Value", });
     internal_static_nitric_faas_v1_HttpTriggerContext_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_nitric_faas_v1_HttpTriggerContext_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_HttpTriggerContext_descriptor,
@@ -362,19 +500,43 @@ public final class NitricFaas {
         internal_static_nitric_faas_v1_HttpTriggerContext_PathParamsEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_nitric_faas_v1_TopicTriggerContext_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_nitric_faas_v1_TopicTriggerContext_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_TopicTriggerContext_descriptor,
         new java.lang.String[] { "Topic", });
+    internal_static_nitric_faas_v1_BucketNotification_descriptor =
+      getDescriptor().getMessageTypes().get(21);
+    internal_static_nitric_faas_v1_BucketNotification_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_BucketNotification_descriptor,
+        new java.lang.String[] { "Key", "Type", });
+    internal_static_nitric_faas_v1_NotificationTriggerContext_descriptor =
+      getDescriptor().getMessageTypes().get(22);
+    internal_static_nitric_faas_v1_NotificationTriggerContext_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_NotificationTriggerContext_descriptor,
+        new java.lang.String[] { "Source", "Bucket", "Notification", });
+    internal_static_nitric_faas_v1_WebsocketTriggerContext_descriptor =
+      getDescriptor().getMessageTypes().get(23);
+    internal_static_nitric_faas_v1_WebsocketTriggerContext_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_WebsocketTriggerContext_descriptor,
+        new java.lang.String[] { "Socket", "Event", "ConnectionId", "QueryParams", });
+    internal_static_nitric_faas_v1_WebsocketTriggerContext_QueryParamsEntry_descriptor =
+      internal_static_nitric_faas_v1_WebsocketTriggerContext_descriptor.getNestedTypes().get(0);
+    internal_static_nitric_faas_v1_WebsocketTriggerContext_QueryParamsEntry_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_WebsocketTriggerContext_QueryParamsEntry_descriptor,
+        new java.lang.String[] { "Key", "Value", });
     internal_static_nitric_faas_v1_TriggerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_nitric_faas_v1_TriggerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_TriggerResponse_descriptor,
-        new java.lang.String[] { "Data", "Http", "Topic", "Context", });
+        new java.lang.String[] { "Data", "Http", "Topic", "Notification", "Websocket", "Context", });
     internal_static_nitric_faas_v1_HttpResponseContext_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_nitric_faas_v1_HttpResponseContext_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_HttpResponseContext_descriptor,
@@ -392,10 +554,22 @@ public final class NitricFaas {
         internal_static_nitric_faas_v1_HttpResponseContext_HeadersEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
     internal_static_nitric_faas_v1_TopicResponseContext_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_nitric_faas_v1_TopicResponseContext_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_nitric_faas_v1_TopicResponseContext_descriptor,
+        new java.lang.String[] { "Success", });
+    internal_static_nitric_faas_v1_NotificationResponseContext_descriptor =
+      getDescriptor().getMessageTypes().get(27);
+    internal_static_nitric_faas_v1_NotificationResponseContext_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_NotificationResponseContext_descriptor,
+        new java.lang.String[] { "Success", });
+    internal_static_nitric_faas_v1_WebsocketResponseContext_descriptor =
+      getDescriptor().getMessageTypes().get(28);
+    internal_static_nitric_faas_v1_WebsocketResponseContext_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_nitric_faas_v1_WebsocketResponseContext_descriptor,
         new java.lang.String[] { "Success", });
   }
 

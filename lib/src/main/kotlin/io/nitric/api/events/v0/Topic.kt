@@ -36,21 +36,56 @@ class NitricEvent(val payload: Map<String, Any?>, val id: String=UUID.randomUUID
     }
 }
 
+class PublishOptions(val delay: Int = 0) {
+    companion object {
+        @JvmStatic
+        fun WithDelay(delay: Int): PublishOptions
+        {
+            return PublishOptions(delay)
+        }
+    }
+}
+
 /**
  * Represents a reference to a topic.
  */
 class Topic internal constructor(private val client: EventingClients, val name: String) {
     /**
+     * Publish a new [event] to this [Topic]. Specify [opts] to set a delay.
+     */
+    fun publish(event: NitricEvent, opts: PublishOptions = PublishOptions()): NitricEvent {
+        val publishRequest = EventPublishRequest.newBuilder()
+            .setTopic(this.name)
+            .setEvent(event.toWire())
+            .setDelay(opts.delay)
+
+        val resp = this.client.event.publish(publishRequest.build())
+
+        return NitricEvent(payload=event.payload, payloadType=event.payloadType, id=resp.id)
+    }
+
+    /**
      * Publish a new [event] to this [Topic].
      */
     fun publish(event: NitricEvent): NitricEvent {
-        val resp = this.client.event.publish(
-            EventPublishRequest.newBuilder()
-                .setTopic(this.name)
-                .setEvent(event.toWire())
-                .build()
-        )
+        return this.publish(event, PublishOptions())
+    }
 
-        return NitricEvent(payload=event.payload, payloadType=event.payloadType, id=resp.id)
+    /**
+     * Publish an event with this [payload] to this [Topic]. Specify [opts] to set a delay.
+     */
+    fun publish(payload: Map<String, Any?>, opts: PublishOptions = PublishOptions()): NitricEvent {
+        val event = NitricEvent(payload)
+
+        return this.publish(event, opts)
+    }
+
+    /**
+     * Publish an event with this [payload] to this [Topic].
+     */
+    fun publish(payload: Map<String, Any?>): NitricEvent {
+        val event = NitricEvent(payload)
+
+        return this.publish(payload)
     }
 }

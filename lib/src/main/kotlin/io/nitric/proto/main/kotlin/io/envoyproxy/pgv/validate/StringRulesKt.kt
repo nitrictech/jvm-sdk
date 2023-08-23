@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializestringRules")
-inline fun stringRules(block: io.envoyproxy.pgv.validate.StringRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.StringRules =
-  io.envoyproxy.pgv.validate.StringRulesKt.Dsl._create(io.envoyproxy.pgv.validate.StringRules.newBuilder()).apply { block() }._build()
+inline fun stringRules(block: io.envoyproxy.pgv.validate.StringRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.StringRules =
+  io.envoyproxy.pgv.validate.StringRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.StringRules.newBuilder()).apply { block() }._build()
 object StringRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.StringRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.StringRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.StringRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.StringRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.StringRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.StringRules = _builder.build()
 
     /**
      * <pre>
@@ -1070,7 +1070,7 @@ object StringRulesKt {
      *
      * <code>.validate.KnownRegex well_known_regex = 24;</code>
      */
-     var wellKnownRegex: io.envoyproxy.pgv.validate.KnownRegex
+     var wellKnownRegex: io.envoyproxy.pgv.validate.Validate.KnownRegex
       @JvmName("getWellKnownRegex")
       get() = _builder.getWellKnownRegex()
       @JvmName("setWellKnownRegex")
@@ -1185,7 +1185,7 @@ object StringRulesKt {
     fun hasIgnoreEmpty(): kotlin.Boolean {
       return _builder.hasIgnoreEmpty()
     }
-    val wellKnownCase: io.envoyproxy.pgv.validate.StringRules.WellKnownCase
+    val wellKnownCase: io.envoyproxy.pgv.validate.Validate.StringRules.WellKnownCase
       @JvmName("getWellKnownCase")
       get() = _builder.getWellKnownCase()
 
@@ -1195,6 +1195,6 @@ object StringRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.StringRules.copy(block: io.envoyproxy.pgv.validate.StringRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.StringRules =
+inline fun io.envoyproxy.pgv.validate.Validate.StringRules.copy(block: io.envoyproxy.pgv.validate.StringRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.StringRules =
   io.envoyproxy.pgv.validate.StringRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

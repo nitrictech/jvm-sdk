@@ -75,6 +75,51 @@ object TriggerRequestKt {
     }
 
     /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    var traceContext: io.nitric.proto.faas.v1.TraceContext
+      @JvmName("getTraceContext")
+      get() = _builder.getTraceContext()
+      @JvmName("setTraceContext")
+      set(value) {
+        _builder.setTraceContext(value)
+      }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     */
+    fun clearTraceContext() {
+      _builder.clearTraceContext()
+    }
+    /**
+     * <pre>
+     * TraceInformation from the membrane
+     * Allows tying traces from external triggers (e.g. HttpRequests)
+     * into each event request/response pair of the Bidirectional stream.
+     * which cannot be facilitated by OOTB stream interceptors from OTEL.
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.TraceContext trace_context = 10;</code>
+     * @return Whether the traceContext field is set.
+     */
+    fun hasTraceContext(): kotlin.Boolean {
+      return _builder.hasTraceContext()
+    }
+
+    /**
      * <code>.nitric.faas.v1.HttpTriggerContext http = 3;</code>
      */
     var http: io.nitric.proto.faas.v1.HttpTriggerContext
@@ -121,6 +166,54 @@ object TriggerRequestKt {
     fun hasTopic(): kotlin.Boolean {
       return _builder.hasTopic()
     }
+
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    var notification: io.nitric.proto.faas.v1.NotificationTriggerContext
+      @JvmName("getNotification")
+      get() = _builder.getNotification()
+      @JvmName("setNotification")
+      set(value) {
+        _builder.setNotification(value)
+      }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     */
+    fun clearNotification() {
+      _builder.clearNotification()
+    }
+    /**
+     * <code>.nitric.faas.v1.NotificationTriggerContext notification = 5;</code>
+     * @return Whether the notification field is set.
+     */
+    fun hasNotification(): kotlin.Boolean {
+      return _builder.hasNotification()
+    }
+
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    var websocket: io.nitric.proto.faas.v1.WebsocketTriggerContext
+      @JvmName("getWebsocket")
+      get() = _builder.getWebsocket()
+      @JvmName("setWebsocket")
+      set(value) {
+        _builder.setWebsocket(value)
+      }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     */
+    fun clearWebsocket() {
+      _builder.clearWebsocket()
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketTriggerContext websocket = 6;</code>
+     * @return Whether the websocket field is set.
+     */
+    fun hasWebsocket(): kotlin.Boolean {
+      return _builder.hasWebsocket()
+    }
     val contextCase: io.nitric.proto.faas.v1.TriggerRequest.ContextCase
       @JvmName("getContextCase")
       get() = _builder.getContextCase()
@@ -134,9 +227,18 @@ object TriggerRequestKt {
 inline fun io.nitric.proto.faas.v1.TriggerRequest.copy(block: io.nitric.proto.faas.v1.TriggerRequestKt.Dsl.() -> kotlin.Unit): io.nitric.proto.faas.v1.TriggerRequest =
   io.nitric.proto.faas.v1.TriggerRequestKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 
+val io.nitric.proto.faas.v1.TriggerRequestOrBuilder.traceContextOrNull: io.nitric.proto.faas.v1.TraceContext?
+  get() = if (hasTraceContext()) getTraceContext() else null
+
 val io.nitric.proto.faas.v1.TriggerRequestOrBuilder.httpOrNull: io.nitric.proto.faas.v1.HttpTriggerContext?
   get() = if (hasHttp()) getHttp() else null
 
 val io.nitric.proto.faas.v1.TriggerRequestOrBuilder.topicOrNull: io.nitric.proto.faas.v1.TopicTriggerContext?
   get() = if (hasTopic()) getTopic() else null
+
+val io.nitric.proto.faas.v1.TriggerRequestOrBuilder.notificationOrNull: io.nitric.proto.faas.v1.NotificationTriggerContext?
+  get() = if (hasNotification()) getNotification() else null
+
+val io.nitric.proto.faas.v1.TriggerRequestOrBuilder.websocketOrNull: io.nitric.proto.faas.v1.WebsocketTriggerContext?
+  get() = if (hasWebsocket()) getWebsocket() else null
 

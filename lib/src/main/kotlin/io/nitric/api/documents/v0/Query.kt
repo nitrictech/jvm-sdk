@@ -15,6 +15,8 @@
 package io.nitric.api.documents.v0
 
 import io.nitric.proto.document.v1.DocumentQueryRequest
+import io.nitric.proto.document.v1.DocumentQueryStreamRequest
+import io.nitric.proto.document.v1.DocumentQueryStreamResponse
 import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingStub
 import io.nitric.proto.document.v1.Expression
 import io.nitric.proto.document.v1.ExpressionValue
@@ -33,6 +35,37 @@ enum class Operator(val value: String) {
     GT(">"),
     STARTS_WITH("startsWith"),
 }
+
+/**
+ * Represents a document stream iterator
+ */
+class QueryStream<T> internal constructor(
+    private val client: DocumentServiceBlockingStub,
+    private val collection: Collection<T>,
+    private val stream: Iterator<DocumentQueryStreamResponse>): Iterator<DocumentSnapshot<T>> {
+    override fun next(): DocumentSnapshot<T> {
+        val streamResponse = this.stream.next()
+
+        val gson = DocumentSerializer.gsonBuilder.create()
+
+        return DocumentSnapshot(
+            DocumentReference(this.client, this.collection, this.collection.type, streamResponse.document.key.id),
+            gson.fromJson(gson.toJsonTree(ProtoUtils.toMap(streamResponse.document.content)), this.collection.type)
+        )
+    }
+
+    override fun hasNext(): Boolean {
+        return this.stream.hasNext()
+    }
+}
+
+/**
+ * Represents a document query response with the resulting [documents] and an optional [pagingToken]
+ */
+data class QueryResponse<T> internal constructor(
+    val pagingToken: Map<String, String>,
+    val documents: List<DocumentSnapshot<T>>
+)
 
 /**
  * A [Query] object used to construct [DocumentReference] queries. The expected [type] of the document is provided.
@@ -78,13 +111,6 @@ class Query<T> internal constructor(private val client: DocumentServiceBlockingS
     /**
      * Limit the number of results returned by this [Query]. The [limit] must be a positive integer.
      */
-    fun limit(limit: UInt) = fluently {
-        this.fetchLimit = limit
-    }
-
-    /**
-     * Limit the number of results returned by this [Query]. The [limit] must be a positive integer.
-     */
     fun limit(limit: Int) = fluently {
         if (limit < 0) this.fetchLimit = UInt.MIN_VALUE else this.fetchLimit = limit.toUInt()
     }
@@ -92,7 +118,7 @@ class Query<T> internal constructor(private val client: DocumentServiceBlockingS
     /**
      * Retrieve all found results as a list of [DocumentSnapshot]s.
      */
-    fun fetch(): List<DocumentSnapshot<T>> {
+    fun fetch(): QueryResponse<T> {
         val request = DocumentQueryRequest
             .newBuilder()
             .setCollection(this.collection.toWire())
@@ -109,16 +135,30 @@ class Query<T> internal constructor(private val client: DocumentServiceBlockingS
         val response = this.client.query(request.build())
         val gson = DocumentSerializer.gsonBuilder.create()
 
-        return response.documentsList.map {
+        val documents = response.documentsList.map {
             DocumentSnapshot(
                 DocumentReference<T>(this.client, this.collection, this.type, it.key.id),
                 gson.fromJson(gson.toJsonTree(ProtoUtils.toMap(it.content)), this.type)
             )
         }
+
+        return QueryResponse(response.pagingTokenMap, documents)
     }
 
-    // TODO: Implement document streaming
-    //  fun stream()
+    fun stream(): QueryStream<T> {
+        val request = DocumentQueryStreamRequest
+            .newBuilder()
+            .setCollection(this.collection.toWire())
+            .setLimit(this.fetchLimit.toInt())
+
+        for ((idx, value) in expressions.withIndex()) {
+            request.addExpressions(idx, value)
+        }
+
+        val response = this.client.queryStream(request.build())
+
+        return QueryStream(this.client, this.collection, response)
+    }
 
     /**
      * Convert the where calls into [Expression]s.

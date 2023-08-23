@@ -25,21 +25,13 @@ import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingSt
  *
  * Is only created via [Documents.collection] and is passed a [name] and the [type] of documents stored in the collection.
  */
-class CollectionGroup<T: Any> internal constructor(
+class CollectionGroup<T> internal constructor(
     private val client: DocumentServiceBlockingStub,
     val name: String,
     val type: Class<T>,
-    val parent: CollectionGroup<Any>?
+    val parent: Collection<*>
 ) {
-    //
     private val NIL_DOC_ID: String = "";
-
-    fun collection(name: String, type: Class<T>): CollectionGroup<T> {
-        if (this.depth() >= Constants.MAX_COLLECTION_DEPTH) {
-            throw IllegalAccessException("Maximum collection depth ${Constants.MAX_COLLECTION_DEPTH} exceeded")
-        }
-        return CollectionGroup(this.client, name, type, this as CollectionGroup<Any>)
-    }
 
     /**
      * Create a new [Query] builder to find [DocumentReference]s.
@@ -49,24 +41,9 @@ class CollectionGroup<T: Any> internal constructor(
     }
 
     /**
-     * Calculates the depth of this [Collection]. Cannot exceed [Constants.MAX_COLLECTION_DEPTH]
-     */
-    private fun depth(): Int {
-        if (this.parent != null) {
-            return this.parent.depth() + 1
-        }
-
-        return 0
-    }
-
-    /**
      * Converts this [CollectionGroup] to a [Collection]
      */
     internal fun toCollection(): Collection<T> {
-        if (this.parent != null) {
-            return Collection(this.client, this.name, this.type, DocumentReference(this.client, this.parent.toCollection(), this.parent.type, NIL_DOC_ID))
-        }
-
-        return Collection(this.client, this.name, this.type,null)
+        return Collection(this.client, this.name, this.type, DocumentReference(this.client, this.parent, this.parent.type, NIL_DOC_ID))
     }
 }

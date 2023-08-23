@@ -14,6 +14,7 @@
 
 package io.nitric.faas.v0
 
+import com.google.gson.Gson
 import io.nitric.proto.faas.v1.TopicResponseContext
 import io.nitric.proto.faas.v1.TriggerRequest
 import io.nitric.proto.faas.v1.TriggerResponse
@@ -52,7 +53,22 @@ data class EventContext internal constructor(override val req: EventRequest, ove
 /**
  * Represents a message pushed to a subscriber via a [topic].
  */
-class EventRequest internal constructor(data: ByteArray, val topic: String): AbstractRequest(data) {}
+class EventRequest internal constructor(data: ByteArray, val topic: String): AbstractRequest(data) {
+    /**
+     * Convert JSON serialized data from request into an object of a certain [type].
+     */
+    fun <T>json(type: Class<T>): T {
+        val gson = Gson()
+        return gson.fromJson(this.data.decodeToString(), type)
+    }
+
+    /**
+     * Convert JSON serialized data from request into an object of a certain type.
+     */
+    inline fun <reified T>json(): T {
+        return this.json(T::class.java)
+    }
+}
 
 /**
  * Represents the results of processing an event. Can view if the event was a [success] or not.

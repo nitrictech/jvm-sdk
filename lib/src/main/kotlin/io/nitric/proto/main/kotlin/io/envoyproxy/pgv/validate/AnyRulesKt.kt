@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializeanyRules")
-inline fun anyRules(block: io.envoyproxy.pgv.validate.AnyRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.AnyRules =
-  io.envoyproxy.pgv.validate.AnyRulesKt.Dsl._create(io.envoyproxy.pgv.validate.AnyRules.newBuilder()).apply { block() }._build()
+inline fun anyRules(block: io.envoyproxy.pgv.validate.AnyRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.AnyRules =
+  io.envoyproxy.pgv.validate.AnyRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.AnyRules.newBuilder()).apply { block() }._build()
 object AnyRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.AnyRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.AnyRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.AnyRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.AnyRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.AnyRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.AnyRules = _builder.build()
 
     /**
      * <pre>
@@ -270,6 +270,6 @@ object AnyRulesKt {
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.AnyRules.copy(block: io.envoyproxy.pgv.validate.AnyRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.AnyRules =
+inline fun io.envoyproxy.pgv.validate.Validate.AnyRules.copy(block: io.envoyproxy.pgv.validate.AnyRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.AnyRules =
   io.envoyproxy.pgv.validate.AnyRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

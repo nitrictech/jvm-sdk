@@ -44,7 +44,7 @@ class QueryTest() {
         }
 
         assertNotNull(response)
-        assertEquals(0, response.size)
+        assertEquals(0, response.documents.size)
     }
 
     @Test
@@ -66,7 +66,7 @@ class QueryTest() {
         }
 
         assertNotNull(response)
-        assertEquals(0, response.size)
+        assertEquals(0, response.documents.size)
     }
 
     @Test
@@ -130,7 +130,7 @@ class QueryTest() {
         }
 
         assertNotNull(response)
-        assertEquals(0, response.size)
+        assertEquals(0, response.documents.size)
     }
 
     @Test
@@ -151,7 +151,7 @@ class QueryTest() {
         }
 
         assertNotNull(response)
-        assertEquals(0, response.size)
+        assertEquals(0, response.documents.size)
     }
 
     @Test
@@ -159,7 +159,7 @@ class QueryTest() {
         val query = collection.query()
 
         val response = runBlocking {
-            query.limit(1u).fetch()
+            query.limit(1).fetch()
         }
 
         coVerify(exactly = 1) {
@@ -172,7 +172,7 @@ class QueryTest() {
         }
 
         assertNotNull(response)
-        assertEquals(0, response.size)
+        assertEquals(0, response.documents.size)
     }
 
     @Test
@@ -193,6 +193,6 @@ class QueryTest() {
         }
 
         assertNotNull(response)
-        assertEquals(0, response.size)
+        assertEquals(0, response.documents.size)
     }
 }

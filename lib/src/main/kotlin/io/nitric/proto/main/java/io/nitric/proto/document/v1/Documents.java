@@ -110,65 +110,65 @@ public final class Documents {
     java.lang.String[] descriptorData = {
       "\n proto/document/v1/document.proto\022\022nitr" +
       "ic.document.v1\032\034google/protobuf/struct.p" +
-      "roto\032\027validate/validate.proto\"_\n\nCollect" +
-      "ion\022(\n\004name\030\001 \001(\tB\032\372B\027r\025(\200\0022\020^\\w+([.\\-]\\" +
-      "w+)*$\022\'\n\006parent\030\002 \001(\0132\027.nitric.document." +
-      "v1.Key\"[\n\003Key\022<\n\ncollection\030\001 \001(\0132\036.nitr" +
-      "ic.document.v1.CollectionB\010\372B\005\212\001\002\020\001\022\026\n\002i" +
-      "d\030\002 \001(\tB\n\372B\007r\005 \001(\200\002\"n\n\010Document\0222\n\007conte" +
-      "nt\030\001 \001(\0132\027.google.protobuf.StructB\010\372B\005\212\001" +
-      "\002\020\001\022.\n\003key\030\002 \001(\0132\027.nitric.document.v1.Ke" +
-      "yB\010\372B\005\212\001\002\020\001\"t\n\017ExpressionValue\022\023\n\tint_va" +
-      "lue\030\001 \001(\003H\000\022\026\n\014double_value\030\002 \001(\001H\000\022\026\n\014s" +
-      "tring_value\030\003 \001(\tH\000\022\024\n\nbool_value\030\004 \001(\010H" +
-      "\000B\006\n\004kind\"\222\001\n\nExpression\022\017\n\007operand\030\001 \001(" +
-      "\t\0225\n\010operator\030\002 \001(\tB#\372B r\036R\002==R\001<R\002<=R\001>" +
-      "R\002>=R\nstartsWith\022<\n\005value\030\003 \001(\0132#.nitric" +
-      ".document.v1.ExpressionValueB\010\372B\005\212\001\002\020\001\"D" +
-      "\n\022DocumentGetRequest\022.\n\003key\030\001 \001(\0132\027.nitr" +
-      "ic.document.v1.KeyB\010\372B\005\212\001\002\020\001\"E\n\023Document" +
-      "GetResponse\022.\n\010document\030\001 \001(\0132\034.nitric.d" +
-      "ocument.v1.Document\"x\n\022DocumentSetReques" +
+      "roto\032\027validate/validate.proto\"C\n\nCollect" +
+      "ion\022\014\n\004name\030\001 \001(\t\022\'\n\006parent\030\002 \001(\0132\027.nitr" +
+      "ic.document.v1.Key\"[\n\003Key\022<\n\ncollection\030" +
+      "\001 \001(\0132\036.nitric.document.v1.CollectionB\010\372" +
+      "B\005\212\001\002\020\001\022\026\n\002id\030\002 \001(\tB\n\372B\007r\005 \001(\200\002\"n\n\010Docum" +
+      "ent\0222\n\007content\030\001 \001(\0132\027.google.protobuf.S" +
+      "tructB\010\372B\005\212\001\002\020\001\022.\n\003key\030\002 \001(\0132\027.nitric.do" +
+      "cument.v1.KeyB\010\372B\005\212\001\002\020\001\"t\n\017ExpressionVal" +
+      "ue\022\023\n\tint_value\030\001 \001(\003H\000\022\026\n\014double_value\030" +
+      "\002 \001(\001H\000\022\026\n\014string_value\030\003 \001(\tH\000\022\024\n\nbool_" +
+      "value\030\004 \001(\010H\000B\006\n\004kind\"\222\001\n\nExpression\022\017\n\007" +
+      "operand\030\001 \001(\t\0225\n\010operator\030\002 \001(\tB#\372B r\036R\002" +
+      "==R\001<R\002<=R\001>R\002>=R\nstartsWith\022<\n\005value\030\003 " +
+      "\001(\0132#.nitric.document.v1.ExpressionValue" +
+      "B\010\372B\005\212\001\002\020\001\"D\n\022DocumentGetRequest\022.\n\003key\030" +
+      "\001 \001(\0132\027.nitric.document.v1.KeyB\010\372B\005\212\001\002\020\001" +
+      "\"E\n\023DocumentGetResponse\022.\n\010document\030\001 \001(" +
+      "\0132\034.nitric.document.v1.Document\"x\n\022Docum" +
+      "entSetRequest\022.\n\003key\030\001 \001(\0132\027.nitric.docu" +
+      "ment.v1.KeyB\010\372B\005\212\001\002\020\001\0222\n\007content\030\003 \001(\0132\027" +
+      ".google.protobuf.StructB\010\372B\005\212\001\002\020\001\"\025\n\023Doc" +
+      "umentSetResponse\"G\n\025DocumentDeleteReques" +
       "t\022.\n\003key\030\001 \001(\0132\027.nitric.document.v1.KeyB" +
-      "\010\372B\005\212\001\002\020\001\0222\n\007content\030\003 \001(\0132\027.google.prot" +
-      "obuf.StructB\010\372B\005\212\001\002\020\001\"\025\n\023DocumentSetResp" +
-      "onse\"G\n\025DocumentDeleteRequest\022.\n\003key\030\001 \001" +
-      "(\0132\027.nitric.document.v1.KeyB\010\372B\005\212\001\002\020\001\"\030\n" +
-      "\026DocumentDeleteResponse\"\235\002\n\024DocumentQuer" +
-      "yRequest\022<\n\ncollection\030\001 \001(\0132\036.nitric.do" +
-      "cument.v1.CollectionB\010\372B\005\212\001\002\020\001\0223\n\013expres" +
-      "sions\030\003 \003(\0132\036.nitric.document.v1.Express" +
-      "ion\022\r\n\005limit\030\004 \001(\005\022O\n\014paging_token\030\005 \003(\013" +
-      "29.nitric.document.v1.DocumentQueryReque" +
-      "st.PagingTokenEntry\0322\n\020PagingTokenEntry\022" +
-      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\316\001\n\025Docu" +
-      "mentQueryResponse\022/\n\tdocuments\030\001 \003(\0132\034.n" +
-      "itric.document.v1.Document\022P\n\014paging_tok" +
-      "en\030\002 \003(\0132:.nitric.document.v1.DocumentQu" +
-      "eryResponse.PagingTokenEntry\0322\n\020PagingTo" +
-      "kenEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001" +
-      "\"\236\001\n\032DocumentQueryStreamRequest\022<\n\ncolle" +
-      "ction\030\001 \001(\0132\036.nitric.document.v1.Collect" +
-      "ionB\010\372B\005\212\001\002\020\001\0223\n\013expressions\030\003 \003(\0132\036.nit" +
-      "ric.document.v1.Expression\022\r\n\005limit\030\004 \001(" +
-      "\005\"M\n\033DocumentQueryStreamResponse\022.\n\010docu" +
-      "ment\030\001 \001(\0132\034.nitric.document.v1.Document" +
-      "2\362\003\n\017DocumentService\022V\n\003Get\022&.nitric.doc" +
-      "ument.v1.DocumentGetRequest\032\'.nitric.doc" +
-      "ument.v1.DocumentGetResponse\022V\n\003Set\022&.ni" +
-      "tric.document.v1.DocumentSetRequest\032\'.ni" +
-      "tric.document.v1.DocumentSetResponse\022_\n\006" +
-      "Delete\022).nitric.document.v1.DocumentDele" +
-      "teRequest\032*.nitric.document.v1.DocumentD" +
-      "eleteResponse\022\\\n\005Query\022(.nitric.document" +
-      ".v1.DocumentQueryRequest\032).nitric.docume" +
-      "nt.v1.DocumentQueryResponse\022p\n\013QueryStre" +
-      "am\022..nitric.document.v1.DocumentQueryStr" +
-      "eamRequest\032/.nitric.document.v1.Document" +
-      "QueryStreamResponse0\001Bn\n\033io.nitric.proto" +
-      ".document.v1B\tDocumentsP\001Z\014nitric/v1;v1\252" +
-      "\002\030Nitric.Proto.Document.v1\312\002\030Nitric\\Prot" +
-      "o\\Document\\V1b\006proto3"
+      "\010\372B\005\212\001\002\020\001\"\030\n\026DocumentDeleteResponse\"\235\002\n\024" +
+      "DocumentQueryRequest\022<\n\ncollection\030\001 \001(\013" +
+      "2\036.nitric.document.v1.CollectionB\010\372B\005\212\001\002" +
+      "\020\001\0223\n\013expressions\030\003 \003(\0132\036.nitric.documen" +
+      "t.v1.Expression\022\r\n\005limit\030\004 \001(\005\022O\n\014paging" +
+      "_token\030\005 \003(\01329.nitric.document.v1.Docume" +
+      "ntQueryRequest.PagingTokenEntry\0322\n\020Pagin" +
+      "gTokenEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:" +
+      "\0028\001\"\316\001\n\025DocumentQueryResponse\022/\n\tdocumen" +
+      "ts\030\001 \003(\0132\034.nitric.document.v1.Document\022P" +
+      "\n\014paging_token\030\002 \003(\0132:.nitric.document.v" +
+      "1.DocumentQueryResponse.PagingTokenEntry" +
+      "\0322\n\020PagingTokenEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val" +
+      "ue\030\002 \001(\t:\0028\001\"\236\001\n\032DocumentQueryStreamRequ" +
+      "est\022<\n\ncollection\030\001 \001(\0132\036.nitric.documen" +
+      "t.v1.CollectionB\010\372B\005\212\001\002\020\001\0223\n\013expressions" +
+      "\030\003 \003(\0132\036.nitric.document.v1.Expression\022\r" +
+      "\n\005limit\030\004 \001(\005\"M\n\033DocumentQueryStreamResp" +
+      "onse\022.\n\010document\030\001 \001(\0132\034.nitric.document" +
+      ".v1.Document2\362\003\n\017DocumentService\022V\n\003Get\022" +
+      "&.nitric.document.v1.DocumentGetRequest\032" +
+      "\'.nitric.document.v1.DocumentGetResponse" +
+      "\022V\n\003Set\022&.nitric.document.v1.DocumentSet" +
+      "Request\032\'.nitric.document.v1.DocumentSet" +
+      "Response\022_\n\006Delete\022).nitric.document.v1." +
+      "DocumentDeleteRequest\032*.nitric.document." +
+      "v1.DocumentDeleteResponse\022\\\n\005Query\022(.nit" +
+      "ric.document.v1.DocumentQueryRequest\032).n" +
+      "itric.document.v1.DocumentQueryResponse\022" +
+      "p\n\013QueryStream\022..nitric.document.v1.Docu" +
+      "mentQueryStreamRequest\032/.nitric.document" +
+      ".v1.DocumentQueryStreamResponse0\001B\225\001\n\033io" +
+      ".nitric.proto.document.v1B\tDocumentsP\001Z3" +
+      "github.com/nitrictech/nitric/core/pkg/ap" +
+      "i/nitric/v1\252\002\030Nitric.Proto.Document.v1\312\002" +
+      "\030Nitric\\Proto\\Document\\V1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

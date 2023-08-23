@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializesInt64Rules")
-inline fun sInt64Rules(block: io.envoyproxy.pgv.validate.SInt64RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.SInt64Rules =
-  io.envoyproxy.pgv.validate.SInt64RulesKt.Dsl._create(io.envoyproxy.pgv.validate.SInt64Rules.newBuilder()).apply { block() }._build()
+inline fun sInt64Rules(block: io.envoyproxy.pgv.validate.SInt64RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.SInt64Rules =
+  io.envoyproxy.pgv.validate.SInt64RulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.SInt64Rules.newBuilder()).apply { block() }._build()
 object SInt64RulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.SInt64Rules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.SInt64Rules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.SInt64Rules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.SInt64Rules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.SInt64Rules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.SInt64Rules = _builder.build()
 
     /**
      * <pre>
@@ -461,6 +461,6 @@ object SInt64RulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.SInt64Rules.copy(block: io.envoyproxy.pgv.validate.SInt64RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.SInt64Rules =
+inline fun io.envoyproxy.pgv.validate.Validate.SInt64Rules.copy(block: io.envoyproxy.pgv.validate.SInt64RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.SInt64Rules =
   io.envoyproxy.pgv.validate.SInt64RulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

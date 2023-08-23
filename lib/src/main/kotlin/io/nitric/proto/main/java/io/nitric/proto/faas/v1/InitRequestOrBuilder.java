@@ -52,5 +52,50 @@ public interface InitRequestOrBuilder extends
    */
   io.nitric.proto.faas.v1.ScheduleWorkerOrBuilder getScheduleOrBuilder();
 
+  /**
+   * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+   * @return Whether the bucketNotification field is set.
+   */
+  boolean hasBucketNotification();
+  /**
+   * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+   * @return The bucketNotification.
+   */
+  io.nitric.proto.faas.v1.BucketNotificationWorker getBucketNotification();
+  /**
+   * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+   */
+  io.nitric.proto.faas.v1.BucketNotificationWorkerOrBuilder getBucketNotificationOrBuilder();
+
+  /**
+   * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+   * @return Whether the websocket field is set.
+   */
+  boolean hasWebsocket();
+  /**
+   * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+   * @return The websocket.
+   */
+  io.nitric.proto.faas.v1.WebsocketWorker getWebsocket();
+  /**
+   * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+   */
+  io.nitric.proto.faas.v1.WebsocketWorkerOrBuilder getWebsocketOrBuilder();
+
+  /**
+   * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+   * @return Whether the httpWorker field is set.
+   */
+  boolean hasHttpWorker();
+  /**
+   * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+   * @return The httpWorker.
+   */
+  io.nitric.proto.faas.v1.HttpWorker getHttpWorker();
+  /**
+   * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+   */
+  io.nitric.proto.faas.v1.HttpWorkerOrBuilder getHttpWorkerOrBuilder();
+
   public io.nitric.proto.faas.v1.InitRequest.WorkerCase getWorkerCase();
 }

@@ -18,17 +18,16 @@ import io.grpc.StatusRuntimeException
 import io.nitric.proto.document.v1.*
 import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceBlockingStub
 import io.nitric.util.ProtoUtils
-import kotlin.reflect.typeOf
 
 
 /**
  * A reference to a specific document in a [Collection]. Created using [Collection.doc].
  */
-class DocumentReference<T> internal constructor(private val client: DocumentServiceBlockingStub, val parent: Collection<T>, private val type: Class<T>, val id: String) {
+class DocumentReference<T> internal constructor(private val client: DocumentServiceBlockingStub, val parent: Collection<*>, private val type: Class<T>, val id: String) {
     /**
      * Retrieve the contents of this document.
      */
-    suspend fun get(): T? {
+    fun get(): T? {
         val response: DocumentGetResponse
         try {
             response = this.client.get(
@@ -55,7 +54,7 @@ class DocumentReference<T> internal constructor(private val client: DocumentServ
     /**
      * Sets the contents of the document with [value].
      */
-    suspend fun set(value: T) {
+    fun set(value: T) {
         val gson = DocumentSerializer.gsonBuilder.create()
         val json = gson.toJsonTree(value, this.type)
 
@@ -71,30 +70,22 @@ class DocumentReference<T> internal constructor(private val client: DocumentServ
     /**
      * Deletes the document from the collection.
      */
-    suspend fun delete() {
+    fun delete() {
         this.client.delete(DocumentDeleteRequest.newBuilder().setKey(this.toWire()).build())
     }
 
     /**
      * Creates a reference to a sub-collection within this document. Sets the [name] of the collection and the [type] of documents stored in the collection.
      */
-    fun <T>collection(name: String, type: Class<T>): Collection<T> {
-        if (this.depth() >= Constants.MAX_COLLECTION_DEPTH) {
-            throw java.lang.IllegalArgumentException("Maximum collection depth ${Constants.MAX_COLLECTION_DEPTH} exceeded")
-        }
-
-        return Collection(this.client, name, type, this as DocumentReference<Any>?)
+    fun <S>collection(name: String, type: Class<S>): Collection<S> {
+        return Collection(this.client, name, type, this)
     }
 
     /**
-     * Calculates the depth of the collection. Cannot exceed [Constants.MAX_COLLECTION_DEPTH]
+     * Creates a reference to a sub-collection within this document. Sets the [name] of the collection and the [type] of documents stored in the collection.
      */
-    private fun depth(): Int {
-        if (this.parent.parent != null) {
-            return this.parent.parent.depth() + 1
-        }
-
-        return 0
+    inline fun <reified S>collection(name: String): Collection<S> {
+        return this.collection(name, S::class.java)
     }
 
     /**

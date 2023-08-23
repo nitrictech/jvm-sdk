@@ -45,8 +45,9 @@ public final class Errors {
       "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"Z\n\014Error" +
       "Details\022\017\n\007message\030\001 \001(\t\022\r\n\005cause\030\002 \001(\t\022" +
       "*\n\005scope\030\003 \001(\0132\033.nitric.error.v1.ErrorSc" +
-      "opeBb\n\030io.nitric.proto.error.v1B\006ErrorsP" +
-      "\001Z\014nitric/v1;v1\252\002\025Nitric.Proto.Error.v1\312" +
+      "opeB\211\001\n\030io.nitric.proto.error.v1B\006Errors" +
+      "P\001Z3github.com/nitrictech/nitric/core/pk" +
+      "g/api/nitric/v1\252\002\025Nitric.Proto.Error.v1\312" +
       "\002\025Nitric\\Proto\\Error\\V1b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

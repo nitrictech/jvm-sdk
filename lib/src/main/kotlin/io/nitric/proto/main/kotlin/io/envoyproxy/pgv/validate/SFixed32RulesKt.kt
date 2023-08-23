@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializesFixed32Rules")
-inline fun sFixed32Rules(block: io.envoyproxy.pgv.validate.SFixed32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.SFixed32Rules =
-  io.envoyproxy.pgv.validate.SFixed32RulesKt.Dsl._create(io.envoyproxy.pgv.validate.SFixed32Rules.newBuilder()).apply { block() }._build()
+inline fun sFixed32Rules(block: io.envoyproxy.pgv.validate.SFixed32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.SFixed32Rules =
+  io.envoyproxy.pgv.validate.SFixed32RulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.SFixed32Rules.newBuilder()).apply { block() }._build()
 object SFixed32RulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.SFixed32Rules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.SFixed32Rules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.SFixed32Rules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.SFixed32Rules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.SFixed32Rules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.SFixed32Rules = _builder.build()
 
     /**
      * <pre>
@@ -461,6 +461,6 @@ object SFixed32RulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.SFixed32Rules.copy(block: io.envoyproxy.pgv.validate.SFixed32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.SFixed32Rules =
+inline fun io.envoyproxy.pgv.validate.Validate.SFixed32Rules.copy(block: io.envoyproxy.pgv.validate.SFixed32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.SFixed32Rules =
   io.envoyproxy.pgv.validate.SFixed32RulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

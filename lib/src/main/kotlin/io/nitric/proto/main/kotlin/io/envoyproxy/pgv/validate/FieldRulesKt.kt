@@ -4,28 +4,28 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializefieldRules")
-inline fun fieldRules(block: io.envoyproxy.pgv.validate.FieldRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.FieldRules =
-  io.envoyproxy.pgv.validate.FieldRulesKt.Dsl._create(io.envoyproxy.pgv.validate.FieldRules.newBuilder()).apply { block() }._build()
+inline fun fieldRules(block: io.envoyproxy.pgv.validate.FieldRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.FieldRules =
+  io.envoyproxy.pgv.validate.FieldRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.FieldRules.newBuilder()).apply { block() }._build()
 object FieldRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.FieldRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.FieldRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.FieldRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.FieldRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.FieldRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.FieldRules = _builder.build()
 
     /**
      * <code>optional .validate.MessageRules message = 17;</code>
      */
-    var message: io.envoyproxy.pgv.validate.MessageRules
+    var message: io.envoyproxy.pgv.validate.Validate.MessageRules
       @JvmName("getMessage")
       get() = _builder.getMessage()
       @JvmName("setMessage")
@@ -45,7 +45,7 @@ object FieldRulesKt {
     fun hasMessage(): kotlin.Boolean {
       return _builder.hasMessage()
     }
-    val FieldRulesKt.Dsl.messageOrNull: io.envoyproxy.pgv.validate.MessageRules?
+    val FieldRulesKt.Dsl.messageOrNull: io.envoyproxy.pgv.validate.Validate.MessageRules?
       get() = _builder.messageOrNull
 
     /**
@@ -55,7 +55,7 @@ object FieldRulesKt {
      *
      * <code>.validate.FloatRules float = 1;</code>
      */
-    var float: io.envoyproxy.pgv.validate.FloatRules
+    var float: io.envoyproxy.pgv.validate.Validate.FloatRules
       @JvmName("getFloat")
       get() = _builder.getFloat()
       @JvmName("setFloat")
@@ -87,7 +87,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.DoubleRules double = 2;</code>
      */
-    var double: io.envoyproxy.pgv.validate.DoubleRules
+    var double: io.envoyproxy.pgv.validate.Validate.DoubleRules
       @JvmName("getDouble")
       get() = _builder.getDouble()
       @JvmName("setDouble")
@@ -111,7 +111,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.Int32Rules int32 = 3;</code>
      */
-    var int32: io.envoyproxy.pgv.validate.Int32Rules
+    var int32: io.envoyproxy.pgv.validate.Validate.Int32Rules
       @JvmName("getInt32")
       get() = _builder.getInt32()
       @JvmName("setInt32")
@@ -135,7 +135,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.Int64Rules int64 = 4;</code>
      */
-    var int64: io.envoyproxy.pgv.validate.Int64Rules
+    var int64: io.envoyproxy.pgv.validate.Validate.Int64Rules
       @JvmName("getInt64")
       get() = _builder.getInt64()
       @JvmName("setInt64")
@@ -159,7 +159,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.UInt32Rules uint32 = 5;</code>
      */
-    var uint32: io.envoyproxy.pgv.validate.UInt32Rules
+    var uint32: io.envoyproxy.pgv.validate.Validate.UInt32Rules
       @JvmName("getUint32")
       get() = _builder.getUint32()
       @JvmName("setUint32")
@@ -183,7 +183,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.UInt64Rules uint64 = 6;</code>
      */
-    var uint64: io.envoyproxy.pgv.validate.UInt64Rules
+    var uint64: io.envoyproxy.pgv.validate.Validate.UInt64Rules
       @JvmName("getUint64")
       get() = _builder.getUint64()
       @JvmName("setUint64")
@@ -207,7 +207,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.SInt32Rules sint32 = 7;</code>
      */
-    var sint32: io.envoyproxy.pgv.validate.SInt32Rules
+    var sint32: io.envoyproxy.pgv.validate.Validate.SInt32Rules
       @JvmName("getSint32")
       get() = _builder.getSint32()
       @JvmName("setSint32")
@@ -231,7 +231,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.SInt64Rules sint64 = 8;</code>
      */
-    var sint64: io.envoyproxy.pgv.validate.SInt64Rules
+    var sint64: io.envoyproxy.pgv.validate.Validate.SInt64Rules
       @JvmName("getSint64")
       get() = _builder.getSint64()
       @JvmName("setSint64")
@@ -255,7 +255,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.Fixed32Rules fixed32 = 9;</code>
      */
-    var fixed32: io.envoyproxy.pgv.validate.Fixed32Rules
+    var fixed32: io.envoyproxy.pgv.validate.Validate.Fixed32Rules
       @JvmName("getFixed32")
       get() = _builder.getFixed32()
       @JvmName("setFixed32")
@@ -279,7 +279,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.Fixed64Rules fixed64 = 10;</code>
      */
-    var fixed64: io.envoyproxy.pgv.validate.Fixed64Rules
+    var fixed64: io.envoyproxy.pgv.validate.Validate.Fixed64Rules
       @JvmName("getFixed64")
       get() = _builder.getFixed64()
       @JvmName("setFixed64")
@@ -303,7 +303,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.SFixed32Rules sfixed32 = 11;</code>
      */
-    var sfixed32: io.envoyproxy.pgv.validate.SFixed32Rules
+    var sfixed32: io.envoyproxy.pgv.validate.Validate.SFixed32Rules
       @JvmName("getSfixed32")
       get() = _builder.getSfixed32()
       @JvmName("setSfixed32")
@@ -327,7 +327,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.SFixed64Rules sfixed64 = 12;</code>
      */
-    var sfixed64: io.envoyproxy.pgv.validate.SFixed64Rules
+    var sfixed64: io.envoyproxy.pgv.validate.Validate.SFixed64Rules
       @JvmName("getSfixed64")
       get() = _builder.getSfixed64()
       @JvmName("setSfixed64")
@@ -351,7 +351,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.BoolRules bool = 13;</code>
      */
-    var bool: io.envoyproxy.pgv.validate.BoolRules
+    var bool: io.envoyproxy.pgv.validate.Validate.BoolRules
       @JvmName("getBool")
       get() = _builder.getBool()
       @JvmName("setBool")
@@ -375,7 +375,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.StringRules string = 14;</code>
      */
-    var string: io.envoyproxy.pgv.validate.StringRules
+    var string: io.envoyproxy.pgv.validate.Validate.StringRules
       @JvmName("getString")
       get() = _builder.getString()
       @JvmName("setString")
@@ -399,7 +399,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.BytesRules bytes = 15;</code>
      */
-    var bytes: io.envoyproxy.pgv.validate.BytesRules
+    var bytes: io.envoyproxy.pgv.validate.Validate.BytesRules
       @JvmName("getBytes")
       get() = _builder.getBytes()
       @JvmName("setBytes")
@@ -427,7 +427,7 @@ object FieldRulesKt {
      *
      * <code>.validate.EnumRules enum = 16;</code>
      */
-    var enum: io.envoyproxy.pgv.validate.EnumRules
+    var enum: io.envoyproxy.pgv.validate.Validate.EnumRules
       @JvmName("getEnum")
       get() = _builder.getEnum()
       @JvmName("setEnum")
@@ -459,7 +459,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.RepeatedRules repeated = 18;</code>
      */
-    var repeated: io.envoyproxy.pgv.validate.RepeatedRules
+    var repeated: io.envoyproxy.pgv.validate.Validate.RepeatedRules
       @JvmName("getRepeated")
       get() = _builder.getRepeated()
       @JvmName("setRepeated")
@@ -483,7 +483,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.MapRules map = 19;</code>
      */
-    var map: io.envoyproxy.pgv.validate.MapRules
+    var map: io.envoyproxy.pgv.validate.Validate.MapRules
       @JvmName("getMap")
       get() = _builder.getMap()
       @JvmName("setMap")
@@ -511,7 +511,7 @@ object FieldRulesKt {
      *
      * <code>.validate.AnyRules any = 20;</code>
      */
-    var any: io.envoyproxy.pgv.validate.AnyRules
+    var any: io.envoyproxy.pgv.validate.Validate.AnyRules
       @JvmName("getAny")
       get() = _builder.getAny()
       @JvmName("setAny")
@@ -543,7 +543,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.DurationRules duration = 21;</code>
      */
-    var duration: io.envoyproxy.pgv.validate.DurationRules
+    var duration: io.envoyproxy.pgv.validate.Validate.DurationRules
       @JvmName("getDuration")
       get() = _builder.getDuration()
       @JvmName("setDuration")
@@ -567,7 +567,7 @@ object FieldRulesKt {
     /**
      * <code>.validate.TimestampRules timestamp = 22;</code>
      */
-    var timestamp: io.envoyproxy.pgv.validate.TimestampRules
+    var timestamp: io.envoyproxy.pgv.validate.Validate.TimestampRules
       @JvmName("getTimestamp")
       get() = _builder.getTimestamp()
       @JvmName("setTimestamp")
@@ -587,7 +587,7 @@ object FieldRulesKt {
     fun hasTimestamp(): kotlin.Boolean {
       return _builder.hasTimestamp()
     }
-    val typeCase: io.envoyproxy.pgv.validate.FieldRules.TypeCase
+    val typeCase: io.envoyproxy.pgv.validate.Validate.FieldRules.TypeCase
       @JvmName("getTypeCase")
       get() = _builder.getTypeCase()
 
@@ -597,72 +597,72 @@ object FieldRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.FieldRules.copy(block: io.envoyproxy.pgv.validate.FieldRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.FieldRules =
+inline fun io.envoyproxy.pgv.validate.Validate.FieldRules.copy(block: io.envoyproxy.pgv.validate.FieldRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.FieldRules =
   io.envoyproxy.pgv.validate.FieldRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.messageOrNull: io.envoyproxy.pgv.validate.MessageRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.messageOrNull: io.envoyproxy.pgv.validate.Validate.MessageRules?
   get() = if (hasMessage()) getMessage() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.floatOrNull: io.envoyproxy.pgv.validate.FloatRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.floatOrNull: io.envoyproxy.pgv.validate.Validate.FloatRules?
   get() = if (hasFloat()) getFloat() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.doubleOrNull: io.envoyproxy.pgv.validate.DoubleRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.doubleOrNull: io.envoyproxy.pgv.validate.Validate.DoubleRules?
   get() = if (hasDouble()) getDouble() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.int32OrNull: io.envoyproxy.pgv.validate.Int32Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.int32OrNull: io.envoyproxy.pgv.validate.Validate.Int32Rules?
   get() = if (hasInt32()) getInt32() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.int64OrNull: io.envoyproxy.pgv.validate.Int64Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.int64OrNull: io.envoyproxy.pgv.validate.Validate.Int64Rules?
   get() = if (hasInt64()) getInt64() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.uint32OrNull: io.envoyproxy.pgv.validate.UInt32Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.uint32OrNull: io.envoyproxy.pgv.validate.Validate.UInt32Rules?
   get() = if (hasUint32()) getUint32() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.uint64OrNull: io.envoyproxy.pgv.validate.UInt64Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.uint64OrNull: io.envoyproxy.pgv.validate.Validate.UInt64Rules?
   get() = if (hasUint64()) getUint64() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.sint32OrNull: io.envoyproxy.pgv.validate.SInt32Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.sint32OrNull: io.envoyproxy.pgv.validate.Validate.SInt32Rules?
   get() = if (hasSint32()) getSint32() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.sint64OrNull: io.envoyproxy.pgv.validate.SInt64Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.sint64OrNull: io.envoyproxy.pgv.validate.Validate.SInt64Rules?
   get() = if (hasSint64()) getSint64() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.fixed32OrNull: io.envoyproxy.pgv.validate.Fixed32Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.fixed32OrNull: io.envoyproxy.pgv.validate.Validate.Fixed32Rules?
   get() = if (hasFixed32()) getFixed32() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.fixed64OrNull: io.envoyproxy.pgv.validate.Fixed64Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.fixed64OrNull: io.envoyproxy.pgv.validate.Validate.Fixed64Rules?
   get() = if (hasFixed64()) getFixed64() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.sfixed32OrNull: io.envoyproxy.pgv.validate.SFixed32Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.sfixed32OrNull: io.envoyproxy.pgv.validate.Validate.SFixed32Rules?
   get() = if (hasSfixed32()) getSfixed32() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.sfixed64OrNull: io.envoyproxy.pgv.validate.SFixed64Rules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.sfixed64OrNull: io.envoyproxy.pgv.validate.Validate.SFixed64Rules?
   get() = if (hasSfixed64()) getSfixed64() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.boolOrNull: io.envoyproxy.pgv.validate.BoolRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.boolOrNull: io.envoyproxy.pgv.validate.Validate.BoolRules?
   get() = if (hasBool()) getBool() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.stringOrNull: io.envoyproxy.pgv.validate.StringRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.stringOrNull: io.envoyproxy.pgv.validate.Validate.StringRules?
   get() = if (hasString()) getString() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.bytesOrNull: io.envoyproxy.pgv.validate.BytesRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.bytesOrNull: io.envoyproxy.pgv.validate.Validate.BytesRules?
   get() = if (hasBytes()) getBytes() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.enumOrNull: io.envoyproxy.pgv.validate.EnumRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.enumOrNull: io.envoyproxy.pgv.validate.Validate.EnumRules?
   get() = if (hasEnum()) getEnum() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.repeatedOrNull: io.envoyproxy.pgv.validate.RepeatedRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.repeatedOrNull: io.envoyproxy.pgv.validate.Validate.RepeatedRules?
   get() = if (hasRepeated()) getRepeated() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.mapOrNull: io.envoyproxy.pgv.validate.MapRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.mapOrNull: io.envoyproxy.pgv.validate.Validate.MapRules?
   get() = if (hasMap()) getMap() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.anyOrNull: io.envoyproxy.pgv.validate.AnyRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.anyOrNull: io.envoyproxy.pgv.validate.Validate.AnyRules?
   get() = if (hasAny()) getAny() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.durationOrNull: io.envoyproxy.pgv.validate.DurationRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.durationOrNull: io.envoyproxy.pgv.validate.Validate.DurationRules?
   get() = if (hasDuration()) getDuration() else null
 
-val io.envoyproxy.pgv.validate.FieldRulesOrBuilder.timestampOrNull: io.envoyproxy.pgv.validate.TimestampRules?
+val io.envoyproxy.pgv.validate.Validate.FieldRulesOrBuilder.timestampOrNull: io.envoyproxy.pgv.validate.Validate.TimestampRules?
   get() = if (hasTimestamp()) getTimestamp() else null
 

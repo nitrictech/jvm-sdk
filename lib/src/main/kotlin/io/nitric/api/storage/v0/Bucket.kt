@@ -14,6 +14,10 @@
 
 package io.nitric.api.storage.v0
 
+import io.nitric.Nitric
+import io.nitric.faas.v0.*
+import io.nitric.faas.v0.BucketNotificationWorkerOptions
+import io.nitric.faas.v0.Faas
 import io.nitric.proto.storage.v1.StorageListFilesRequest
 import io.nitric.proto.storage.v1.StorageServiceGrpc.StorageServiceBlockingStub
 
@@ -39,5 +43,23 @@ class Bucket internal constructor(internal val client: StorageServiceBlockingStu
      */
     fun file(name: String): File {
         return File(this, name)
+    }
+
+    /**
+     * Create a bucket notification subscription that is triggered on a [notificationType] and filtered by a [notificationPrefixFilter].
+     */
+    fun on(notificationType: BucketNotificationType, notificationPrefixFilter: String, middleware: Handler<FileNotificationContext>) {
+        val faas = Faas(FileNotificationWorkerOptions(this, notificationType, notificationPrefixFilter))
+        faas.fileNotification { ctx, _ -> middleware(ctx) }
+        Nitric.registerWorker(faas)
+    }
+
+    /**
+     * Create a bucket notification subscription that is triggered on a [notificationType] and filtered by a [notificationPrefixFilter].
+     */
+    fun on(notificationType: BucketNotificationType, notificationPrefixFilter: String, middleware: List<Middleware<FileNotificationContext>>) {
+        val faas = Faas(FileNotificationWorkerOptions(this, notificationType, notificationPrefixFilter))
+        middleware.forEach { faas.fileNotification(it) }
+        Nitric.registerWorker(faas)
     }
 }

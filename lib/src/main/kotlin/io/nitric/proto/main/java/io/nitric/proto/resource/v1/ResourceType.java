@@ -48,6 +48,18 @@ public enum ResourceType
    * <code>Secret = 9;</code>
    */
   Secret(9),
+  /**
+   * <code>Notification = 10;</code>
+   */
+  Notification(10),
+  /**
+   * <code>Websocket = 11;</code>
+   */
+  Websocket(11),
+  /**
+   * <code>Http = 12;</code>
+   */
+  Http(12),
   UNRECOGNIZED(-1),
   ;
 
@@ -91,6 +103,18 @@ public enum ResourceType
    * <code>Secret = 9;</code>
    */
   public static final int Secret_VALUE = 9;
+  /**
+   * <code>Notification = 10;</code>
+   */
+  public static final int Notification_VALUE = 10;
+  /**
+   * <code>Websocket = 11;</code>
+   */
+  public static final int Websocket_VALUE = 11;
+  /**
+   * <code>Http = 12;</code>
+   */
+  public static final int Http_VALUE = 12;
 
 
   public final int getNumber() {
@@ -127,6 +151,9 @@ public enum ResourceType
       case 7: return Collection;
       case 8: return Policy;
       case 9: return Secret;
+      case 10: return Notification;
+      case 11: return Websocket;
+      case 12: return Http;
       default: return null;
     }
   }

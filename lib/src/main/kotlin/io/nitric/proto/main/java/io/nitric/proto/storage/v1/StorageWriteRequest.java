@@ -58,7 +58,7 @@ private static final long serialVersionUID = 0L;
    *  this will be automatically resolved to the provider specific bucket identifier.
    * </pre>
    *
-   * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string bucket_name = 1;</code>
    * @return The bucketName.
    */
   @java.lang.Override
@@ -80,7 +80,7 @@ private static final long serialVersionUID = 0L;
    *  this will be automatically resolved to the provider specific bucket identifier.
    * </pre>
    *
-   * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string bucket_name = 1;</code>
    * @return The bytes for bucketName.
    */
   @java.lang.Override
@@ -529,7 +529,7 @@ private static final long serialVersionUID = 0L;
      *  this will be automatically resolved to the provider specific bucket identifier.
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @return The bucketName.
      */
     public java.lang.String getBucketName() {
@@ -550,7 +550,7 @@ private static final long serialVersionUID = 0L;
      *  this will be automatically resolved to the provider specific bucket identifier.
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @return The bytes for bucketName.
      */
     public com.google.protobuf.ByteString
@@ -572,7 +572,7 @@ private static final long serialVersionUID = 0L;
      *  this will be automatically resolved to the provider specific bucket identifier.
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @param value The bucketName to set.
      * @return This builder for chaining.
      */
@@ -592,7 +592,7 @@ private static final long serialVersionUID = 0L;
      *  this will be automatically resolved to the provider specific bucket identifier.
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearBucketName() {
@@ -607,7 +607,7 @@ private static final long serialVersionUID = 0L;
      *  this will be automatically resolved to the provider specific bucket identifier.
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      * @param value The bytes for bucketName to set.
      * @return This builder for chaining.
      */

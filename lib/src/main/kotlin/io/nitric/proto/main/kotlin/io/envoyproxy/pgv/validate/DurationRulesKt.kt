@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializedurationRules")
-inline fun durationRules(block: io.envoyproxy.pgv.validate.DurationRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.DurationRules =
-  io.envoyproxy.pgv.validate.DurationRulesKt.Dsl._create(io.envoyproxy.pgv.validate.DurationRules.newBuilder()).apply { block() }._build()
+inline fun durationRules(block: io.envoyproxy.pgv.validate.DurationRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.DurationRules =
+  io.envoyproxy.pgv.validate.DurationRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.DurationRules.newBuilder()).apply { block() }._build()
 object DurationRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.DurationRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.DurationRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.DurationRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.DurationRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.DurationRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.DurationRules = _builder.build()
 
     /**
      * <pre>
@@ -476,21 +476,21 @@ object DurationRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.DurationRules.copy(block: io.envoyproxy.pgv.validate.DurationRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.DurationRules =
+inline fun io.envoyproxy.pgv.validate.Validate.DurationRules.copy(block: io.envoyproxy.pgv.validate.DurationRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.DurationRules =
   io.envoyproxy.pgv.validate.DurationRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 
-val io.envoyproxy.pgv.validate.DurationRulesOrBuilder.constOrNull: com.google.protobuf.Duration?
+val io.envoyproxy.pgv.validate.Validate.DurationRulesOrBuilder.constOrNull: com.google.protobuf.Duration?
   get() = if (hasConst()) getConst() else null
 
-val io.envoyproxy.pgv.validate.DurationRulesOrBuilder.ltOrNull: com.google.protobuf.Duration?
+val io.envoyproxy.pgv.validate.Validate.DurationRulesOrBuilder.ltOrNull: com.google.protobuf.Duration?
   get() = if (hasLt()) getLt() else null
 
-val io.envoyproxy.pgv.validate.DurationRulesOrBuilder.lteOrNull: com.google.protobuf.Duration?
+val io.envoyproxy.pgv.validate.Validate.DurationRulesOrBuilder.lteOrNull: com.google.protobuf.Duration?
   get() = if (hasLte()) getLte() else null
 
-val io.envoyproxy.pgv.validate.DurationRulesOrBuilder.gtOrNull: com.google.protobuf.Duration?
+val io.envoyproxy.pgv.validate.Validate.DurationRulesOrBuilder.gtOrNull: com.google.protobuf.Duration?
   get() = if (hasGt()) getGt() else null
 
-val io.envoyproxy.pgv.validate.DurationRulesOrBuilder.gteOrNull: com.google.protobuf.Duration?
+val io.envoyproxy.pgv.validate.Validate.DurationRulesOrBuilder.gteOrNull: com.google.protobuf.Duration?
   get() = if (hasGte()) getGte() else null
 

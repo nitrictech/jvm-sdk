@@ -28,7 +28,7 @@ object StorageReadRequestKt {
      *  this will be automatically resolved to the provider specific bucket identifier.
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      */
     var bucketName: kotlin.String
       @JvmName("getBucketName")
@@ -43,7 +43,7 @@ object StorageReadRequestKt {
      *  this will be automatically resolved to the provider specific bucket identifier.
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      */
     fun clearBucketName() {
       _builder.clearBucketName()

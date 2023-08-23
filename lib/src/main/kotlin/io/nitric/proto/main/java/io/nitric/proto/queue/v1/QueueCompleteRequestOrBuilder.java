@@ -13,7 +13,7 @@ public interface QueueCompleteRequestOrBuilder extends
    *  this will automatically be resolved to the provider specific queue identifier.
    * </pre>
    *
-   * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+   * <code>string queue = 1;</code>
    * @return The queue.
    */
   java.lang.String getQueue();
@@ -23,7 +23,7 @@ public interface QueueCompleteRequestOrBuilder extends
    *  this will automatically be resolved to the provider specific queue identifier.
    * </pre>
    *
-   * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+   * <code>string queue = 1;</code>
    * @return The bytes for queue.
    */
   com.google.protobuf.ByteString

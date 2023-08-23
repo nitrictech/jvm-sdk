@@ -12,7 +12,7 @@ public interface CollectionOrBuilder extends
    * The collection name
    * </pre>
    *
-   * <code>string name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string name = 1;</code>
    * @return The name.
    */
   java.lang.String getName();
@@ -21,7 +21,7 @@ public interface CollectionOrBuilder extends
    * The collection name
    * </pre>
    *
-   * <code>string name = 1 [(.validate.rules) = { ... }</code>
+   * <code>string name = 1;</code>
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString

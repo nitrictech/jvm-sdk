@@ -27,7 +27,7 @@ object SecretKt {
      * The secret name
      * </pre>
      *
-     * <code>string name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string name = 1;</code>
      */
     var name: kotlin.String
       @JvmName("getName")
@@ -41,7 +41,7 @@ object SecretKt {
      * The secret name
      * </pre>
      *
-     * <code>string name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string name = 1;</code>
      */
     fun clearName() {
       _builder.clearName()

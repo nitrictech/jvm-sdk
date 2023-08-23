@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializeuInt32Rules")
-inline fun uInt32Rules(block: io.envoyproxy.pgv.validate.UInt32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.UInt32Rules =
-  io.envoyproxy.pgv.validate.UInt32RulesKt.Dsl._create(io.envoyproxy.pgv.validate.UInt32Rules.newBuilder()).apply { block() }._build()
+inline fun uInt32Rules(block: io.envoyproxy.pgv.validate.UInt32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.UInt32Rules =
+  io.envoyproxy.pgv.validate.UInt32RulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.UInt32Rules.newBuilder()).apply { block() }._build()
 object UInt32RulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.UInt32Rules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.UInt32Rules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.UInt32Rules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.UInt32Rules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.UInt32Rules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.UInt32Rules = _builder.build()
 
     /**
      * <pre>
@@ -461,6 +461,6 @@ object UInt32RulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.UInt32Rules.copy(block: io.envoyproxy.pgv.validate.UInt32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.UInt32Rules =
+inline fun io.envoyproxy.pgv.validate.Validate.UInt32Rules.copy(block: io.envoyproxy.pgv.validate.UInt32RulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.UInt32Rules =
   io.envoyproxy.pgv.validate.UInt32RulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

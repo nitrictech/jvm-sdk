@@ -15,8 +15,6 @@
 package io.nitric.api.documents.v0
 
 import io.nitric.proto.document.v1.DocumentServiceGrpc
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt.DocumentServiceCoroutineStub
-import io.nitric.proto.document.v1.DocumentServiceGrpc.DocumentServiceStub
 import io.nitric.util.GrpcChannelProvider
 
 internal object Documents {

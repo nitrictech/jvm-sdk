@@ -1,7 +1,6 @@
 package io.nitric.api.documents
 
 import io.mockk.mockk
-import io.nitric.proto.document.v1.DocumentServiceGrpcKt
 import io.nitric.api.documents.v0.Collection
 import io.nitric.api.documents.v0.DocumentReference
 import io.nitric.api.documents.v0.DocumentSnapshot

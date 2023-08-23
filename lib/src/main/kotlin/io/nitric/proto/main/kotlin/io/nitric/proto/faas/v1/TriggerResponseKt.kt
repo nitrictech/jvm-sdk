@@ -118,6 +118,66 @@ object TriggerResponseKt {
     fun hasTopic(): kotlin.Boolean {
       return _builder.hasTopic()
     }
+
+    /**
+     * <pre>
+     * response to a notification trigger
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.NotificationResponseContext notification = 12;</code>
+     */
+    var notification: io.nitric.proto.faas.v1.NotificationResponseContext
+      @JvmName("getNotification")
+      get() = _builder.getNotification()
+      @JvmName("setNotification")
+      set(value) {
+        _builder.setNotification(value)
+      }
+    /**
+     * <pre>
+     * response to a notification trigger
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.NotificationResponseContext notification = 12;</code>
+     */
+    fun clearNotification() {
+      _builder.clearNotification()
+    }
+    /**
+     * <pre>
+     * response to a notification trigger
+     * </pre>
+     *
+     * <code>.nitric.faas.v1.NotificationResponseContext notification = 12;</code>
+     * @return Whether the notification field is set.
+     */
+    fun hasNotification(): kotlin.Boolean {
+      return _builder.hasNotification()
+    }
+
+    /**
+     * <code>.nitric.faas.v1.WebsocketResponseContext websocket = 13;</code>
+     */
+    var websocket: io.nitric.proto.faas.v1.WebsocketResponseContext
+      @JvmName("getWebsocket")
+      get() = _builder.getWebsocket()
+      @JvmName("setWebsocket")
+      set(value) {
+        _builder.setWebsocket(value)
+      }
+    /**
+     * <code>.nitric.faas.v1.WebsocketResponseContext websocket = 13;</code>
+     */
+    fun clearWebsocket() {
+      _builder.clearWebsocket()
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketResponseContext websocket = 13;</code>
+     * @return Whether the websocket field is set.
+     */
+    fun hasWebsocket(): kotlin.Boolean {
+      return _builder.hasWebsocket()
+    }
     val contextCase: io.nitric.proto.faas.v1.TriggerResponse.ContextCase
       @JvmName("getContextCase")
       get() = _builder.getContextCase()
@@ -136,4 +196,10 @@ val io.nitric.proto.faas.v1.TriggerResponseOrBuilder.httpOrNull: io.nitric.proto
 
 val io.nitric.proto.faas.v1.TriggerResponseOrBuilder.topicOrNull: io.nitric.proto.faas.v1.TopicResponseContext?
   get() = if (hasTopic()) getTopic() else null
+
+val io.nitric.proto.faas.v1.TriggerResponseOrBuilder.notificationOrNull: io.nitric.proto.faas.v1.NotificationResponseContext?
+  get() = if (hasNotification()) getNotification() else null
+
+val io.nitric.proto.faas.v1.TriggerResponseOrBuilder.websocketOrNull: io.nitric.proto.faas.v1.WebsocketResponseContext?
+  get() = if (hasWebsocket()) getWebsocket() else null
 

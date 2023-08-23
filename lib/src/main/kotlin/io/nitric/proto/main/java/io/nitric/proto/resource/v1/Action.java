@@ -100,6 +100,14 @@ public enum Action
    * <code>SecretAccess = 501;</code>
    */
   SecretAccess(501),
+  /**
+   * <pre>
+   * Websocket Permissions: 6XX
+   * </pre>
+   *
+   * <code>WebsocketManage = 600;</code>
+   */
+  WebsocketManage(600),
   UNRECOGNIZED(-1),
   ;
 
@@ -195,6 +203,14 @@ public enum Action
    * <code>SecretAccess = 501;</code>
    */
   public static final int SecretAccess_VALUE = 501;
+  /**
+   * <pre>
+   * Websocket Permissions: 6XX
+   * </pre>
+   *
+   * <code>WebsocketManage = 600;</code>
+   */
+  public static final int WebsocketManage_VALUE = 600;
 
 
   public final int getNumber() {
@@ -239,6 +255,7 @@ public enum Action
       case 404: return CollectionList;
       case 500: return SecretPut;
       case 501: return SecretAccess;
+      case 600: return WebsocketManage;
       default: return null;
     }
   }

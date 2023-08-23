@@ -27,7 +27,7 @@ object StorageDeleteRequestKt {
      * Name of the bucket to delete from
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      */
     var bucketName: kotlin.String
       @JvmName("getBucketName")
@@ -41,7 +41,7 @@ object StorageDeleteRequestKt {
      * Name of the bucket to delete from
      * </pre>
      *
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      */
     fun clearBucketName() {
       _builder.clearBucketName()

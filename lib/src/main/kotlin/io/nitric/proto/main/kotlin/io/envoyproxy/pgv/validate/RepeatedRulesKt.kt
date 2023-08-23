@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializerepeatedRules")
-inline fun repeatedRules(block: io.envoyproxy.pgv.validate.RepeatedRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.RepeatedRules =
-  io.envoyproxy.pgv.validate.RepeatedRulesKt.Dsl._create(io.envoyproxy.pgv.validate.RepeatedRules.newBuilder()).apply { block() }._build()
+inline fun repeatedRules(block: io.envoyproxy.pgv.validate.RepeatedRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.RepeatedRules =
+  io.envoyproxy.pgv.validate.RepeatedRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.RepeatedRules.newBuilder()).apply { block() }._build()
 object RepeatedRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.RepeatedRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.RepeatedRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.RepeatedRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.RepeatedRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.RepeatedRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.RepeatedRules = _builder.build()
 
     /**
      * <pre>
@@ -151,7 +151,7 @@ object RepeatedRulesKt {
      *
      * <code>optional .validate.FieldRules items = 4;</code>
      */
-    var items: io.envoyproxy.pgv.validate.FieldRules
+    var items: io.envoyproxy.pgv.validate.Validate.FieldRules
       @JvmName("getItems")
       get() = _builder.getItems()
       @JvmName("setItems")
@@ -183,7 +183,7 @@ object RepeatedRulesKt {
     fun hasItems(): kotlin.Boolean {
       return _builder.hasItems()
     }
-    val RepeatedRulesKt.Dsl.itemsOrNull: io.envoyproxy.pgv.validate.FieldRules?
+    val RepeatedRulesKt.Dsl.itemsOrNull: io.envoyproxy.pgv.validate.Validate.FieldRules?
       get() = _builder.itemsOrNull
 
     /**
@@ -227,9 +227,9 @@ object RepeatedRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.RepeatedRules.copy(block: io.envoyproxy.pgv.validate.RepeatedRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.RepeatedRules =
+inline fun io.envoyproxy.pgv.validate.Validate.RepeatedRules.copy(block: io.envoyproxy.pgv.validate.RepeatedRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.RepeatedRules =
   io.envoyproxy.pgv.validate.RepeatedRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 
-val io.envoyproxy.pgv.validate.RepeatedRulesOrBuilder.itemsOrNull: io.envoyproxy.pgv.validate.FieldRules?
+val io.envoyproxy.pgv.validate.Validate.RepeatedRulesOrBuilder.itemsOrNull: io.envoyproxy.pgv.validate.Validate.FieldRules?
   get() = if (hasItems()) getItems() else null
 

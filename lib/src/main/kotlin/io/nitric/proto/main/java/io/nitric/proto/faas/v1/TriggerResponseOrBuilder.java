@@ -71,5 +71,47 @@ public interface TriggerResponseOrBuilder extends
    */
   io.nitric.proto.faas.v1.TopicResponseContextOrBuilder getTopicOrBuilder();
 
+  /**
+   * <pre>
+   * response to a notification trigger
+   * </pre>
+   *
+   * <code>.nitric.faas.v1.NotificationResponseContext notification = 12;</code>
+   * @return Whether the notification field is set.
+   */
+  boolean hasNotification();
+  /**
+   * <pre>
+   * response to a notification trigger
+   * </pre>
+   *
+   * <code>.nitric.faas.v1.NotificationResponseContext notification = 12;</code>
+   * @return The notification.
+   */
+  io.nitric.proto.faas.v1.NotificationResponseContext getNotification();
+  /**
+   * <pre>
+   * response to a notification trigger
+   * </pre>
+   *
+   * <code>.nitric.faas.v1.NotificationResponseContext notification = 12;</code>
+   */
+  io.nitric.proto.faas.v1.NotificationResponseContextOrBuilder getNotificationOrBuilder();
+
+  /**
+   * <code>.nitric.faas.v1.WebsocketResponseContext websocket = 13;</code>
+   * @return Whether the websocket field is set.
+   */
+  boolean hasWebsocket();
+  /**
+   * <code>.nitric.faas.v1.WebsocketResponseContext websocket = 13;</code>
+   * @return The websocket.
+   */
+  io.nitric.proto.faas.v1.WebsocketResponseContext getWebsocket();
+  /**
+   * <code>.nitric.faas.v1.WebsocketResponseContext websocket = 13;</code>
+   */
+  io.nitric.proto.faas.v1.WebsocketResponseContextOrBuilder getWebsocketOrBuilder();
+
   public io.nitric.proto.faas.v1.TriggerResponse.ContextCase getContextCase();
 }

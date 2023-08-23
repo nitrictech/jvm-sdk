@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializedoubleRules")
-inline fun doubleRules(block: io.envoyproxy.pgv.validate.DoubleRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.DoubleRules =
-  io.envoyproxy.pgv.validate.DoubleRulesKt.Dsl._create(io.envoyproxy.pgv.validate.DoubleRules.newBuilder()).apply { block() }._build()
+inline fun doubleRules(block: io.envoyproxy.pgv.validate.DoubleRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.DoubleRules =
+  io.envoyproxy.pgv.validate.DoubleRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.DoubleRules.newBuilder()).apply { block() }._build()
 object DoubleRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.DoubleRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.DoubleRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.DoubleRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.DoubleRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.DoubleRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.DoubleRules = _builder.build()
 
     /**
      * <pre>
@@ -461,6 +461,6 @@ object DoubleRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.DoubleRules.copy(block: io.envoyproxy.pgv.validate.DoubleRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.DoubleRules =
+inline fun io.envoyproxy.pgv.validate.Validate.DoubleRules.copy(block: io.envoyproxy.pgv.validate.DoubleRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.DoubleRules =
   io.envoyproxy.pgv.validate.DoubleRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

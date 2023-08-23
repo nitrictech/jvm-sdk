@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializemapRules")
-inline fun mapRules(block: io.envoyproxy.pgv.validate.MapRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.MapRules =
-  io.envoyproxy.pgv.validate.MapRulesKt.Dsl._create(io.envoyproxy.pgv.validate.MapRules.newBuilder()).apply { block() }._build()
+inline fun mapRules(block: io.envoyproxy.pgv.validate.MapRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.MapRules =
+  io.envoyproxy.pgv.validate.MapRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.MapRules.newBuilder()).apply { block() }._build()
 object MapRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.MapRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.MapRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.MapRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.MapRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.MapRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.MapRules = _builder.build()
 
     /**
      * <pre>
@@ -146,7 +146,7 @@ object MapRulesKt {
      *
      * <code>optional .validate.FieldRules keys = 4;</code>
      */
-    var keys: io.envoyproxy.pgv.validate.FieldRules
+    var keys: io.envoyproxy.pgv.validate.Validate.FieldRules
       @JvmName("getKeys")
       get() = _builder.getKeys()
       @JvmName("setKeys")
@@ -174,7 +174,7 @@ object MapRulesKt {
     fun hasKeys(): kotlin.Boolean {
       return _builder.hasKeys()
     }
-    val MapRulesKt.Dsl.keysOrNull: io.envoyproxy.pgv.validate.FieldRules?
+    val MapRulesKt.Dsl.keysOrNull: io.envoyproxy.pgv.validate.Validate.FieldRules?
       get() = _builder.keysOrNull
 
     /**
@@ -186,7 +186,7 @@ object MapRulesKt {
      *
      * <code>optional .validate.FieldRules values = 5;</code>
      */
-    var values: io.envoyproxy.pgv.validate.FieldRules
+    var values: io.envoyproxy.pgv.validate.Validate.FieldRules
       @JvmName("getValues")
       get() = _builder.getValues()
       @JvmName("setValues")
@@ -218,7 +218,7 @@ object MapRulesKt {
     fun hasValues(): kotlin.Boolean {
       return _builder.hasValues()
     }
-    val MapRulesKt.Dsl.valuesOrNull: io.envoyproxy.pgv.validate.FieldRules?
+    val MapRulesKt.Dsl.valuesOrNull: io.envoyproxy.pgv.validate.Validate.FieldRules?
       get() = _builder.valuesOrNull
 
     /**
@@ -262,12 +262,12 @@ object MapRulesKt {
   }
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.MapRules.copy(block: io.envoyproxy.pgv.validate.MapRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.MapRules =
+inline fun io.envoyproxy.pgv.validate.Validate.MapRules.copy(block: io.envoyproxy.pgv.validate.MapRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.MapRules =
   io.envoyproxy.pgv.validate.MapRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 
-val io.envoyproxy.pgv.validate.MapRulesOrBuilder.keysOrNull: io.envoyproxy.pgv.validate.FieldRules?
+val io.envoyproxy.pgv.validate.Validate.MapRulesOrBuilder.keysOrNull: io.envoyproxy.pgv.validate.Validate.FieldRules?
   get() = if (hasKeys()) getKeys() else null
 
-val io.envoyproxy.pgv.validate.MapRulesOrBuilder.valuesOrNull: io.envoyproxy.pgv.validate.FieldRules?
+val io.envoyproxy.pgv.validate.Validate.MapRulesOrBuilder.valuesOrNull: io.envoyproxy.pgv.validate.Validate.FieldRules?
   get() = if (hasValues()) getValues() else null
 

@@ -14,14 +14,17 @@
 
 package io.nitric.faas.v0
 
+import com.google.gson.Gson
 import com.google.protobuf.ByteString
 import io.nitric.proto.faas.v1.HeaderValue
 import io.nitric.proto.faas.v1.HttpResponseContext
 import io.nitric.proto.faas.v1.TriggerRequest
 import io.nitric.proto.faas.v1.TriggerResponse
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.nio.charset.Charset
+import kotlin.reflect.KClass
 
 /**
  * Represents a HTTP request.
@@ -40,7 +43,22 @@ class HttpRequest internal constructor(
     val params: Map<String, String>,
     val query: Map<String, Collection<String>>,
     val headers: Map<String, Collection<String>>
-) : AbstractRequest(data) {}
+) : AbstractRequest(data) {
+    /**
+     * Convert JSON serialized data from request into an object of a certain [type].
+     */
+    fun <T>json(type: Class<T>): T {
+        val gson = Gson()
+        return gson.fromJson(this.data.decodeToString(), type)
+    }
+
+    /**
+     * Convert JSON serialized data from request into an object of a certain type.
+     */
+    inline fun <reified T>json(): T {
+        return this.json(T::class.java)
+    }
+}
 
 /**
  * The response to an HTTP trigger.
@@ -58,8 +76,9 @@ class HttpResponse internal constructor(var status: Int, var body: ByteArray, va
      *
      * The [obj] is converted to a JSON string with UTF-8 encoding and the Content-Type header is set to application/json.
      */
-    inline fun <reified T> json(obj: T) {
-        this.body = Json.encodeToString(obj).encodeToByteArray()
+    fun json(obj: Any) {
+        val gson = Gson()
+        this.body = gson.toJson(obj).encodeToByteArray()
         this.headers["Content-Type"] = listOf("application/json")
     }
 

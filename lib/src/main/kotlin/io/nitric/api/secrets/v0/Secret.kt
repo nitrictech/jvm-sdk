@@ -22,8 +22,8 @@ import io.nitric.proto.secret.v1.Secret as ProtoSecret
 /**
  * Represents a secret in the secrets service.
  */
-class Secret internal constructor (internal val client: SecretServiceBlockingStub, val name: String) {
-    suspend fun put(secret: String): SecretVersion {
+class Secret internal constructor(internal val client: SecretServiceBlockingStub, val name: String) {
+    fun put(secret: String): SecretVersion {
         val newSecret = this.client.put(
             SecretPutRequest.newBuilder()
                 .setSecret(this.toWire())

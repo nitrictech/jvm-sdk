@@ -6,6 +6,8 @@ import io.nitric.proto.resource.v1.ResourceServiceGrpc.ResourceServiceBlockingSt
 import io.nitric.proto.resource.v1.Resource as ProtoResource
 import io.nitric.util.GrpcChannelProvider
 
+abstract class ResourceDetails(val id: String, val provider: String, val service: String)
+
 abstract class Resource(val name: String) {
     internal val client: ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
     internal abstract fun register(): Resource

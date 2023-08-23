@@ -23,7 +23,7 @@ object StorageListFilesRequestKt {
     internal fun _build(): io.nitric.proto.storage.v1.StorageListFilesRequest = _builder.build()
 
     /**
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      */
     var bucketName: kotlin.String
       @JvmName("getBucketName")
@@ -33,10 +33,27 @@ object StorageListFilesRequestKt {
         _builder.setBucketName(value)
       }
     /**
-     * <code>string bucket_name = 1 [(.validate.rules) = { ... }</code>
+     * <code>string bucket_name = 1;</code>
      */
     fun clearBucketName() {
       _builder.clearBucketName()
+    }
+
+    /**
+     * <code>string prefix = 2;</code>
+     */
+    var prefix: kotlin.String
+      @JvmName("getPrefix")
+      get() = _builder.getPrefix()
+      @JvmName("setPrefix")
+      set(value) {
+        _builder.setPrefix(value)
+      }
+    /**
+     * <code>string prefix = 2;</code>
+     */
+    fun clearPrefix() {
+      _builder.clearPrefix()
     }
   }
 }

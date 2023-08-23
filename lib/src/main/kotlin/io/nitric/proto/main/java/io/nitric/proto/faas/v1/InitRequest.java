@@ -57,6 +57,9 @@ private static final long serialVersionUID = 0L;
     API(10),
     SUBSCRIPTION(11),
     SCHEDULE(12),
+    BUCKET_NOTIFICATION(13),
+    WEBSOCKET(14),
+    HTTP_WORKER(15),
     WORKER_NOT_SET(0);
     private final int value;
     private WorkerCase(int value) {
@@ -77,6 +80,9 @@ private static final long serialVersionUID = 0L;
         case 10: return API;
         case 11: return SUBSCRIPTION;
         case 12: return SCHEDULE;
+        case 13: return BUCKET_NOTIFICATION;
+        case 14: return WEBSOCKET;
+        case 15: return HTTP_WORKER;
         case 0: return WORKER_NOT_SET;
         default: return null;
       }
@@ -185,6 +191,99 @@ private static final long serialVersionUID = 0L;
     return io.nitric.proto.faas.v1.ScheduleWorker.getDefaultInstance();
   }
 
+  public static final int BUCKET_NOTIFICATION_FIELD_NUMBER = 13;
+  /**
+   * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+   * @return Whether the bucketNotification field is set.
+   */
+  @java.lang.Override
+  public boolean hasBucketNotification() {
+    return workerCase_ == 13;
+  }
+  /**
+   * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+   * @return The bucketNotification.
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.BucketNotificationWorker getBucketNotification() {
+    if (workerCase_ == 13) {
+       return (io.nitric.proto.faas.v1.BucketNotificationWorker) worker_;
+    }
+    return io.nitric.proto.faas.v1.BucketNotificationWorker.getDefaultInstance();
+  }
+  /**
+   * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.BucketNotificationWorkerOrBuilder getBucketNotificationOrBuilder() {
+    if (workerCase_ == 13) {
+       return (io.nitric.proto.faas.v1.BucketNotificationWorker) worker_;
+    }
+    return io.nitric.proto.faas.v1.BucketNotificationWorker.getDefaultInstance();
+  }
+
+  public static final int WEBSOCKET_FIELD_NUMBER = 14;
+  /**
+   * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+   * @return Whether the websocket field is set.
+   */
+  @java.lang.Override
+  public boolean hasWebsocket() {
+    return workerCase_ == 14;
+  }
+  /**
+   * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+   * @return The websocket.
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.WebsocketWorker getWebsocket() {
+    if (workerCase_ == 14) {
+       return (io.nitric.proto.faas.v1.WebsocketWorker) worker_;
+    }
+    return io.nitric.proto.faas.v1.WebsocketWorker.getDefaultInstance();
+  }
+  /**
+   * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.WebsocketWorkerOrBuilder getWebsocketOrBuilder() {
+    if (workerCase_ == 14) {
+       return (io.nitric.proto.faas.v1.WebsocketWorker) worker_;
+    }
+    return io.nitric.proto.faas.v1.WebsocketWorker.getDefaultInstance();
+  }
+
+  public static final int HTTP_WORKER_FIELD_NUMBER = 15;
+  /**
+   * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+   * @return Whether the httpWorker field is set.
+   */
+  @java.lang.Override
+  public boolean hasHttpWorker() {
+    return workerCase_ == 15;
+  }
+  /**
+   * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+   * @return The httpWorker.
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.HttpWorker getHttpWorker() {
+    if (workerCase_ == 15) {
+       return (io.nitric.proto.faas.v1.HttpWorker) worker_;
+    }
+    return io.nitric.proto.faas.v1.HttpWorker.getDefaultInstance();
+  }
+  /**
+   * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+   */
+  @java.lang.Override
+  public io.nitric.proto.faas.v1.HttpWorkerOrBuilder getHttpWorkerOrBuilder() {
+    if (workerCase_ == 15) {
+       return (io.nitric.proto.faas.v1.HttpWorker) worker_;
+    }
+    return io.nitric.proto.faas.v1.HttpWorker.getDefaultInstance();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -208,6 +307,15 @@ private static final long serialVersionUID = 0L;
     if (workerCase_ == 12) {
       output.writeMessage(12, (io.nitric.proto.faas.v1.ScheduleWorker) worker_);
     }
+    if (workerCase_ == 13) {
+      output.writeMessage(13, (io.nitric.proto.faas.v1.BucketNotificationWorker) worker_);
+    }
+    if (workerCase_ == 14) {
+      output.writeMessage(14, (io.nitric.proto.faas.v1.WebsocketWorker) worker_);
+    }
+    if (workerCase_ == 15) {
+      output.writeMessage(15, (io.nitric.proto.faas.v1.HttpWorker) worker_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -228,6 +336,18 @@ private static final long serialVersionUID = 0L;
     if (workerCase_ == 12) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(12, (io.nitric.proto.faas.v1.ScheduleWorker) worker_);
+    }
+    if (workerCase_ == 13) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(13, (io.nitric.proto.faas.v1.BucketNotificationWorker) worker_);
+    }
+    if (workerCase_ == 14) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(14, (io.nitric.proto.faas.v1.WebsocketWorker) worker_);
+    }
+    if (workerCase_ == 15) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(15, (io.nitric.proto.faas.v1.HttpWorker) worker_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -258,6 +378,18 @@ private static final long serialVersionUID = 0L;
         if (!getSchedule()
             .equals(other.getSchedule())) return false;
         break;
+      case 13:
+        if (!getBucketNotification()
+            .equals(other.getBucketNotification())) return false;
+        break;
+      case 14:
+        if (!getWebsocket()
+            .equals(other.getWebsocket())) return false;
+        break;
+      case 15:
+        if (!getHttpWorker()
+            .equals(other.getHttpWorker())) return false;
+        break;
       case 0:
       default:
     }
@@ -284,6 +416,18 @@ private static final long serialVersionUID = 0L;
       case 12:
         hash = (37 * hash) + SCHEDULE_FIELD_NUMBER;
         hash = (53 * hash) + getSchedule().hashCode();
+        break;
+      case 13:
+        hash = (37 * hash) + BUCKET_NOTIFICATION_FIELD_NUMBER;
+        hash = (53 * hash) + getBucketNotification().hashCode();
+        break;
+      case 14:
+        hash = (37 * hash) + WEBSOCKET_FIELD_NUMBER;
+        hash = (53 * hash) + getWebsocket().hashCode();
+        break;
+      case 15:
+        hash = (37 * hash) + HTTP_WORKER_FIELD_NUMBER;
+        hash = (53 * hash) + getHttpWorker().hashCode();
         break;
       case 0:
       default:
@@ -431,6 +575,15 @@ private static final long serialVersionUID = 0L;
       if (scheduleBuilder_ != null) {
         scheduleBuilder_.clear();
       }
+      if (bucketNotificationBuilder_ != null) {
+        bucketNotificationBuilder_.clear();
+      }
+      if (websocketBuilder_ != null) {
+        websocketBuilder_.clear();
+      }
+      if (httpWorkerBuilder_ != null) {
+        httpWorkerBuilder_.clear();
+      }
       workerCase_ = 0;
       worker_ = null;
       return this;
@@ -478,6 +631,27 @@ private static final long serialVersionUID = 0L;
           result.worker_ = worker_;
         } else {
           result.worker_ = scheduleBuilder_.build();
+        }
+      }
+      if (workerCase_ == 13) {
+        if (bucketNotificationBuilder_ == null) {
+          result.worker_ = worker_;
+        } else {
+          result.worker_ = bucketNotificationBuilder_.build();
+        }
+      }
+      if (workerCase_ == 14) {
+        if (websocketBuilder_ == null) {
+          result.worker_ = worker_;
+        } else {
+          result.worker_ = websocketBuilder_.build();
+        }
+      }
+      if (workerCase_ == 15) {
+        if (httpWorkerBuilder_ == null) {
+          result.worker_ = worker_;
+        } else {
+          result.worker_ = httpWorkerBuilder_.build();
         }
       }
       result.workerCase_ = workerCase_;
@@ -542,6 +716,18 @@ private static final long serialVersionUID = 0L;
           mergeSchedule(other.getSchedule());
           break;
         }
+        case BUCKET_NOTIFICATION: {
+          mergeBucketNotification(other.getBucketNotification());
+          break;
+        }
+        case WEBSOCKET: {
+          mergeWebsocket(other.getWebsocket());
+          break;
+        }
+        case HTTP_WORKER: {
+          mergeHttpWorker(other.getHttpWorker());
+          break;
+        }
         case WORKER_NOT_SET: {
           break;
         }
@@ -593,6 +779,27 @@ private static final long serialVersionUID = 0L;
               workerCase_ = 12;
               break;
             } // case 98
+            case 106: {
+              input.readMessage(
+                  getBucketNotificationFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              workerCase_ = 13;
+              break;
+            } // case 106
+            case 114: {
+              input.readMessage(
+                  getWebsocketFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              workerCase_ = 14;
+              break;
+            } // case 114
+            case 122: {
+              input.readMessage(
+                  getHttpWorkerFieldBuilder().getBuilder(),
+                  extensionRegistry);
+              workerCase_ = 15;
+              break;
+            } // case 122
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -1048,6 +1255,432 @@ private static final long serialVersionUID = 0L;
       workerCase_ = 12;
       onChanged();;
       return scheduleBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.BucketNotificationWorker, io.nitric.proto.faas.v1.BucketNotificationWorker.Builder, io.nitric.proto.faas.v1.BucketNotificationWorkerOrBuilder> bucketNotificationBuilder_;
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     * @return Whether the bucketNotification field is set.
+     */
+    @java.lang.Override
+    public boolean hasBucketNotification() {
+      return workerCase_ == 13;
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     * @return The bucketNotification.
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.BucketNotificationWorker getBucketNotification() {
+      if (bucketNotificationBuilder_ == null) {
+        if (workerCase_ == 13) {
+          return (io.nitric.proto.faas.v1.BucketNotificationWorker) worker_;
+        }
+        return io.nitric.proto.faas.v1.BucketNotificationWorker.getDefaultInstance();
+      } else {
+        if (workerCase_ == 13) {
+          return bucketNotificationBuilder_.getMessage();
+        }
+        return io.nitric.proto.faas.v1.BucketNotificationWorker.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    public Builder setBucketNotification(io.nitric.proto.faas.v1.BucketNotificationWorker value) {
+      if (bucketNotificationBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        worker_ = value;
+        onChanged();
+      } else {
+        bucketNotificationBuilder_.setMessage(value);
+      }
+      workerCase_ = 13;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    public Builder setBucketNotification(
+        io.nitric.proto.faas.v1.BucketNotificationWorker.Builder builderForValue) {
+      if (bucketNotificationBuilder_ == null) {
+        worker_ = builderForValue.build();
+        onChanged();
+      } else {
+        bucketNotificationBuilder_.setMessage(builderForValue.build());
+      }
+      workerCase_ = 13;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    public Builder mergeBucketNotification(io.nitric.proto.faas.v1.BucketNotificationWorker value) {
+      if (bucketNotificationBuilder_ == null) {
+        if (workerCase_ == 13 &&
+            worker_ != io.nitric.proto.faas.v1.BucketNotificationWorker.getDefaultInstance()) {
+          worker_ = io.nitric.proto.faas.v1.BucketNotificationWorker.newBuilder((io.nitric.proto.faas.v1.BucketNotificationWorker) worker_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          worker_ = value;
+        }
+        onChanged();
+      } else {
+        if (workerCase_ == 13) {
+          bucketNotificationBuilder_.mergeFrom(value);
+        } else {
+          bucketNotificationBuilder_.setMessage(value);
+        }
+      }
+      workerCase_ = 13;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    public Builder clearBucketNotification() {
+      if (bucketNotificationBuilder_ == null) {
+        if (workerCase_ == 13) {
+          workerCase_ = 0;
+          worker_ = null;
+          onChanged();
+        }
+      } else {
+        if (workerCase_ == 13) {
+          workerCase_ = 0;
+          worker_ = null;
+        }
+        bucketNotificationBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    public io.nitric.proto.faas.v1.BucketNotificationWorker.Builder getBucketNotificationBuilder() {
+      return getBucketNotificationFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.BucketNotificationWorkerOrBuilder getBucketNotificationOrBuilder() {
+      if ((workerCase_ == 13) && (bucketNotificationBuilder_ != null)) {
+        return bucketNotificationBuilder_.getMessageOrBuilder();
+      } else {
+        if (workerCase_ == 13) {
+          return (io.nitric.proto.faas.v1.BucketNotificationWorker) worker_;
+        }
+        return io.nitric.proto.faas.v1.BucketNotificationWorker.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.BucketNotificationWorker bucket_notification = 13;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.BucketNotificationWorker, io.nitric.proto.faas.v1.BucketNotificationWorker.Builder, io.nitric.proto.faas.v1.BucketNotificationWorkerOrBuilder> 
+        getBucketNotificationFieldBuilder() {
+      if (bucketNotificationBuilder_ == null) {
+        if (!(workerCase_ == 13)) {
+          worker_ = io.nitric.proto.faas.v1.BucketNotificationWorker.getDefaultInstance();
+        }
+        bucketNotificationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.nitric.proto.faas.v1.BucketNotificationWorker, io.nitric.proto.faas.v1.BucketNotificationWorker.Builder, io.nitric.proto.faas.v1.BucketNotificationWorkerOrBuilder>(
+                (io.nitric.proto.faas.v1.BucketNotificationWorker) worker_,
+                getParentForChildren(),
+                isClean());
+        worker_ = null;
+      }
+      workerCase_ = 13;
+      onChanged();;
+      return bucketNotificationBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.WebsocketWorker, io.nitric.proto.faas.v1.WebsocketWorker.Builder, io.nitric.proto.faas.v1.WebsocketWorkerOrBuilder> websocketBuilder_;
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     * @return Whether the websocket field is set.
+     */
+    @java.lang.Override
+    public boolean hasWebsocket() {
+      return workerCase_ == 14;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     * @return The websocket.
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.WebsocketWorker getWebsocket() {
+      if (websocketBuilder_ == null) {
+        if (workerCase_ == 14) {
+          return (io.nitric.proto.faas.v1.WebsocketWorker) worker_;
+        }
+        return io.nitric.proto.faas.v1.WebsocketWorker.getDefaultInstance();
+      } else {
+        if (workerCase_ == 14) {
+          return websocketBuilder_.getMessage();
+        }
+        return io.nitric.proto.faas.v1.WebsocketWorker.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    public Builder setWebsocket(io.nitric.proto.faas.v1.WebsocketWorker value) {
+      if (websocketBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        worker_ = value;
+        onChanged();
+      } else {
+        websocketBuilder_.setMessage(value);
+      }
+      workerCase_ = 14;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    public Builder setWebsocket(
+        io.nitric.proto.faas.v1.WebsocketWorker.Builder builderForValue) {
+      if (websocketBuilder_ == null) {
+        worker_ = builderForValue.build();
+        onChanged();
+      } else {
+        websocketBuilder_.setMessage(builderForValue.build());
+      }
+      workerCase_ = 14;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    public Builder mergeWebsocket(io.nitric.proto.faas.v1.WebsocketWorker value) {
+      if (websocketBuilder_ == null) {
+        if (workerCase_ == 14 &&
+            worker_ != io.nitric.proto.faas.v1.WebsocketWorker.getDefaultInstance()) {
+          worker_ = io.nitric.proto.faas.v1.WebsocketWorker.newBuilder((io.nitric.proto.faas.v1.WebsocketWorker) worker_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          worker_ = value;
+        }
+        onChanged();
+      } else {
+        if (workerCase_ == 14) {
+          websocketBuilder_.mergeFrom(value);
+        } else {
+          websocketBuilder_.setMessage(value);
+        }
+      }
+      workerCase_ = 14;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    public Builder clearWebsocket() {
+      if (websocketBuilder_ == null) {
+        if (workerCase_ == 14) {
+          workerCase_ = 0;
+          worker_ = null;
+          onChanged();
+        }
+      } else {
+        if (workerCase_ == 14) {
+          workerCase_ = 0;
+          worker_ = null;
+        }
+        websocketBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    public io.nitric.proto.faas.v1.WebsocketWorker.Builder getWebsocketBuilder() {
+      return getWebsocketFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.WebsocketWorkerOrBuilder getWebsocketOrBuilder() {
+      if ((workerCase_ == 14) && (websocketBuilder_ != null)) {
+        return websocketBuilder_.getMessageOrBuilder();
+      } else {
+        if (workerCase_ == 14) {
+          return (io.nitric.proto.faas.v1.WebsocketWorker) worker_;
+        }
+        return io.nitric.proto.faas.v1.WebsocketWorker.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.WebsocketWorker websocket = 14;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.WebsocketWorker, io.nitric.proto.faas.v1.WebsocketWorker.Builder, io.nitric.proto.faas.v1.WebsocketWorkerOrBuilder> 
+        getWebsocketFieldBuilder() {
+      if (websocketBuilder_ == null) {
+        if (!(workerCase_ == 14)) {
+          worker_ = io.nitric.proto.faas.v1.WebsocketWorker.getDefaultInstance();
+        }
+        websocketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.nitric.proto.faas.v1.WebsocketWorker, io.nitric.proto.faas.v1.WebsocketWorker.Builder, io.nitric.proto.faas.v1.WebsocketWorkerOrBuilder>(
+                (io.nitric.proto.faas.v1.WebsocketWorker) worker_,
+                getParentForChildren(),
+                isClean());
+        worker_ = null;
+      }
+      workerCase_ = 14;
+      onChanged();;
+      return websocketBuilder_;
+    }
+
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.HttpWorker, io.nitric.proto.faas.v1.HttpWorker.Builder, io.nitric.proto.faas.v1.HttpWorkerOrBuilder> httpWorkerBuilder_;
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     * @return Whether the httpWorker field is set.
+     */
+    @java.lang.Override
+    public boolean hasHttpWorker() {
+      return workerCase_ == 15;
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     * @return The httpWorker.
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.HttpWorker getHttpWorker() {
+      if (httpWorkerBuilder_ == null) {
+        if (workerCase_ == 15) {
+          return (io.nitric.proto.faas.v1.HttpWorker) worker_;
+        }
+        return io.nitric.proto.faas.v1.HttpWorker.getDefaultInstance();
+      } else {
+        if (workerCase_ == 15) {
+          return httpWorkerBuilder_.getMessage();
+        }
+        return io.nitric.proto.faas.v1.HttpWorker.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    public Builder setHttpWorker(io.nitric.proto.faas.v1.HttpWorker value) {
+      if (httpWorkerBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        worker_ = value;
+        onChanged();
+      } else {
+        httpWorkerBuilder_.setMessage(value);
+      }
+      workerCase_ = 15;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    public Builder setHttpWorker(
+        io.nitric.proto.faas.v1.HttpWorker.Builder builderForValue) {
+      if (httpWorkerBuilder_ == null) {
+        worker_ = builderForValue.build();
+        onChanged();
+      } else {
+        httpWorkerBuilder_.setMessage(builderForValue.build());
+      }
+      workerCase_ = 15;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    public Builder mergeHttpWorker(io.nitric.proto.faas.v1.HttpWorker value) {
+      if (httpWorkerBuilder_ == null) {
+        if (workerCase_ == 15 &&
+            worker_ != io.nitric.proto.faas.v1.HttpWorker.getDefaultInstance()) {
+          worker_ = io.nitric.proto.faas.v1.HttpWorker.newBuilder((io.nitric.proto.faas.v1.HttpWorker) worker_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          worker_ = value;
+        }
+        onChanged();
+      } else {
+        if (workerCase_ == 15) {
+          httpWorkerBuilder_.mergeFrom(value);
+        } else {
+          httpWorkerBuilder_.setMessage(value);
+        }
+      }
+      workerCase_ = 15;
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    public Builder clearHttpWorker() {
+      if (httpWorkerBuilder_ == null) {
+        if (workerCase_ == 15) {
+          workerCase_ = 0;
+          worker_ = null;
+          onChanged();
+        }
+      } else {
+        if (workerCase_ == 15) {
+          workerCase_ = 0;
+          worker_ = null;
+        }
+        httpWorkerBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    public io.nitric.proto.faas.v1.HttpWorker.Builder getHttpWorkerBuilder() {
+      return getHttpWorkerFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    @java.lang.Override
+    public io.nitric.proto.faas.v1.HttpWorkerOrBuilder getHttpWorkerOrBuilder() {
+      if ((workerCase_ == 15) && (httpWorkerBuilder_ != null)) {
+        return httpWorkerBuilder_.getMessageOrBuilder();
+      } else {
+        if (workerCase_ == 15) {
+          return (io.nitric.proto.faas.v1.HttpWorker) worker_;
+        }
+        return io.nitric.proto.faas.v1.HttpWorker.getDefaultInstance();
+      }
+    }
+    /**
+     * <code>.nitric.faas.v1.HttpWorker http_worker = 15;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.nitric.proto.faas.v1.HttpWorker, io.nitric.proto.faas.v1.HttpWorker.Builder, io.nitric.proto.faas.v1.HttpWorkerOrBuilder> 
+        getHttpWorkerFieldBuilder() {
+      if (httpWorkerBuilder_ == null) {
+        if (!(workerCase_ == 15)) {
+          worker_ = io.nitric.proto.faas.v1.HttpWorker.getDefaultInstance();
+        }
+        httpWorkerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.nitric.proto.faas.v1.HttpWorker, io.nitric.proto.faas.v1.HttpWorker.Builder, io.nitric.proto.faas.v1.HttpWorkerOrBuilder>(
+                (io.nitric.proto.faas.v1.HttpWorker) worker_,
+                getParentForChildren(),
+                isClean());
+        worker_ = null;
+      }
+      workerCase_ = 15;
+      onChanged();;
+      return httpWorkerBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

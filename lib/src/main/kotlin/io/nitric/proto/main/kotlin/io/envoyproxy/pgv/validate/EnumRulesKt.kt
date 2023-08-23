@@ -4,23 +4,23 @@
 package io.envoyproxy.pgv.validate;
 
 @kotlin.jvm.JvmName("-initializeenumRules")
-inline fun enumRules(block: io.envoyproxy.pgv.validate.EnumRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.EnumRules =
-  io.envoyproxy.pgv.validate.EnumRulesKt.Dsl._create(io.envoyproxy.pgv.validate.EnumRules.newBuilder()).apply { block() }._build()
+inline fun enumRules(block: io.envoyproxy.pgv.validate.EnumRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.EnumRules =
+  io.envoyproxy.pgv.validate.EnumRulesKt.Dsl._create(io.envoyproxy.pgv.validate.Validate.EnumRules.newBuilder()).apply { block() }._build()
 object EnumRulesKt {
   @kotlin.OptIn(com.google.protobuf.kotlin.OnlyForUseByGeneratedProtoCode::class)
   @com.google.protobuf.kotlin.ProtoDslMarker
   class Dsl private constructor(
-    private val _builder: io.envoyproxy.pgv.validate.EnumRules.Builder
+    private val _builder: io.envoyproxy.pgv.validate.Validate.EnumRules.Builder
   ) {
     companion object {
       @kotlin.jvm.JvmSynthetic
       @kotlin.PublishedApi
-      internal fun _create(builder: io.envoyproxy.pgv.validate.EnumRules.Builder): Dsl = Dsl(builder)
+      internal fun _create(builder: io.envoyproxy.pgv.validate.Validate.EnumRules.Builder): Dsl = Dsl(builder)
     }
 
     @kotlin.jvm.JvmSynthetic
     @kotlin.PublishedApi
-    internal fun _build(): io.envoyproxy.pgv.validate.EnumRules = _builder.build()
+    internal fun _build(): io.envoyproxy.pgv.validate.Validate.EnumRules = _builder.build()
 
     /**
      * <pre>
@@ -299,6 +299,6 @@ object EnumRulesKt {
     }}
 }
 @kotlin.jvm.JvmSynthetic
-inline fun io.envoyproxy.pgv.validate.EnumRules.copy(block: io.envoyproxy.pgv.validate.EnumRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.EnumRules =
+inline fun io.envoyproxy.pgv.validate.Validate.EnumRules.copy(block: io.envoyproxy.pgv.validate.EnumRulesKt.Dsl.() -> kotlin.Unit): io.envoyproxy.pgv.validate.Validate.EnumRules =
   io.envoyproxy.pgv.validate.EnumRulesKt.Dsl._create(this.toBuilder()).apply { block() }._build()
 

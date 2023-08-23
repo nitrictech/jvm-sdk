@@ -12,7 +12,7 @@ public interface EventPublishRequestOrBuilder extends
    * The name of the topic to publish the event to
    * </pre>
    *
-   * <code>string topic = 1 [(.validate.rules) = { ... }</code>
+   * <code>string topic = 1;</code>
    * @return The topic.
    */
   java.lang.String getTopic();
@@ -21,7 +21,7 @@ public interface EventPublishRequestOrBuilder extends
    * The name of the topic to publish the event to
    * </pre>
    *
-   * <code>string topic = 1 [(.validate.rules) = { ... }</code>
+   * <code>string topic = 1;</code>
    * @return The bytes for topic.
    */
   com.google.protobuf.ByteString

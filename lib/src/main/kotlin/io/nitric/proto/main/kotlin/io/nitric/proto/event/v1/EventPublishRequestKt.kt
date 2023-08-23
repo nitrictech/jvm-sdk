@@ -27,7 +27,7 @@ object EventPublishRequestKt {
      * The name of the topic to publish the event to
      * </pre>
      *
-     * <code>string topic = 1 [(.validate.rules) = { ... }</code>
+     * <code>string topic = 1;</code>
      */
     var topic: kotlin.String
       @JvmName("getTopic")
@@ -41,7 +41,7 @@ object EventPublishRequestKt {
      * The name of the topic to publish the event to
      * </pre>
      *
-     * <code>string topic = 1 [(.validate.rules) = { ... }</code>
+     * <code>string topic = 1;</code>
      */
     fun clearTopic() {
       _builder.clearTopic()

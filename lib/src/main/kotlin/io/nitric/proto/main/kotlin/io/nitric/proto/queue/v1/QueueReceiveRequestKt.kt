@@ -28,7 +28,7 @@ object QueueReceiveRequestKt {
      * this will automatically be resolved to the provider specific queue identifier.
      * </pre>
      *
-     * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+     * <code>string queue = 1;</code>
      */
     var queue: kotlin.String
       @JvmName("getQueue")
@@ -43,7 +43,7 @@ object QueueReceiveRequestKt {
      * this will automatically be resolved to the provider specific queue identifier.
      * </pre>
      *
-     * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+     * <code>string queue = 1;</code>
      */
     fun clearQueue() {
       _builder.clearQueue()

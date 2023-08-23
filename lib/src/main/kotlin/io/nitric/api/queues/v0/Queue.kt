@@ -53,6 +53,11 @@ class Queue internal constructor(internal val client: QueueServiceBlockingStub, 
         }
     }
 
+    fun send(vararg payloads: Map<String, Any?>): List<FailedTask> {
+        val tasks = payloads.map { Task(it) }
+        return this.send(*tasks.toTypedArray())
+    }
+
     /**
      * Send a [task] to this Queue.
      */
@@ -68,6 +73,13 @@ class Queue internal constructor(internal val client: QueueServiceBlockingStub, 
         } catch (err: Exception) {
             err.message?.let { FailedTask(task, it) }
         }
+    }
+
+    /**
+     * Send a new task with provided [payload] to the Queue.
+     */
+    fun send(payload: Map<String, Any?>): FailedTask? {
+        return this.send(Task(payload))
     }
 
     /**

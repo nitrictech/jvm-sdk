@@ -13,5 +13,5 @@ fun <T: Any> T.fluently(func: ()->Unit): T {
 }
 
 fun Logger.error(error: Throwable?, msg: String) {
-    this.log(java.util.logging.Level.SEVERE, "${msg}: ${error?.message}")
+    this.log(java.util.logging.Level.SEVERE, "${msg}: ${error?.message}, trace: ${error?.stackTraceToString()}")
 }

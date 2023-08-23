@@ -52,7 +52,7 @@ private static final long serialVersionUID = 0L;
    * this will automatically be resolved to the provider specific queue identifier.
    * </pre>
    *
-   * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+   * <code>string queue = 1;</code>
    * @return The queue.
    */
   @java.lang.Override
@@ -74,7 +74,7 @@ private static final long serialVersionUID = 0L;
    * this will automatically be resolved to the provider specific queue identifier.
    * </pre>
    *
-   * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+   * <code>string queue = 1;</code>
    * @return The bytes for queue.
    */
   @java.lang.Override
@@ -451,7 +451,7 @@ private static final long serialVersionUID = 0L;
      * this will automatically be resolved to the provider specific queue identifier.
      * </pre>
      *
-     * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+     * <code>string queue = 1;</code>
      * @return The queue.
      */
     public java.lang.String getQueue() {
@@ -472,7 +472,7 @@ private static final long serialVersionUID = 0L;
      * this will automatically be resolved to the provider specific queue identifier.
      * </pre>
      *
-     * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+     * <code>string queue = 1;</code>
      * @return The bytes for queue.
      */
     public com.google.protobuf.ByteString
@@ -494,7 +494,7 @@ private static final long serialVersionUID = 0L;
      * this will automatically be resolved to the provider specific queue identifier.
      * </pre>
      *
-     * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+     * <code>string queue = 1;</code>
      * @param value The queue to set.
      * @return This builder for chaining.
      */
@@ -514,7 +514,7 @@ private static final long serialVersionUID = 0L;
      * this will automatically be resolved to the provider specific queue identifier.
      * </pre>
      *
-     * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+     * <code>string queue = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearQueue() {
@@ -529,7 +529,7 @@ private static final long serialVersionUID = 0L;
      * this will automatically be resolved to the provider specific queue identifier.
      * </pre>
      *
-     * <code>string queue = 1 [(.validate.rules) = { ... }</code>
+     * <code>string queue = 1;</code>
      * @param value The bytes for queue to set.
      * @return This builder for chaining.
      */
