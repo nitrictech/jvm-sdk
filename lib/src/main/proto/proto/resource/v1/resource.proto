@@ -1,10 +1,8 @@
 syntax = "proto3";
 package nitric.resource.v1;
 
-import "validate/validate.proto";
-
 //protoc plugin options for code generation
-option go_package = "nitric/v1;v1";
+option go_package = "github.com/nitrictech/nitric/core/pkg/api/nitric/v1";
 option java_package = "io.nitric.proto.resource.v1";
 option java_multiple_files = true;
 option java_outer_classname = "Resources";
@@ -18,6 +16,9 @@ service ResourceService {
   // At Deploy time this will create resources as part of the nitric stacks dependency graph
   // At runtime
   rpc Declare (ResourceDeclareRequest) returns (ResourceDeclareResponse);
+
+  // Retrieve details about a resource at runtime
+  rpc Details (ResourceDetailsRequest) returns (ResourceDetailsResponse);
 }
 
 message PolicyResource {
@@ -37,6 +38,9 @@ enum ResourceType {
   Collection = 7;
   Policy = 8;
   Secret = 9;
+  Notification = 10;
+  Websocket = 11;
+  Http = 12;
 }
 
 message Resource {
@@ -116,6 +120,38 @@ enum Action {
   // Secret Permissions: 5XX
   SecretPut = 500;
   SecretAccess = 501;
+
+  // Websocket Permissions: 6XX
+  WebsocketManage = 600;
 }
 
 message ResourceDeclareResponse {}
+
+message ApiResourceDetails {
+  string url = 1;
+}
+
+message WebsocketResourceDetails {
+  string url = 1;
+}
+
+message ResourceDetailsRequest {
+  Resource resource = 1;
+}
+
+message ResourceDetailsResponse {
+  // The identifier of the resource
+  string id = 1;
+
+  // The provider this resource is deployed with (e.g. aws)
+  string provider = 2;
+
+  // The service this resource is deployed on (e.g. ApiGateway)
+  string service = 3;
+
+  // Details about the resource
+  oneof details {
+    ApiResourceDetails api = 10;
+    WebsocketResourceDetails websocket = 11;
+  }
+}
