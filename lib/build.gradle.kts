@@ -14,7 +14,7 @@ tasks.register<DefaultTask>("downloadProto") {
 
 tasks.register<Copy>("unpackProto") {
     dependsOn("downloadProto")
-    if (!File("src/main/proto").exists()) {
+    if (File("${projectDir}/proto.tgz").exists()) {
         from(tarTree("proto.tgz")) {
             include("contracts/**")
             eachFile {
