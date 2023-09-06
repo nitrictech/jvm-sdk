@@ -5,6 +5,8 @@ import io.nitric.proto.resource.v1.Action
 import io.nitric.proto.resource.v1.ResourceDeclareRequest
 import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.fluently
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 enum class SecretPermission {
     Put,
@@ -24,10 +26,18 @@ class SecretResource internal constructor(name: String): SecureResource<SecretPe
     }
 
     override fun register() = fluently {
-        this.client.declare(ResourceDeclareRequest.newBuilder()
-            .setResource(io.nitric.proto.resource.v1.Resource.newBuilder().setName(this.name).setType(ResourceType.Secret).build())
-            .setSecret(io.nitric.proto.resource.v1.SecretResource.newBuilder().build())
-            .build()
+        registerResource(this)
+    }
+
+    private fun registerResource(resource: SecretResource) {
+        resource.client.declare(
+            ResourceDeclareRequest.newBuilder()
+                .setResource(
+                    io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name)
+                        .setType(ResourceType.Secret).build()
+                )
+                .setSecret(io.nitric.proto.resource.v1.SecretResource.newBuilder().build())
+                .build()
         )
     }
 

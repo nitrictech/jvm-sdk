@@ -4,7 +4,7 @@ import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 
 /**
- *
+ * A Grpc Channel Provider
  */
 internal object GrpcChannelProvider {
     private var chan: ManagedChannel? = null

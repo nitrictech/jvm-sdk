@@ -30,4 +30,9 @@ hs_err_pid*
 # Ignore Gradle build output directory
 build
 
+# Downloaded during build
+proto.tgz
+*.proto
+lib/src/main/proto/
+
 .DS_Store

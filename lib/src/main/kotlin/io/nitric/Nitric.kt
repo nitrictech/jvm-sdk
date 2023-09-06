@@ -4,6 +4,7 @@ import io.nitric.faas.v0.Faas
 import io.nitric.resources.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlin.reflect.KClass
 
 /**
  * Nitric resource manager
@@ -33,8 +34,13 @@ object Nitric {
      * @param name the name of the API resource
      * @return [ApiResource]
      */
+    fun api(name: String, options: ApiOptions): ApiResource {
+        return ApiResource(name, options)
+    }
+
+    // Using overloading instead of default parameter so that java dev experience is better
     fun api(name: String): ApiResource {
-        return ApiResource(name)
+        return ApiResource(name, ApiOptions())
     }
 
     /**
@@ -83,9 +89,21 @@ object Nitric {
      * @param name The name of the secret
      * @return [SecretResource]
      */
-    fun <T>secret(name: String) = registrar("secret", name) {
+    fun secret(name: String) = registrar("secret", name) {
         // create the resource type
         SecretResource(name)
+    }
+
+    /**
+     * Declares a new collection resource
+     *
+     * @param name The name of the collection
+     * @param T The type of data to store in the collections documents
+     * @return [CollectionResource]
+     */
+    inline fun <reified T>collection(name: String) = registrar("collection", name) {
+        // create the resource type
+        CollectionResource(name, T::class.java)
     }
 
     /**
@@ -95,9 +113,13 @@ object Nitric {
      * @param type The type of data to store in the collections documents
      * @return [CollectionResource]
      */
-    fun <T>collection(name: String, type: Class<T>)= registrar("collection", name) {
+    fun <T>collection(name: String, type: Class<T>) = registrar("collection", name) {
         // create the resource type
         CollectionResource(name, type)
+    }
+
+    fun websocket(name: String) = registrar("websocket", name) {
+        WebsocketResource(name)
     }
 }
 

@@ -1,16 +1,15 @@
 package io.nitric.resources
 
 
-import io.nitric.proto.resource.v1.Action
-import io.nitric.proto.resource.v1.PolicyResource
+import io.nitric.proto.resource.v1.*
+import io.nitric.proto.resource.v1.ResourceServiceGrpc.ResourceServiceBlockingStub
 import io.nitric.proto.resource.v1.Resource as ProtoResource
-import io.nitric.proto.resource.v1.ResourceDeclareRequest
-import io.nitric.proto.resource.v1.ResourceServiceGrpc
-import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.GrpcChannelProvider
 
+abstract class ResourceDetails(val id: String, val provider: String, val service: String)
+
 abstract class Resource(val name: String) {
-    internal val client: ResourceServiceGrpc.ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
+    internal val client: ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
     internal abstract fun register(): Resource
 }
 

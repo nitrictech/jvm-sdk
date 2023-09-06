@@ -10,6 +10,8 @@ import io.nitric.proto.resource.v1.Resource
 import io.nitric.proto.resource.v1.ResourceDeclareRequest
 import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.fluently
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 enum class TopicPermission {
     Publishing
@@ -17,10 +19,15 @@ enum class TopicPermission {
 
 class TopicResource internal constructor(name: String) : SecureResource<TopicPermission>(name) {
     override fun register() = fluently {
-        this.client.declare(ResourceDeclareRequest.newBuilder()
-            .setResource(Resource.newBuilder().setName(this.name).setType(ResourceType.Topic).build())
-            .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
-            .build()
+        registerResource(this)
+    }
+
+    private fun registerResource(resource: TopicResource) {
+        resource.client.declare(
+            ResourceDeclareRequest.newBuilder()
+                .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Topic).build())
+                .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
+                .build()
         )
     }
 
@@ -34,9 +41,27 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         }
     }
 
-    fun subscribe(mw: Handler<EventContext>) {
+    /**
+     * Subscribe to a topic, running [middleware] on each publish.
+     */
+    fun subscribe(middleware: Handler<EventContext>) {
         val faas = Faas(SubscriptionWorkerOptions(this.name))
-        faas.event(mw)
+        faas.event { ctx, next ->
+            val context = middleware(ctx)
+            next(context)
+        }
+        Nitric.registerWorker(faas)
+    }
+
+
+    /**
+     * Subscribe to a topic, running [middleware] on each publish.
+     */
+    fun subscribe(middleware: List<Middleware<EventContext>>) {
+        val faas = Faas(SubscriptionWorkerOptions(this.name))
+        middleware.forEach {
+            faas.event(it)
+        }
         Nitric.registerWorker(faas)
     }
 
