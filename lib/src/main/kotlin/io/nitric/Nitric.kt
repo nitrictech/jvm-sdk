@@ -98,18 +98,6 @@ object Nitric {
      * Declares a new collection resource
      *
      * @param name The name of the collection
-     * @param T The type of data to store in the collections documents
-     * @return [CollectionResource]
-     */
-    inline fun <reified T>collection(name: String) = registrar("collection", name) {
-        // create the resource type
-        CollectionResource(name, T::class.java)
-    }
-
-    /**
-     * Declares a new collection resource
-     *
-     * @param name The name of the collection
      * @param type The type of data to store in the collections documents
      * @return [CollectionResource]
      */
