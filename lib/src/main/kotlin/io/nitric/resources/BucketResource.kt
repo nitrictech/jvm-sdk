@@ -18,7 +18,7 @@ enum class BucketPermission {
 }
 
 
-class BucketResource internal constructor(name: String) : SecureResource<BucketPermission>(name) {
+class BucketResource internal constructor(name: String): SecureResource<BucketPermission>(name, ResourceType.Bucket) {
     override fun register() = fluently {
         registerResource(this)
     }
@@ -26,7 +26,7 @@ class BucketResource internal constructor(name: String) : SecureResource<BucketP
     private fun registerResource(resource: BucketResource) = runBlocking {
         async {
             resource.client.declare(ResourceDeclareRequest.newBuilder()
-                .setResource(io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name).setType(ResourceType.Bucket).build())
+                .setResource(resource.asProtoResource())
                 .setBucket(io.nitric.proto.resource.v1.BucketResource.newBuilder().build()).build()
             )
         }.await()

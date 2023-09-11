@@ -17,7 +17,7 @@ enum class TopicPermission {
     Publishing
 }
 
-class TopicResource internal constructor(name: String) : SecureResource<TopicPermission>(name) {
+class TopicResource internal constructor(name: String) : SecureResource<TopicPermission>(name, ResourceType.Topic) {
     override fun register() = fluently {
         registerResource(this)
     }
@@ -25,7 +25,7 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
     private fun registerResource(resource: TopicResource) {
         resource.client.declare(
             ResourceDeclareRequest.newBuilder()
-                .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Topic).build())
+                .setResource(this.asProtoResource())
                 .setTopic(io.nitric.proto.resource.v1.TopicResource.newBuilder().build())
                 .build()
         )
