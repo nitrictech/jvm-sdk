@@ -86,6 +86,6 @@ class Topic internal constructor(private val client: EventingClients, val name: 
     fun publish(payload: Map<String, Any?>): NitricEvent {
         val event = NitricEvent(payload)
 
-        return this.publish(payload)
+        return this.publish(event)
     }
 }
