@@ -13,7 +13,7 @@ enum class SecretPermission {
     Access
 }
 
-class SecretResource internal constructor(name: String): SecureResource<SecretPermission>(name) {
+class SecretResource internal constructor(name: String): SecureResource<SecretPermission>(name, ResourceType.Secret) {
     override fun permissionsToActions(permissions: List<SecretPermission>): List<Action> {
         return permissions.fold(mutableListOf()) { arr, perm ->
             val actions: List<Action> = when (perm) {
@@ -32,10 +32,7 @@ class SecretResource internal constructor(name: String): SecureResource<SecretPe
     private fun registerResource(resource: SecretResource) {
         resource.client.declare(
             ResourceDeclareRequest.newBuilder()
-                .setResource(
-                    io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name)
-                        .setType(ResourceType.Secret).build()
-                )
+                .setResource(this.asProtoResource())
                 .setSecret(io.nitric.proto.resource.v1.SecretResource.newBuilder().build())
                 .build()
         )

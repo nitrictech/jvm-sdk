@@ -15,7 +15,7 @@ enum class QueuePermission {
     Send, Receive
 }
 
-class QueueResource internal constructor(name: String): SecureResource<QueuePermission>(name) {
+class QueueResource internal constructor(name: String): SecureResource<QueuePermission>(name, ResourceType.Queue) {
     override fun register() = fluently {
         registerResource(this)
     }
@@ -23,10 +23,7 @@ class QueueResource internal constructor(name: String): SecureResource<QueuePerm
     private fun registerResource(resource: QueueResource) {
         resource.client.declare(
             ResourceDeclareRequest.newBuilder()
-                .setResource(
-                    io.nitric.proto.resource.v1.Resource.newBuilder().setName(resource.name).setType(ResourceType.Queue)
-                        .build()
-                )
+                .setResource(this.asProtoResource())
                 .setQueue(io.nitric.proto.resource.v1.QueueResource.newBuilder().build()).build()
         )
     }

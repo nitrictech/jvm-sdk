@@ -24,7 +24,7 @@ import kotlinx.coroutines.runBlocking
 class WebsocketDetails(val url: String, id: String, provider: String, service: String): ResourceDetails(id, provider, service)
 
 
-class WebsocketResource internal constructor(name: String) : Resource(name) {
+class WebsocketResource internal constructor(name: String) : Resource(name, ResourceType.Websocket) {
     // The document gRPC client
     private val websocketClient = WebsocketServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
 
@@ -37,7 +37,7 @@ class WebsocketResource internal constructor(name: String) : Resource(name) {
             resource.client.declare(
                 ResourceDeclareRequest.newBuilder()
                     .setResource(
-                        ProtoResource.newBuilder().setName(resource.name).setType(ResourceType.Websocket).build()
+                        resource.asProtoResource()
                     )
                     .build()
             )

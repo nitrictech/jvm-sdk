@@ -8,12 +8,16 @@ import io.nitric.util.GrpcChannelProvider
 
 abstract class ResourceDetails(val id: String, val provider: String, val service: String)
 
-abstract class Resource(val name: String) {
-    internal val client: ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
+abstract class Resource(val name: String, val type: ResourceType) {
+    internal val client: ResourceServiceGrpc.ResourceServiceBlockingStub = ResourceServiceGrpc.newBlockingStub(GrpcChannelProvider.getChannel())
     internal abstract fun register(): Resource
+
+    internal fun asProtoResource(): ProtoResource {
+        return ProtoResource.newBuilder().setName(this.name).setType(this.type).build()
+    }
 }
 
-abstract class SecureResource<P: Enum<P>>(name: String) : Resource(name) {
+abstract class SecureResource<P: Enum<P>>(name: String, type: ResourceType) : Resource(name, type) {
     internal abstract fun permissionsToActions(permissions: List<P>): List<Action>
 
     internal fun registerPolicy(permissions: List<P>) {
@@ -28,6 +32,7 @@ abstract class SecureResource<P: Enum<P>>(name: String) : Resource(name) {
         val policy = PolicyResource.newBuilder()
             .addPrincipals(defaultPrincipal)
             .addAllActions(actions)
+            .addResources(this.asProtoResource())
             .build()
 
         this.client.declare(

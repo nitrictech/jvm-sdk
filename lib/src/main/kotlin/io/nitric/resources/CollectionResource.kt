@@ -13,7 +13,7 @@ enum class CollectionPermission {
     Delete
 }
 
-class CollectionResource<T>(name: String, private val type: Class<T>): SecureResource<CollectionPermission>(name) {
+class CollectionResource<T> constructor(name: String, private val collectionType: Class<T>): SecureResource<CollectionPermission>(name, ResourceType.Collection) {
     override fun permissionsToActions(permissions: List<CollectionPermission>): List<Action> {
         return permissions.fold(mutableListOf()) { arr, perm ->
             val actions: List<Action> = when (perm) {
@@ -32,13 +32,13 @@ class CollectionResource<T>(name: String, private val type: Class<T>): SecureRes
 
     private fun registerResource(resource: CollectionResource<T>) {
         resource.client.declare(ResourceDeclareRequest.newBuilder()
-            .setResource(Resource.newBuilder().setName(resource.name).setType(ResourceType.Collection).build())
+            .setResource(this.asProtoResource())
             .setCollection(io.nitric.proto.resource.v1.CollectionResource.newBuilder().build()).build()
         )
     }
 
     fun with(vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
         this.registerPolicy(permissions.asList())
-        return Documents.collection(this.name, this.type)
+        return Documents.collection(this.name, this.collectionType)
     }
 }
