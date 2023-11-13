@@ -5,8 +5,6 @@ import io.nitric.proto.resource.v1.Action
 import io.nitric.proto.resource.v1.ResourceDeclareRequest
 import io.nitric.proto.resource.v1.ResourceType
 import io.nitric.util.fluently
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 
 enum class SecretPermission {
     Put,
@@ -38,8 +36,10 @@ class SecretResource internal constructor(name: String): SecureResource<SecretPe
         )
     }
 
-    fun with(vararg permissions: SecretPermission): io.nitric.api.secrets.v0.Secret {
-        this.registerPolicy(permissions.asList())
+    fun with(permission: SecretPermission, vararg permissions: SecretPermission): io.nitric.api.secrets.v0.Secret {
+        val allPerms = listOf(permission) + permissions.asList()
+
+        this.registerPolicy(allPerms)
         return Secrets.secret(this.name)
     }
 }

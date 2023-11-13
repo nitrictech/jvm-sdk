@@ -65,8 +65,10 @@ class TopicResource internal constructor(name: String) : SecureResource<TopicPer
         Nitric.registerWorker(faas)
     }
 
-    fun with(vararg permissions: TopicPermission): Topic {
-        this.registerPolicy(permissions.asList())
+    fun with(permission: TopicPermission, vararg permissions: TopicPermission): Topic {
+        val allPerms = listOf(permission) + permissions.asList()
+
+        this.registerPolicy(allPerms)
         return Eventing.topic(this.name)
     }
 }

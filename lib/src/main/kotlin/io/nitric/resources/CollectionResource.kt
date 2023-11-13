@@ -37,8 +37,10 @@ class CollectionResource<T> constructor(name: String, private val collectionType
         )
     }
 
-    fun with(vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
-        this.registerPolicy(permissions.asList())
+    fun with(permission: CollectionPermission, vararg permissions: CollectionPermission): io.nitric.api.documents.v0.Collection<T> {
+        val allPerms = listOf(permission) + permissions.asList()
+
+        this.registerPolicy(allPerms)
         return Documents.collection(this.name, this.collectionType)
     }
 }
