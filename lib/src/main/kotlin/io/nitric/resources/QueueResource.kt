@@ -45,8 +45,10 @@ class QueueResource internal constructor(name: String): SecureResource<QueuePerm
         }
     }
 
-    fun with(vararg permissions: QueuePermission): Queue {
-        this.registerPolicy(permissions.asList())
+    fun with(permission: QueuePermission, vararg permissions: QueuePermission): Queue {
+        val allPerms = listOf(permission) + permissions.asList()
+
+        this.registerPolicy(allPerms)
         return Queueing.queue(this.name)
     }
 }

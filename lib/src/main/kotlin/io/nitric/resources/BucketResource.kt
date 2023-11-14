@@ -44,8 +44,10 @@ class BucketResource internal constructor(name: String): SecureResource<BucketPe
         }
     }
 
-    fun with(vararg permissions: BucketPermission): Bucket {
-        this.registerPolicy(permissions.asList())
+    fun with(permission: BucketPermission, vararg permissions: BucketPermission): Bucket {
+        val allPerms = listOf(permission) + permissions.asList()
+
+        this.registerPolicy(allPerms)
         return Storage.bucket(this.name)
     }
 
